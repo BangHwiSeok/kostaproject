@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shin.user.dao.UserDao">
+	<insert id="addUser" parameterType="com.shinseokki.puzzle.dto.User">
+		INSERT INTO USERS(U_ID, U_PWD, U_BIRTH, U_GENDER, U_ROLE) 
+						    VALUES(#{u_id},#{u_pwd},#{u_birth},#{u_gender},#{u_role} )
+	</insert>
+	
+	<select id="getUser" parameterType="string" resultType="com.shinseokki.puzzle.dto.User">
+		SELECT * FROM USERS WHERE U_ID = #{u_id}
+	</select>
+</mapper>
