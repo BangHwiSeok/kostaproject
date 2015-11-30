@@ -3,6 +3,7 @@ package com.shinseokki.puzzle.service;
 import java.util.Collection;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.shinseokki.puzzle.dao.ProfileDao;
@@ -13,6 +14,7 @@ public class ProfileService {
 	
 	private ProfileDao profileDao;
 	
+	@Autowired
 	public ProfileService(SqlSession sqlSession) {
 		profileDao = sqlSession.getMapper(ProfileDao.class);
 	}

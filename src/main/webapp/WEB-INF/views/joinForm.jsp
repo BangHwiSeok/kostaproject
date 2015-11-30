@@ -9,9 +9,14 @@
 </head>
 <body>
 <spring:form commandName="userForm" method="POST">
-	<spring:input path="u_id"/>
-	<spring:input path="u_birth" />
-
+	<label>ID : </label><spring:input path="u_id"/>
+	<label>PWD : </label><spring:input path="u_pwd" type="password" />
+	<label>Phone : </label><spring:input path="u_pnum" />
+	<label>GENDER : </label><spring:select path="u_gender">
+		<spring:option value="남" label="남"/>
+		<spring:option value="여" label="여" />
+	</spring:select>
+	<label>Birth</label><spring:input path="u_birth" />
 </spring:form>
 </body>
 </html>

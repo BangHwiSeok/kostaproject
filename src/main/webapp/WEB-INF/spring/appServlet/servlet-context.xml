@@ -30,5 +30,5 @@
 		<beans:property name="maxUploadSize" value="1000000" />
 	</beans:bean>
 	
-	
+	<beans:bean id="userValidator" class="com.shinseokki.puzzle.validator.UserValidator"></beans:bean>
 </beans:beans>
