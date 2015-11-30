@@ -117,7 +117,7 @@
 		<!-- My oracle -->
 		<dependency>
 			<groupId>com.oracle</groupId>
-			<artifactId>oracle</artifactId>
+			<artifactId>ojdbc</artifactId>
 			<version>11</version>
 		</dependency>
 		<!-- My FielUpload -->
