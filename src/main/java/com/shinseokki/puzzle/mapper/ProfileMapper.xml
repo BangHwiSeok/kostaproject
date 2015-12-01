@@ -7,29 +7,27 @@
 
 	<!-- Profile 추가 -->
 	<insert id="addProfile" parameterType="com.shinseokki.puzzle.dto.Profile">
-		INSERT INTO PROFILE(,
-			U_ID, U_PHOTO1, U_PHOTO2, U_PHOTO3, U_PHOTO4, U_PHOTO5) 
-			VALUES(#{u_id}, #{u_photo1},#{u_photo2},#{u_photo3, jdbcType=VARCHAR}, 
-						#{u_photo4, jdbcType=VARCHAR}, #{u_photo5, jdbcType=VARCHAR})
+		INSERT INTO PROFILE(
+			U_ID, P_PHOTONUM, P_EXTENDTYPE) 
+			VALUES(#{u_id}, #{p_photonum}, #{p_extendtype} )
 	</insert>
 
 	<!-- Profile 가져오기 -->
 	<select id="getProfile" resultType="com.shinseokki.puzzle.dto.Profile">
-		SELECT * FROM PROFILE WHERE K_NAME = #{u_id}
+		SELECT * FROM PROFILE WHERE U_ID = #{u_id}
 	</select>
 
 	<!-- Profile 수정 -->
 	<update id="updateProfile" parameterType="com.shinseokki.puzzle.dto.Profile">
 		UPDATE PROFILE SET
-			U_PHOTO1 = #{u_photo1}, U_PHOTO2 = #{u_photo2},U_PHOTO3 = #{u_photo3, jdbcType=VARCHAR}, 
-			U_PHOTO4 = #{u_photo4, jdbcType=VARCHAR},U_PHOTO5 = #{u_photo5, jdbcType=VARCHAR}
+			P_PHOTONUM=#{p_photonum} WHERE U_ID=#{u_id} AND P_PHOTONUM =#{p_photonum}
 		WHERE U_ID=#{u_id}
 	</update>
 
 	<!-- Profile 삭제 -->
 	<delete id="deleteProfile" parameterType="com.shinseokki.puzzle.dto.Profile">
-		DELETE FROM Keyword
-		WHERE K_NAME = #{u_id}
+		DELETE FROM PROFILE
+		WHERE U_ID = #{u_id} AND P_PHOTONUM = #{P_photonum}
 	</delete>
 
 </mapper>

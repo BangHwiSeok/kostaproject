@@ -2,6 +2,8 @@ package com.shinseokki.puzzle.dto;
 
 import java.sql.Date;
 
+import javax.validation.constraints.NotNull;
+
 public class User {
 	private String u_id;
 	private String u_pwd;
