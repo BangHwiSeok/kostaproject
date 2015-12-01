@@ -24,7 +24,7 @@ public class CurrentUser extends org.springframework.security.core.userdetails.U
 		return user.getU_role();
 	}
 	// 회원 번호
-	public String getUserNum() {
+	public int getUserNum() {
 		return user.getU_num();
 	}
 

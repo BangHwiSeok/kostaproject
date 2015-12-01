@@ -56,7 +56,7 @@ public class UserValidator implements Validator{
 	}
 	
 	private void validateID(UserCreateForm form, Errors errors){
-		if(userService.getUser(form.getU_id()).isPresent()){
+		if(userService.findByID(form.getU_id()).isPresent()){
 			errors.rejectValue("u_id","u_id.exist","error!!! exists '"+form.getU_id()+"'");
 		}
 	}

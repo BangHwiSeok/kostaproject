@@ -4,24 +4,59 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.shinseokki.puzzle.dao.UserDao">
 	<insert id="addUser" parameterType="com.shinseokki.puzzle.dto.User">
-		INSERT INTO USERS(U_ID, U_PWD, U_BIRTH, U_GENDER, U_ROLE, U_NUM) 
-						    VALUES(#{u_id},#{u_pwd},#{u_birth},#{u_gender},#{u_role},#{u_num} )
+		INSERT INTO USERS(U_ID,
+		U_PWD, U_BIRTH, U_GENDER,  U_NUM)
+		VALUES(#{u_id},#{u_pwd},#{u_birth},#{u_gender},	user_seq.nextval )
 	</insert>
 	
-	<select id="getUser"  resultType="com.shinseokki.puzzle.dto.User">
-		SELECT * FROM USERS WHERE U_ID = #{u_id}
+	<select id="findByID" resultType="com.shinseokki.puzzle.dto.User">
+		SELECT * FROM USERS WHERE U_ID=
+		#{u_id}
 	</select>
-	<select id="getUsers"  resultType="com.shinseokki.puzzle.dto.User">
+
+	<select id="getUser" resultType="com.shinseokki.puzzle.dto.User">
+		SELECT * FROM USERS WHERE U_NUM =
+		#{u_num}
+	</select>
+	<select id="getUsers" resultType="com.shinseokki.puzzle.dto.User">
 		SELECT * FROM
-			(SELECT rownum as r ,USERS.* FROM USERS) 
+		(SELECT rownum as r ,USERS.* FROM USERS WHERE U_ROLE='ROLE_USER')
 		WHERE r between #{param1} and #{param2}
 	</select>
-	<select id="getCount"  >
+	<select id="getCount" resultType="int">
 		SELECT COUNT(*) FROM USERS
 	</select>
 	
-	<delete id="deleteUser" parameterType="string" >
-		DELETE USERS WHERE u_id=#{u_id}
-	</delete>
+	<!-- 인증되지 않은 User 불러오기 -->
+	<select id="getUnApprovalUsers" resultType="com.shinseokki.puzzle.dto.User">
+		SELECT * FROM
+		(SELECT rownum as r ,USERS.* FROM USERS WHERE U_ACTIVE = 0 AND U_ROLE='ROLE_USER')
+		WHERE r between #{param1} and #{param2}
+	</select>
 	
+	<!-- 인증되지 않은 User의 수 -->
+	<select id="countByActiveType" resultType="int">
+		SELECT COUNT(*) FROM
+		USERS WHERE U_ACTIVE=0
+	</select>
+	
+	<!-- User PWD 변경 -->
+	<update id="changePWD">
+		UPDATE USERS SET U_PWD=#{param2} WHERE U_NUM=#{param1}
+	</update>
+
+	<!-- User 인증 -->
+	<update id="approvalUser" parameterType="int">
+		UPDATE USERS set
+			U_ACTIVE = 1, U_ROLE = #{u_role} 
+		WHERE U_NUM = #{u_num}
+	</update>
+	
+	<!-- User 정보변경 하는 것을 쓸 것 -->
+	
+	<delete id="deleteUser" parameterType="int">
+		DELETE USERS
+		WHERE U_NUM=#{u_num}
+	</delete>
+
 </mapper>

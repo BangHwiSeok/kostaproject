@@ -10,7 +10,7 @@ public class User {
 	private String u_pnum;
 	private String u_gender;
 	private Date u_birth;
-	private String u_num;
+	private int u_num;
 	private Date u_regdate;
 	private Role u_role;
 	private int u_point;
@@ -53,10 +53,10 @@ public class User {
 	public void setU_birth(Date u_birth) {
 		this.u_birth = u_birth;
 	}
-	public String getU_num() {
+	public int getU_num() {
 		return u_num;
 	}
-	public void setU_num(String u_num) {
+	public void setU_num(int u_num) {
 		this.u_num = u_num;
 	}
 	public Date getU_regdate() {

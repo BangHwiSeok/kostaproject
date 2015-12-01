@@ -5,12 +5,35 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title></title>
+<script src="https://code.jquery.com/jquery-1.11.3.js"></script>
+<script>
+function changePWD(){
+	var pwd = $("#pwd").val();
+	$.ajax({
+		url:'${pageContext.request.contextPath }/members/'+'${myInfo.u_num}'+'/pwd',
+		type:'post',
+		data:{pwd:pwd},
+		success:function(data){
+			alert(data);
+			$("#pwd").val('');
+			
+		}
+	});
+}
+</script>
 </head>
 <body>
-	<form method="post">
-		로그인 : <a href="${pageContext.request.contextPath}/login.do">로그인</a>
-		회원가입 : <a href="${pageContext.request.contextPath}/signUp.do">회원가입</a>
-		회원정보 수정 : <a href="${pageContext.request.contextPath}/usermypage.do">회원정보 수정</a>
+		<h1>MyInfo</h1>
+		<div>
+			<label>ID</label> <b>${myInfo.u_id }</b>
+		</div>
+		<div>
+				<label>PWD : </label> <input type="password" id="pwd"> 
+				<button onclick="changePWD()">Change PWD</button>
+		</div>
+		<div>
+			<img src="${pageContext.request.contextPath }/resources/${myInfo.u_num}/${myInfo.u_num}0.jpg" width="100px" height="150px"/>
+		</div>
+	
 </body>
 </html>

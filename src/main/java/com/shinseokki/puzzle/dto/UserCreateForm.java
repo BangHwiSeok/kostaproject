@@ -22,7 +22,7 @@ public class UserCreateForm {
 	private Date u_birth;
 	private String u_pnum;
 	private String u_gender;
-	private Role u_role = Role.ROLE_USER;
+	private Role u_role;
 	private List<MultipartFile> photoes;
 	
 	public List<MultipartFile> getPhotoes() {

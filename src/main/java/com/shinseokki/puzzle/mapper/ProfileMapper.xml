@@ -8,26 +8,26 @@
 	<!-- Profile 추가 -->
 	<insert id="addProfile" parameterType="com.shinseokki.puzzle.dto.Profile">
 		INSERT INTO PROFILE(
-			U_ID, P_PHOTONUM, P_EXTENDTYPE) 
-			VALUES(#{u_id}, #{p_photonum}, #{p_extendtype} )
+			U_NUM, P_PHOTONUM, P_EXTENDTYPE) 
+			VALUES(#{u_num}, #{p_photonum}, #{p_extendtype} )
 	</insert>
 
 	<!-- Profile 가져오기 -->
 	<select id="getProfile" resultType="com.shinseokki.puzzle.dto.Profile">
-		SELECT * FROM PROFILE WHERE U_ID = #{u_id}
+		SELECT * FROM PROFILE WHERE U_NUM = #{u_num}
 	</select>
 
 	<!-- Profile 수정 -->
 	<update id="updateProfile" parameterType="com.shinseokki.puzzle.dto.Profile">
 		UPDATE PROFILE SET
-			P_PHOTONUM=#{p_photonum} WHERE U_ID=#{u_id} AND P_PHOTONUM =#{p_photonum}
-		WHERE U_ID=#{u_id}
+			P_PHOTONUM=#{p_photonum} 
+		WHERE U_NUM=#{u_num} AND P_PHOTONUM =#{p_photonum}
 	</update>
 
 	<!-- Profile 삭제 -->
 	<delete id="deleteProfile" parameterType="com.shinseokki.puzzle.dto.Profile">
 		DELETE FROM PROFILE
-		WHERE U_ID = #{u_id} AND P_PHOTONUM = #{P_photonum}
+		WHERE U_NUM = #{u_num}
 	</delete>
 
 </mapper>
