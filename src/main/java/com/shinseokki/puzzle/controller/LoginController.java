@@ -38,7 +38,6 @@ public class LoginController {
 	@InitBinder("userForm")
 	public void bind(WebRequestDataBinder binder){
 		binder.addValidators(userValidator);
-		
 	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.GET)
@@ -46,7 +45,7 @@ public class LoginController {
 		return "logfinForm";
 	}
 	
-	@RequestMapping(value="/join", method=RequestMethod.GET)
+	@RequestMapping(value="/signup", method=RequestMethod.GET)
 	public ModelAndView joinForm(){
 		logger.info("/join Get");
 		ModelAndView mav = new ModelAndView("joinForm","userForm",new UserCreateForm());
@@ -59,7 +58,7 @@ public class LoginController {
 	 * @descirption
 	 *    회원가입을 위한 Method로써 UserCreateForm를 폼으로 받으며 유효성 검사를 한다.
 	 */
-	@RequestMapping(value="/join", method=RequestMethod.POST)
+	@RequestMapping(value="/signup", method=RequestMethod.POST)
 	public String joinForm(@Valid @ModelAttribute("userForm") UserCreateForm userCreateForm,
 			BindingResult bindingResult){
 		logger.info("/join Post");
