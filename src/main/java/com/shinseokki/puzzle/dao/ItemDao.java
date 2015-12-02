@@ -8,7 +8,7 @@ public interface ItemDao {
 	public int addItem(Item item);
 	public Item getItem(String i_name);
 	public List<Item> getItems();
-	public int updateItem(String i_name);
+	public int updateItem(Item item);
 	public int deleteItem(String i_name);
 	public int getItemCount();
 	

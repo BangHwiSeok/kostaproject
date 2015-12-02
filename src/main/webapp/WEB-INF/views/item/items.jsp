@@ -60,7 +60,10 @@ div.a {
 		<h3>아이템 리스트</h3>
 	</div>
 	<div class="approvalItem">
-	
+	</div>
+	<hr>
+	<div>
+		<h3>아이템 추가</h3>
 	</div>
 	<form id="form" method="POST">
 		<label>아이템 이름 : </label><input type="text" id="i_name" name="i_name" requierd>

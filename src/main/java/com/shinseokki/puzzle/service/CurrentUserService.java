@@ -17,15 +17,19 @@ public class CurrentUserService implements UserDetailsService{
 	private UserService userService;
 	
 	@Autowired
-	public CurrentUserService(UserService userService) {
+	public void setUserService(UserService userService){
 		this.userService = userService;
 	}
 	
 	@Override
 	public UserDetails loadUserByUsername(String id) throws UsernameNotFoundException {
-		logger.info("User 확인");
-		User user = userService.getUser(id)
+		logger.info("User 확인 {}",userService);
+		User user =userService.findByID(id)
 							.orElseThrow( () -> new UsernameNotFoundException( String.format("Not Found %s",id) ) );
+		logger.info("User : {}",user.toString());
+		/*user.setU_id(id);
+		user.setU_pwd(new BCryptPasswordEncoder().encode("test"));
+		user.setU_role(Role.ROLE_USER);*/
 		
 		return new CurrentUser(user);
 	}

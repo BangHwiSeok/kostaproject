@@ -38,7 +38,6 @@ public class ItemController {
 			HttpServletRequest req,  Model model){
 
 		List<Item> itemList = itemDao.getItems();
-		
 		model.addAttribute("itemList", itemList);
 		
 		return "item/items";
@@ -49,8 +48,12 @@ public class ItemController {
 			HttpServletRequest req,  Model model){
 
 		List<Item> itemList = itemDao.getItems();
-		
 		model.addAttribute("itemList", itemList);
+		
+		logger.info("=============== count 진행하기 ================ ");
+		int count = itemDao.getItemCount();
+		System.out.println("count : " + count);
+		model.addAttribute("count", count);
 		
 		return "item/itemlist";
 	}
@@ -74,7 +77,7 @@ public class ItemController {
 		logger.info("===============insert 진행하기================ {}", item.toString());
 		itemDao.addItem(item);
 		
-		//logger.info("===============리스트 부르기================");
+		logger.info("===============리스트 부르기================");
 		List<Item> itemList = itemDao.getItems();
 		model.addAttribute("itemList", itemList);
 		
@@ -85,13 +88,33 @@ public class ItemController {
 	@RequestMapping(value="{i_num}/deleteItem", method=RequestMethod.GET)
 	public String deleteItem(@PathVariable String i_num, Model model){
 
-		logger.info("===============delete 진행하기================ ");
+		logger.info("=============== delete 진행하기 ================ ");
 		System.out.println(i_num);
 		itemDao.deleteItem(i_num);
 		
 		logger.info("===============리스트 부르기================");
 		List<Item> itemList = itemDao.getItems();
 		
+		model.addAttribute("itemList", itemList);
+		
+		return "item/redirect";
+	}
+	
+	@RequestMapping(value="{i_num}/updateItem", method=RequestMethod.POST)
+	public String updateItem(@PathVariable String i_num, HttpServletRequest req, Model model){
+
+		logger.info("=============== update 진행하기 ================ ");
+		Item item = new Item();
+		item.setI_name(req.getParameter("i_name"));
+		item.setI_key(Integer.parseInt(req.getParameter("i_key")));
+		item.setI_msg(Integer.parseInt(req.getParameter("i_msg")));
+		item.setI_search(Integer.parseInt(req.getParameter("i_search")));
+		item.setI_num(Integer.parseInt(i_num));
+		//System.out.println(i_num);
+		itemDao.updateItem(item);
+		
+		logger.info("===============리스트 부르기================");
+		List<Item> itemList = itemDao.getItems();
 		model.addAttribute("itemList", itemList);
 		
 		return "item/redirect";

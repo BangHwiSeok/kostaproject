@@ -42,7 +42,7 @@ private static final Logger logger = LoggerFactory.getLogger(KeywordController.c
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "addKeyword";
+		return "home";
 	}
 	
 	@RequestMapping(value="/", method=RequestMethod.POST)

@@ -20,7 +20,7 @@
 	<update id="updateItem" parameterType="com.shinseokki.puzzle.dto.Item">
 		UPDATE ITEM SET 
 		I_NAME = #{i_name}, I_KEY = #{i_key}, 
-		I_NAME = #{i_msg}, I_search = #{i_search}
+		I_MSG = #{i_msg}, I_SEARCH = #{i_search}
 		WHERE I_NUM = #{i_num}
 	</update>
 

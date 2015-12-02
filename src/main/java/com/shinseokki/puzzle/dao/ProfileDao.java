@@ -8,5 +8,5 @@ public interface ProfileDao {
 	public int addProfile(Profile profile);
 	public Collection<Profile> getProfile();
 	public int updateProfile(Profile profile);
-	public int deleteProfile(String u_id);
+	public int deleteProfile(int u_num);
 }

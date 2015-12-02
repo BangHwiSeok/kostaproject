@@ -31,8 +31,8 @@ public class ProfileService {
 		return profileDao.updateProfile(profile);
 	}
 
-	public int deleteProfile(String u_id) {
-		return profileDao.deleteProfile(u_id);
+	public int deleteProfile(int u_num) {
+		return profileDao.deleteProfile(u_num);
 	}
 
 }
