@@ -7,6 +7,7 @@ public class Item {
 	private int i_key;
 	private int i_search;
 	private int i_num;
+	private int i_cost;
 	
 	public String getI_name() {
 		return i_name;
@@ -38,11 +39,17 @@ public class Item {
 	public void setI_num(int i_num) {
 		this.i_num = i_num;
 	}
+	public int getI_cost() {
+		return i_cost;
+	}
+	public void setI_cost(int i_cost) {
+		this.i_cost = i_cost;
+	}
 	
 	@Override
 	public String toString() {
 		return "Item [i_name=" + i_name + ", i_msg=" + i_msg + ", i_key=" + i_key + ", i_search=" + i_search
-				+ ", i_num=" + i_num + "]";
+				+ ", i_num=" + i_num + ", i_cost=" + i_cost + "]";
 	}
 	
 	

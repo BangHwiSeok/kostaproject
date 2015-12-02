@@ -7,8 +7,8 @@
 
 	<!-- 아이템 추가 -->
 	<insert id="addItem" parameterType="com.shinseokki.puzzle.dto.Item">
-		INSERT INTO ITEM(I_NAME, I_KEY, I_MSG, I_SEARCH, I_NUM) 
-		values(#{i_name}, ${i_key}, ${i_msg}, ${i_search}, ITEM_SEQ.NEXTVAL)
+		INSERT INTO ITEM(I_NAME, I_KEY, I_MSG, I_SEARCH, I_COST, I_NUM) 
+		values(#{i_name}, ${i_key}, ${i_msg}, ${i_search}, ${i_cost}, ITEM_SEQ.NEXTVAL)
 	</insert>
 	
 	<!-- 아이템 가져오기(한개) -->
@@ -20,7 +20,7 @@
 	<update id="updateItem" parameterType="com.shinseokki.puzzle.dto.Item">
 		UPDATE ITEM SET 
 		I_NAME = #{i_name}, I_KEY = #{i_key}, 
-		I_MSG = #{i_msg}, I_SEARCH = #{i_search}
+		I_MSG = #{i_msg}, I_SEARCH = #{i_search}, I_COST = #{i_cost}
 		WHERE I_NUM = #{i_num}
 	</update>
 
