@@ -14,19 +14,19 @@
 
 	<!-- 키워드 가져오기(한개) -->
 	<select id="getKeyword" resultType="com.shinseokki.puzzle.dto.Keyword">
-		SELECT * FROM Keyword WHERE K_NAME = #{K_NAME}
+		SELECT * FROM Keyword WHERE K_NAME = #{k_name}
 	</select>
 
 	<!-- 키워드 수정 (고유번호와 선택횟수는 수정x) -->
 	<update id="updateKeyword" parameterType="com.shinseokki.puzzle.dto.Keyword">
 		UPDATE Keyword SET
-		K_NAME = #{K_NAME}, K_GROUP=#{K_GROUP} where K_NAME=#{K_NAME}
+		K_NAME = #{k_name}, K_GROUP=#{k_group} where K_NAME=#{k_name}
 	</update>
 
 	<!-- 키워드 삭제 -->
 	<delete id="deleteKeyword" parameterType="com.shinseokki.puzzle.dto.Keyword">
 		DELETE FROM Keyword
-		WHERE K_NAME = #{K_NAME}
+		WHERE K_NAME = #{k_name}
 	</delete>
 
 	<!-- 키워드 정렬(여러개) -->
