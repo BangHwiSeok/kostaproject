@@ -51,7 +51,7 @@ div.a {
 	color: #FF2D2D;
 }
 .text_num_input{
-	width: 20px;
+	width: 30px;
 }
 </style>
 </head>
@@ -70,6 +70,7 @@ div.a {
 		<label>키워드수정기능 : </label><input class="text_num_input" type="text" id="i_key" name="i_key" requierd>
 		<label>쪽지추가기능 : </label><input class="text_num_input" type="text" id="i_msg" name="i_msg" requierd>
 		<label>검색추가기능 : </label><input class="text_num_input" type="text" id="i_search" name="i_search" requierd>
+		<label>가격 : </label><input class="text_num_input" type="text" id="i_cost" name="i_cost" requierd>
 		<input type="button" onclick="addItem();" value="아이템 생성하기" >
 	</form>
 </body>

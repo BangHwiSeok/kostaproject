@@ -52,6 +52,7 @@
 				<label>키워드수정기능 : </label><input class="text_num_input" type="text" id="i_key" name="i_key" value="${List.i_key }" requierd>
 				<label>쪽지추가기능 : </label><input class="text_num_input" type="text" id="i_msg" name="i_msg" value="${List.i_msg }" requierd>
 				<label>검색추가기능 : </label><input class="text_num_input" type="text" id="i_search" name="i_search" value="${List.i_search }" requierd>
+				<label>가격 : </label><input class="text_num_input" type="text" id="i_cost" name="i_cost" value="${List.i_cost }" requierd>
 				<input type="button" onclick="updateItem(${List.i_num})"
 					value="수정" /> 
 				<input type="button" onclick="deleteItem(${List.i_num})"

@@ -73,6 +73,7 @@ public class ItemController {
 		item.setI_key(Integer.parseInt(req.getParameter("i_key")));
 		item.setI_msg(Integer.parseInt(req.getParameter("i_msg")));
 		item.setI_search(Integer.parseInt(req.getParameter("i_search")));
+		item.setI_cost(Integer.parseInt(req.getParameter("i_cost")));
 		//item.setI_num(Integer.parseInt(req.getParameter("i_num")));
 		logger.info("===============insert 진행하기================ {}", item.toString());
 		itemDao.addItem(item);
@@ -110,6 +111,7 @@ public class ItemController {
 		item.setI_msg(Integer.parseInt(req.getParameter("i_msg")));
 		item.setI_search(Integer.parseInt(req.getParameter("i_search")));
 		item.setI_num(Integer.parseInt(i_num));
+		item.setI_cost(Integer.parseInt(req.getParameter("i_cost")));
 		//System.out.println(i_num);
 		itemDao.updateItem(item);
 		
