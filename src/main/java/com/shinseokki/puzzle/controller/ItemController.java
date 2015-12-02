@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -33,7 +34,7 @@ public class ItemController {
 
 	// Items 를 기본으로 호출했을 시 기본으로 거치게 되는 메소드
 	@RequestMapping(method=RequestMethod.GET)
-	public String getItemList(
+	public String getItems(
 			HttpServletRequest req,  Model model){
 
 		List<Item> itemList = itemDao.getItems();
@@ -41,6 +42,17 @@ public class ItemController {
 		model.addAttribute("itemList", itemList);
 		
 		return "item/items";
+	}
+	
+	@RequestMapping("/itemlist")
+	public String getItemList(
+			HttpServletRequest req,  Model model){
+
+		List<Item> itemList = itemDao.getItems();
+		
+		model.addAttribute("itemList", itemList);
+		
+		return "item/itemlist";
 	}
 	
 	@RequestMapping("/itemInsertform")
@@ -54,28 +66,28 @@ public class ItemController {
 
 		Item item = new Item();
 		item.setI_name(req.getParameter("i_name"));
-		System.out.println(req.getParameter("i_key"));
+		//System.out.println(req.getParameter("i_key"));
 		item.setI_key(Integer.parseInt(req.getParameter("i_key")));
 		item.setI_msg(Integer.parseInt(req.getParameter("i_msg")));
 		item.setI_search(Integer.parseInt(req.getParameter("i_search")));
+		//item.setI_num(Integer.parseInt(req.getParameter("i_num")));
 		logger.info("===============insert 진행하기================ {}", item.toString());
 		itemDao.addItem(item);
 		
-		logger.info("===============리스트 부르기================");
+		//logger.info("===============리스트 부르기================");
 		List<Item> itemList = itemDao.getItems();
-		
 		model.addAttribute("itemList", itemList);
 		
 		return "item/redirect";
 	}
 	
 	
-	@RequestMapping(value="/deleteItem", method=RequestMethod.GET)
-	public String deleteItem(String i_name ,Model model){
+	@RequestMapping(value="{i_num}/deleteItem", method=RequestMethod.GET)
+	public String deleteItem(@PathVariable String i_num, Model model){
 
 		logger.info("===============delete 진행하기================ ");
-		System.out.println(i_name);
-		itemDao.deleteItem(i_name);
+		System.out.println(i_num);
+		itemDao.deleteItem(i_num);
 		
 		logger.info("===============리스트 부르기================");
 		List<Item> itemList = itemDao.getItems();

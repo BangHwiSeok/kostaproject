@@ -7,13 +7,13 @@
 
 	<!-- 아이템 추가 -->
 	<insert id="addItem" parameterType="com.shinseokki.puzzle.dto.Item">
-		INSERT INTO ITEM(I_NAME, I_KEY, I_MSG, I_SEARCH) 
-		values(#{i_name}, ${i_key}, ${i_msg}, ${i_search})
+		INSERT INTO ITEM(I_NAME, I_KEY, I_MSG, I_SEARCH, I_NUM) 
+		values(#{i_name}, ${i_key}, ${i_msg}, ${i_search}, ITEM_SEQ.NEXTVAL)
 	</insert>
-
+	
 	<!-- 아이템 가져오기(한개) -->
 	<select id="getItem" resultType="com.shinseokki.puzzle.dto.Item">
-		SELECT * FROM ITEM WHERE I_NAME = #{i_name}
+		SELECT * FROM ITEM WHERE I_NUM = #{i_num}
 	</select>
 
 	<!-- 아이템 수정 (모든 데이터 수정 가능) -->
@@ -21,12 +21,12 @@
 		UPDATE ITEM SET 
 		I_NAME = #{i_name}, I_KEY = #{i_key}, 
 		I_NAME = #{i_msg}, I_search = #{i_search}
-		WHERE I_NAME = #{i_name}
+		WHERE I_NUM = #{i_num}
 	</update>
 
 	<!-- 아이템 삭제 -->
 	<delete id="deleteItem" parameterType="com.shinseokki.puzzle.dto.Item">
-		DELETE FROM ITEM WHERE I_NAME = #{i_name}
+		DELETE FROM ITEM WHERE I_NUM = #{i_num}
 	</delete>
 
 	<!-- 아이템 정렬(여러개) -->
