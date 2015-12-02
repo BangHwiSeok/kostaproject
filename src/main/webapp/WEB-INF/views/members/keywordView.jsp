@@ -18,5 +18,5 @@
 </table>
 
 <input type="hidden" value="${pageNo}"/>  
-
-<input type="submit" value="키워드 추가"/>
+<input type="text" name="addKeyword"/>
+<input type="submit" value="전송"/>
