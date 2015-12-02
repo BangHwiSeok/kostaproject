@@ -18,12 +18,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.shinseokki.puzzle.dao.KeywordDao;
 import com.shinseokki.puzzle.dto.Keyword;
 
-@Controller
+@RestController
+@RequestMapping("/keywords")
 public class KeywordController {
 private static final Logger logger = LoggerFactory.getLogger(KeywordController.class);
 	
@@ -35,9 +37,10 @@ private static final Logger logger = LoggerFactory.getLogger(KeywordController.c
 		keywordDao = sqlSession.getMapper(KeywordDao.class);
 	}
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
+	@RequestMapping(method = RequestMethod.GET)
+	public ModelAndView  home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
+		ModelAndView mav = new ModelAndView("keywordView"); //view를 이거로한다
 		
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
@@ -46,25 +49,11 @@ private static final Logger logger = LoggerFactory.getLogger(KeywordController.c
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "home";
+		return mav;
 	}
 	
-	@RequestMapping(value="/", method=RequestMethod.POST)
-	public String addKeyword(String K_NAME, String K_GROUP, Model model){
-		
-		logger.info("Register Keyword : {}, Keyword Group : {}",K_NAME, K_GROUP);
-		Keyword keyword = new Keyword();
-		keyword.setK_NAME(K_NAME);
-		keyword.setK_GROUP(K_GROUP);
-		
-		keywordDao.addkeyword(keyword);
-		model.addAttribute("keyword",keyword);
-		
-		return "myinfo";
-		}
-       
          
-	@RequestMapping(value="/keywords/list", method=RequestMethod.GET)
+	@RequestMapping(value="/list", method=RequestMethod.GET)
 	public ModelAndView getKeywords(@RequestParam(value="pageNo", required=false, defaultValue="1") Integer pageNo, HttpServletResponse resp) throws Exception {
 		logger.info("getKeywordPaging!");
 		int start = (pageNo-1) * ROWSIZE + 1; //현재페이지가 pageNo, 기본 defaultValue로 1잡아놔서 1로 시작함
@@ -86,7 +75,7 @@ private static final Logger logger = LoggerFactory.getLogger(KeywordController.c
 	
 	
 	
-	@RequestMapping(value="/update", method=RequestMethod.GET)
+	@RequestMapping(value="{id}/update", method=RequestMethod.GET)
 	public String upadteform(String K_NAME, Model model) {
 		//model은 객체를 담아주는 역할
 		
@@ -97,25 +86,13 @@ private static final Logger logger = LoggerFactory.getLogger(KeywordController.c
 		
 		model.addAttribute("keyword", keyword);
 		
-		return "updateform"; // updateform.jsp
+		return "ok"; 
 	}
 
-	@RequestMapping("/updateform")
-	public String update(String K_NAME, String K_GROUP, Model model) {
-		
-		Keyword keyword = new Keyword();
-		keyword = keywordDao.getKeyword();
-		keyword.setK_GROUP(K_GROUP);
-		
-		keywordDao.updateKeyword(keyword);
-		
-		model.addAttribute("keyword", keyword);
-		
-		return "myinfo";
-	}
 	
 	
-	@RequestMapping(value="/delete", method=RequestMethod.GET)
+	
+	@RequestMapping(value="{id}/delete", method=RequestMethod.GET)
 	public String deleteform(String K_NAME) {
 		
 		
@@ -125,22 +102,10 @@ private static final Logger logger = LoggerFactory.getLogger(KeywordController.c
 		keywordDao.deleteKeyword(K_NAME);
 		
 		
-		return "deleteform"; // deleteform.jsp
+		return "ok";
 	}
 	
-	@RequestMapping("/deleteform")
-	public String delete(String K_NAME, String K_GROUP, Model model) {
-		
-		Keyword keyword = new Keyword();
-		keyword = keywordDao.getKeyword();
-		keyword.setK_GROUP(K_GROUP);
-		
-		keywordDao.deleteKeyword(K_NAME);
-		
-		model.addAttribute("keyword", keyword);
-		
-		return "home"; //home.jsp
-	}
+	
 
 
 }
