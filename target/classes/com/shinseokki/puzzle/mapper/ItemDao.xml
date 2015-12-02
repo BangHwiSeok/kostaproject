@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.shinseokki.puzzle.dao.ItemDao">
+
+	<!-- 아이템 추가 -->
+	<insert id="addItem" parameterType="com.shinseokki.puzzle.dto.Item">
+		INSERT INTO ITEM(I_NAME, I_KEY, I_MSG, I_SEARCH, I_NUM) 
+		values(#{i_name}, ${i_key}, ${i_msg}, ${i_search}, ITEM_SEQ.NEXTVAL)
+	</insert>
+	
+	<!-- 아이템 가져오기(한개) -->
+	<select id="getItem" resultType="com.shinseokki.puzzle.dto.Item">
+		SELECT * FROM ITEM WHERE I_NUM = #{i_num}
+	</select>
+
+	<!-- 아이템 수정 (모든 데이터 수정 가능) -->
+	<update id="updateItem" parameterType="com.shinseokki.puzzle.dto.Item">
+		UPDATE ITEM SET 
+		I_NAME = #{i_name}, I_KEY = #{i_key}, 
+		I_MSG = #{i_msg}, I_SEARCH = #{i_search}
+		WHERE I_NUM = #{i_num}
+	</update>
+
+	<!-- 아이템 삭제 -->
+	<delete id="deleteItem" parameterType="com.shinseokki.puzzle.dto.Item">
+		DELETE FROM ITEM WHERE I_NUM = #{i_num}
+	</delete>
+
+	<!-- 아이템 정렬(여러개) -->
+	<select id="getItems" resultType="com.shinseokki.puzzle.dto.Item">
+		SELECT * FROM ITEM
+		ORDER BY I_NAME asc
+		
+		<!-- SELECT * FROM
+			(SELECT ROWNUM RNUM FROM 
+				(SELECT * FROM
+					ITEM order by I_NAME asc
+				)
+			) 
+		WHERE RNUM >= #{start} and RNUM &lt;= #{end} -->
+	</select>
+
+	<!-- 전체 키워드 수 -->
+	<select id="getItemCount" resultType="Integer">
+		select count(*) from ITEM
+	</select>
+
+</mapper>
+	
+	
+
