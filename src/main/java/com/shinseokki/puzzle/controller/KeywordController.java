@@ -2,28 +2,26 @@ package com.shinseokki.puzzle.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.shinseokki.puzzle.dao.KeywordDao;
 import com.shinseokki.puzzle.dto.Keyword;
 
-@Controller
+@RestController
+@RequestMapping("/keywords")
 public class KeywordController {
 private static final Logger logger = LoggerFactory.getLogger(KeywordController.class);
 	
@@ -35,21 +33,16 @@ private static final Logger logger = LoggerFactory.getLogger(KeywordController.c
 		keywordDao = sqlSession.getMapper(KeywordDao.class);
 	}
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
+	@RequestMapping(method = RequestMethod.GET)
+	public ModelAndView home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
+		ModelAndView mav = new ModelAndView("keywords/findKeyword");
 		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
-		
-		return "home";
+		return mav;
 	}
 	
-	@RequestMapping(value="/", method=RequestMethod.POST)
+	@RequestMapping(method=RequestMethod.POST)
 	public String addKeyword(String K_NAME, String K_GROUP, Model model){
 		
 		logger.info("Register Keyword : {}, Keyword Group : {}",K_NAME, K_GROUP);
@@ -64,8 +57,8 @@ private static final Logger logger = LoggerFactory.getLogger(KeywordController.c
 		}
        
          
-	@RequestMapping(value="/keywords/list", method=RequestMethod.GET)
-	public ModelAndView getKeywords(@RequestParam(value="pageNo", required=false, defaultValue="1") Integer pageNo, HttpServletResponse resp) throws Exception {
+	@RequestMapping(value="list", method=RequestMethod.GET)
+	public ModelAndView getKeywords(@RequestParam(value="pageNo", required=false, defaultValue="1") Integer pageNo) throws Exception {
 		logger.info("getKeywordPaging!");
 		int start = (pageNo-1) * ROWSIZE + 1; //현재페이지가 pageNo, 기본 defaultValue로 1잡아놔서 1로 시작함
 		int end = start + ROWSIZE-1;
@@ -86,8 +79,8 @@ private static final Logger logger = LoggerFactory.getLogger(KeywordController.c
 	
 	
 	
-	@RequestMapping(value="/update", method=RequestMethod.GET)
-	public String upadteform(String K_NAME, Model model) {
+	@RequestMapping(value="{id}/update", method=RequestMethod.GET)
+	public String upadteform(@PathVariable("id") Integer id, String K_NAME, Model model) {
 		//model은 객체를 담아주는 역할
 		
 		Keyword keyword = new Keyword();
@@ -109,14 +102,13 @@ private static final Logger logger = LoggerFactory.getLogger(KeywordController.c
 		
 		keywordDao.updateKeyword(keyword);
 		
-		model.addAttribute("keyword", keyword);
 		
-		return "myinfo";
+		return "OK";
 	}
 	
 	
-	@RequestMapping(value="/delete", method=RequestMethod.GET)
-	public String deleteform(String K_NAME) {
+	@RequestMapping(value="{id}/delete", method=RequestMethod.GET)
+	public String deleteform(@PathVariable("id") Integer id,String K_NAME) {
 		
 		
 		Keyword keyword = new Keyword();
@@ -125,22 +117,21 @@ private static final Logger logger = LoggerFactory.getLogger(KeywordController.c
 		keywordDao.deleteKeyword(K_NAME);
 		
 		
-		return "deleteform"; // deleteform.jsp
+		return "OK"; // deleteform.jsp
 	}
 	
-	@RequestMapping("/deleteform")
-	public String delete(String K_NAME, String K_GROUP, Model model) {
+	@RequestMapping(value="/find/{word}", method=RequestMethod.GET)
+	public List<Keyword> findKeywords(@PathVariable("word") String word) {
 		
-		Keyword keyword = new Keyword();
-		keyword = keywordDao.getKeyword();
-		keyword.setK_GROUP(K_GROUP);
+		List<Keyword> keywords = keywordDao.findLikeWord(word);
 		
-		keywordDao.deleteKeyword(K_NAME);
+		//keywordDao.deleteKeyword(K_NAME);
 		
-		model.addAttribute("keyword", keyword);
 		
-		return "home"; //home.jsp
+		return keywords; //
 	}
+	
+	
 
 
 }

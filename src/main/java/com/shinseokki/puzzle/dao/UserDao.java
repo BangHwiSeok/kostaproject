@@ -15,6 +15,7 @@ public interface UserDao {
 	public int approvalUser(int u_num);
 	public int countByActiveType();
 	public int changePWD(int u_num, String pwd);
-	
+	public int subtractPoint(int u_num, int point);
+	public int addPoint(int u_num, int point);
 	
 }
