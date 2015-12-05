@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.shinseokki.puzzle.dao.UserDao;
 import com.shinseokki.puzzle.dto.Profile;
+import com.shinseokki.puzzle.dto.Role;
 import com.shinseokki.puzzle.dto.User;
 import com.shinseokki.puzzle.dto.UserCreateForm;
 
@@ -116,6 +117,7 @@ public class UserService {
 		user.setU_pwd(new BCryptPasswordEncoder().encode(form.getU_pwd()));
 		user.setU_birth(form.getU_birth());
 		user.setU_gender(form.getU_gender());
+		user.setU_role(Role.ROLE_READY);
 		userDao.addUser(user);
 
 		boolean isSave = false;
