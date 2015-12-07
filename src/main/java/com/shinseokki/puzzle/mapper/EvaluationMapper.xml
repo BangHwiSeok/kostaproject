@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.shinseokki.puzzle.dao.EvaluationDao">
+	<insert id="addEvaluation" parameterType="int">
+		INSERT INTO EVALUATION(U_NUM)
+		VALUES(#{u_num})
+	</insert>
+	
+	<update id="updateEVAL" >
+		UPDATE EVALUATION
+		SET E_EVAL=#{param1}, E_REGDATE = SYSDATE
+		WHERE U_NUM=${param2}	
+	</update>
+	
+	<select id="findEvaluation" resultType="com.shinseokki.puzzle.dto.Evaluation">
+		SELECT * FROM EVALUATION
+		WHERE U_NUM = #{u_num}
+	</select>
+	<select id="findEvaluations" resultType="com.shinseokki.puzzle.dto.Evaluation">
+		SELECT * FROM EVALUATION
+	</select>
+	<select id="countEvaluations" resultType="int">
+		SELECT COUNT(*) FROM EVALUATION
+	</select>
+	
+	<select id="selectEvaluation" resultType="com.shinseokki.puzzle.dto.Evaluation">
+		SELECT * FROM
+				(	SELECT rownum as r, E.*  
+							FROM EVALUATION E 
+					WHERE E.E_EVAl &lt; 0 
+							AND 
+							U_NUM NOT IN (SELECT U_NUM FROM EVALHISTORY WHERE E_NUM = #{e_num})
+					ORDER BY E_REGDATE ASC
+				) 
+		WHERE r = 1
+	</select>
+	
+	<delete id="deleteEvaluation" parameterType="int">
+		DELETE EVALUATION
+		WHERE
+			U_NUM = #{u_num}
+	</delete>
+
+</mapper>
