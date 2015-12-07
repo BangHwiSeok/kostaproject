@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.shinseokki.puzzle.dao.ReportDao;
 import com.shinseokki.puzzle.dto.Profile;
 import com.shinseokki.puzzle.dto.Report;
+import com.shinseokki.puzzle.dto.ReportForm;
 import com.shinseokki.puzzle.dto.User;
 import com.shinseokki.puzzle.dto.UserCreateForm;
 
@@ -38,6 +39,11 @@ public class ReportService {
 	// 토탈페이지 받아오기 (int 값)
 	public int getTotalPage(){
 		return (int) Math.ceil(reportDao.getReportCount()/((float)MAXPAGE));
+	}
+	
+	// 토탈페이지 받아오기 (int 값)
+	public int getNoCheckTotalPage(){
+		return (int) Math.ceil(reportDao.getNoCheckCount()/((float)MAXPAGE));
 	}
 	
 	// 모든 신고건수 가져오기
@@ -60,144 +66,56 @@ public class ReportService {
 		return reportDao.getReport(rp_num);
 	}
 	
-	/*@Transactional
-	public boolean sendReport(String path) {
-		logger.info("sendReport");
+	// 신고 전송
+	public boolean sendReport(ReportForm form, String path, int u_num)
+			throws IllegalStateException, IOException {
+		
+		int i = 0;
 		Report report = new Report();
-
-		report.setRp_num(form.getU_id());
-
-		// Password 암호화
-		user.setU_pwd(new BCryptPasswordEncoder().encode(form.getU_pwd()));
-		user.setU_birth(form.getU_birth());
-		user.setU_gender(form.getU_gender());
-		reportDao.addUser(user);
-
-		boolean isSave = false;
+		String filepath = path + File.separatorChar;
 		
-		// 저장된 User의 회원번호를 받기 위해 저장된 정보 받기
-		user = reportDao.findByID(user.getU_id());
+		//report.setRp_num(rp_num);
 		
-		// IMAGE 저장
-			// IMAGE는 회원의 회원번호를 폴더이름으로 하고 IMAGE는 image+숫자로 저장된다.
-		try {
-			isSave = saveProfileImage(form, path, user.getU_num());
-		} catch (IllegalStateException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		MultipartFile file = form.getPhoto();
+		file.transferTo(new File(filepath+File.separatorChar+file.getOriginalFilename()));
+		
+		report.setRp_id(form.getRp_id());
+		report.setRp_sendid(form.getRp_sendid());
+		report.setRp_content(form.getRp_content());
+		report.setRp_file(form.getPhoto().getOriginalFilename());
+		
+		reportDao.sendReport(report);
 
-		if (!isSave) {
-			reportDao.deleteUser(user.getU_num());
-		}
-
-		return isSave;
+		return true;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	@Transactional
-	public int deleteReport(String rp_num, String path){
-		
-		return reportDao.deleteUser(u_num);
+	// 신고 내역 확인
+	public void checkReport(int rp_num){
+		reportDao.checkReport(rp_num);
 	}
-	// User의 사진을 모두 지운다.
-	public void removeDIR(String path){
-		File[] listFile = new File(path).listFiles(); 
+	
+	public void deleteReport(int rp_num, String path){
+		String filepath = path + File.separatorChar;
+		File file = new File(filepath+rp_num); 
 		try{
-			if(listFile.length > 0){
-				for(int i = 0 ; i < listFile.length ; i++){
-					if(listFile[i].isFile()){
-						listFile[i].delete(); 
-					}else{
-						removeDIR(listFile[i].getPath());
-					}
-					listFile[i].delete();
-				}
+			if(file.exists()){
+				file.delete();
 			}
 		}catch(Exception e){
 			System.err.println(System.err);
+		}finally{
+			reportDao.deleteReport(rp_num);
 		}
-			
-	}
-	public int approvalUser(int u_num){
-		return reportDao.approvalUser(u_num);
-	}
-
-	public Collection<User> getUnApprovalUsers(int pageNo){
-		return reportDao.getUnApprovalUsers( (pageNo-1)*MAXPAGE+1, (pageNo-1)*MAXPAGE+MAXPAGE );
-	}
-	public int countByUnActiveType(){
-		return reportDao.countByActiveType();
-	}
-	// ACTIVE Type에 따라 유저 정보를 확인한다.
-	public int countByActiveType(){
-		return reportDao.countByActiveType();
 	}
 	
-	public Collection<User> getUsers(int pageNo){
-		return reportDao.getUsers( (pageNo-1)*MAXPAGE+1, (pageNo-1)*MAXPAGE+MAXPAGE );
+	// 미신고 내역 총 갯수
+	public int getNoCheckCount(){
+		return reportDao.getNoCheckCount();
 	}
 	
-	
-
-
-
-	private boolean saveProfileImage(UserCreateForm form, String path, int u_num) throws IllegalStateException, IOException {
-		int i = 0;
-		Profile profile = new Profile();
-		String filepath = path + File.separatorChar + u_num;
-		File directory = new File(filepath);
-		if (!directory.exists()) {
-			directory.mkdirs();
-		}
-		for (MultipartFile file : form.getPhotoes()) {
-			if (file.getOriginalFilename() == "") {
-				System.out.println("NULL " + i);
-			} else {
-				i++;
-				System.out.println(file.getOriginalFilename());
-			}
-		}
-		if (i < 2) {
-			return false;
-		} else {
-			
-			
-			int j = 0;
-			profile.setU_num(u_num);
-			
-			for (List<MultipartFile> files = form.getPhotoes(); j < i; j++) {
-				MultipartFile file = files.get(j);
-				String extendType = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
-				
-				file.transferTo(new File(filepath+File.separatorChar+u_num+j+extendType));
-				System.out.println("FILE TYPE : " + extendType);
-				profile.setP_extendtype(extendType);
-				profile.setP_photonum(j);
-				profileService.addProfile(profile);
-			}
-		}
-
-		return true;
-	}*/
+	// 총 신고 수
+	public int getReportCount(){
+		return reportDao.getReportCount();
+	}
 
 }

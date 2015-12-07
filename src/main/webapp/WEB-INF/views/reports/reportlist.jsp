@@ -3,46 +3,31 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <script type="text/javascript">
-
-	function deleteReport(rp_num){
-		alert("deleteItem");
-		//var params = $('#form').serialize();
-		$.ajax({
-			url : "items/"+i_num+"/deleteItem",
-			type : "GET",
-			data : {i_num:i_num},
-			success : function(data) {
-				//alert(data);
-				getItems(); 
-				//$('.approvalItem').html(data);
-			},
-			error:function(data){
-				alert("fail");
+	function getReport(rp_num) {
+		window.open(rp_num+"/getReport", "_blank", 
+				"toolbar=yes, scrollbars=yes, resizable=yes, top=center, left=center, width=400, height=400")
 			}
-	
-		});
-	}
-	
+	/* 
 	function getReport(rp_num){
-		alert("getReport : "+ rp_num);
+		alert("getReport : " + rp_num);
 		//var params = $('#form').serialize();
-		$.ajax({
-			url : "reports/"+rp_num+"/getReport",
-			type : "GET",
-			data : {i_num:i_num},
+		
+			//url : "reports/"+rp_num+"/getReport",
+			//type : "GET",
+			data : {rp_num:rp_num},
 			success : function(data) {
 				//alert(data);
-				getItems(); 
+				getReports(); 
 				//$('.approvalItem').html(data);
 			},
 			error:function(data){
 				alert("fail");
 			}
 	
-		});
+		};
 	}
 	
-	
+ */	
 
 </script>
 <body>
@@ -56,11 +41,11 @@
 	<c:forEach items="${reportList}" var="List">
 		<tr>
 			<td>${List.rp_check }</td>
-			<td><span onclick="getReport(${List.rp_num})">${List.rp_content }</span></td>
+			<td><span onclick="getReport(${List.rp_num});">${List.rp_content }</span></td>
 			<td>${List.rp_sendid }</td>
 			<td>${List.rp_date }</td>
 		</tr>
 	</c:forEach>
 	</table>
-	<div>현재 아이템 수 : ${count }</div>
+	<div>미체크${noCheckCount }/${allCount }</div>
 </body>

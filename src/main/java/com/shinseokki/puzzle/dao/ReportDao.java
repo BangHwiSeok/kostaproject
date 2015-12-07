@@ -10,8 +10,8 @@ public interface ReportDao {
 	public Collection<Report> getNoCheckReports(int startIndex, int endIndex);
 	public Collection<Report> getCheckReports(int startIndex, int endIndex);
 	public Report getReport(int rp_num);
-	public int deleteReport(String rp_num);
-	public int checkReport(String rp_num);
+	public int deleteReport(int rp_num);
+	public int checkReport(int rp_num);
 	public int getNoCheckCount();
 	public int getReportCount();
 	

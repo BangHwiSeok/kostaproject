@@ -7,7 +7,7 @@
 
 	<!-- 신고보내기 추가 -->
 	<insert id="sendReport" parameterType="com.shinseokki.puzzle.dto.Report">
-		INSERT INTO REPORT(RP_NUM, RP_SENDID, RP_ID, RP_CONTENT, RP_DATE, RP_FILE, RP_READ) 
+		INSERT INTO REPORT(RP_NUM, RP_SENDID, RP_ID, RP_CONTENT, RP_DATE, RP_FILE, RP_CHECK) 
 		values(REPORT_SEQ.NEXTVAL, ${rp_sendid}, ${rp_id}, ${rp_content}, sysdate, ${rp_file}, 'no')
 	</insert>
 	
@@ -33,14 +33,14 @@
 	
 	<!-- 신고내역 가져오기(한개) -->
 	<select id="getReport" resultType="com.shinseokki.puzzle.dto.Report">
-		SELECT * FROM REPORT WHERE RP_NUM = ${rp_num}
+		SELECT * FROM REPORT WHERE RP_NUM = #{rp_num}
 	</select>
 	
 	<!-- 확인한 신고내역 체크하기 -->
 	<update id="checkReport" parameterType="com.shinseokki.puzzle.dto.Report">
 		UPDATE REPORT SET 
 		RP_CHECK = 'check'
-		WHERE RP_NUM = ${rp_num}
+		WHERE RP_NUM = #{rp_num}
 	</update>
 	
 	<!-- 신고 내용 삭제 -->
