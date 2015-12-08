@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shinseokki.puzzle.dao.EvalHistoryDao">
+	<insert id="save" >
+		INSERT 
+			INTO EVALHISTORY(U_NUM,E_NUM, REGDATE) 
+		VALUES(#{param1}, #{param2}, SYSDATE)
+	</insert>
+
+	<select id="find" resultType="com.shinseokki.puzzle.dto.EvalHistory">
+		SELECT * 
+		FROM EVALHISTORY 
+		WHERE U_NUM = #{u_num} AND E_NUM = #{e_num}
+	</select>
+	
+	<select id="findAll" resultType="com.shinseokki.puzzle.dto.EvalHistory">
+		SELECT *
+		FROM EVALHISTORY
+	</select>
+	<delete id="remove">
+		DELETE 
+		EVALHISTORY
+		WHERE E_NUM=#{e_num}
+	</delete>
+
+
+</mapper>

@@ -6,7 +6,7 @@
 	<insert id="addUser" parameterType="com.shinseokki.puzzle.dto.User">
 		INSERT INTO USERS(U_ID,
 		U_PWD, U_BIRTH, U_GENDER,  U_NUM, U_ROLE)
-		VALUES(#{u_id},#{u_pwd},#{u_birth},#{u_gender},	user_seq.nextval,#{u_role )
+		VALUES(#{u_id},#{u_pwd},#{u_birth},#{u_gender},	user_seq.nextval,#{u_role} )
 	</insert>
 	
 	<select id="findByID" resultType="com.shinseokki.puzzle.dto.User">
@@ -14,7 +14,7 @@
 		#{u_id}
 	</select>
 
-	<select id="getUser" resultType="com.shinseokki.puzzle.dto.User">
+	<select id="findByUserNum" resultType="com.shinseokki.puzzle.dto.User">
 		SELECT * FROM USERS WHERE U_NUM =
 		#{u_num}
 	</select>
@@ -56,9 +56,9 @@
 	</update>
 
 	<!-- User 인증 -->
-	<update id="approvalUser" parameterType="int">
+	<update id="approvalUser" parameterType="com.shinseokki.puzzle.dto.User">
 		UPDATE USERS set
-			U_ROLE = 'ROLE_USER'
+			U_ROLE = #{u_role}
 		WHERE U_NUM = #{u_num}
 	</update>
 	

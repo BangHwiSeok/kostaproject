@@ -1,27 +1,24 @@
 @charset "euc-kr";
 /* CSS Document */
 
-#wrap{width:1024px; height:666px; margin:0 auto;margin-top:-10px;} 
+#wrap{width:1024px; height:666px; margin:0 auto;}
 
-#header{}
-#header #logo{position:relative; top:18px; left:75px;}
-#header #bg{position:relative; top:-35px; z-index:-1;}
-#header #h3{color:#fff; position:relative; top:-75px; right:30px;; z-index:3; text-align:right;}
+#main{margin:0 auto; height:666px;}
+#main div.bg{margin:0 auto; height:666px;}
+#main div.logo{margin-top:-645px; margin-left:40px;}
+#main div.logo a img{width:80px;}
+#main div.logo2{position:relative; top:-500px; left:230px;}
+#main div.reg{position:relative; top:75px; left:160px; width:200px;}
+#main div.login{position:relative; top:53px; left:430px; width:150px;}
 
-#container div.h1{position:relative; left:30px;}
-#container ul.list{padding-left:140px; padding-top:20px;}
-#container ul.list li.u_id{padding-left:40px;}
-#container ul.list li.u_pwd{padding-left:28px;}
-#container ul.list li.u_pnum{padding-left:28px;}
-#container ul.list li.u_gender{padding-left:52px;}
-#container ul.list li.u_birth{padding-left:28px;}
-#container ul.list li.btn1{padding-top:5px; padding-left:115px; margin-right:8px; float:left;}
-#container ul.list li.btn2{padding-top:5px; }
-#container ul li{margin-top:10px;}
+.container{position:relative; top:65px; margin-left:380px; width:250px;}
+.container .u_id{margin-bottom:5px;}
 
-#container2{position:relative; top:-210px; left:420px;}
-#container2 ul.pro li{float:left; margin-right:10px;}
-#container2 ul.pro2{position:relative; top:-70px; left:-325px;}
-#container2 ul.pro2 li{float:left; position:relative; top:300px;margin-right:10px;}
+.loginok{position:relative; top:-50px; left:205px;}
 
+#main ul{margin-top:-35px; padding-left:20px;}
+#main ul.cf li.btn1{float:left; position:relative; margin-right:20px;}
+#main ul.cf li.btn1{position:relative;}
 
+.writ{text-align:center; color:#fff; font-size:16px; line-height:20px; position:relative; top:100px; left:-148px; width:520px;}
+.writ span{font-style:italic;}
