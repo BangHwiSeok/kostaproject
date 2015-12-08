@@ -52,7 +52,11 @@
 	
 	<!-- Point 더하기 -->
 	<update id="addPoint">
-		UPDATE USER SET U_POINT= U_POINT + #{param2} WHERE U_NUMBER = #{param2}
+		UPDATE USER SET U_POINT= U_POINT + #{param2} WHERE U_NUM = #{param2}
+	</update>
+	<!-- User Role 변경-->
+	<update id="changeRole" parameterType="com.shinseokki.puzzle.dto.User">
+		UPDATE USER SET U_ROLE= #{u_role} WHERE U_NUM = #{u_num}
 	</update>
 
 	<!-- User 인증 -->

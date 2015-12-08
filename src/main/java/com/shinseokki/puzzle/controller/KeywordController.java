@@ -1,7 +1,6 @@
 package com.shinseokki.puzzle.controller;
 
-import java.text.DateFormat;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -37,6 +36,8 @@ private static final Logger logger = LoggerFactory.getLogger(KeywordController.c
 	public ModelAndView home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		ModelAndView mav = new ModelAndView("keywords/findKeyword");
+		
+		
 		
 		
 		return mav;
@@ -122,11 +123,13 @@ private static final Logger logger = LoggerFactory.getLogger(KeywordController.c
 	
 	@RequestMapping(value="/find/{word}", method=RequestMethod.GET)
 	public List<Keyword> findKeywords(@PathVariable("word") String word) {
-		
+		/*List<String> test = new ArrayList<String>();*/
 		List<Keyword> keywords = keywordDao.findLikeWord(word);
 		
-		//keywordDao.deleteKeyword(K_NAME);
 		
+		
+		//keywordDao.deleteKeyword(K_NAME);
+		logger.info("findKeywords : {}",keywords.toString());
 		
 		return keywords; //
 	}
