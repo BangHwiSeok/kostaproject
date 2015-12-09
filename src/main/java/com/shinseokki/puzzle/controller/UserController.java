@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.shinseokki.puzzle.dao.UserDao;
+import com.shinseokki.puzzle.dto.CurrentUser;
 import com.shinseokki.puzzle.service.UserService;
 
 
@@ -48,10 +49,12 @@ public class UserController {
 
 	// MyPage 보기 현재 자기의 정보를 볼 수 있다.
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ModelAndView showMyPage(@PathVariable("id") Integer id) {
+	public ModelAndView showMyPage(@PathVariable("id") Integer id /*,CurrentUser currentUser*/) {
 		ModelAndView mav = new ModelAndView("members/myInfo");
 		
-		mav.addObject("myInfo", userService.getUser(id).get());
+		mav.addObject("myInfo", userService.findByUserNum(id).get());
+		
+		/*logger.info(currentUser.getRole().toString());*/
 
 		return mav;
 	}

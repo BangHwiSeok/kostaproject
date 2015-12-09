@@ -51,9 +51,9 @@ public class UserService {
 		return Optional.ofNullable(userDao.findByID(u_id));
 	}
 
-	public Optional<User> getUser(int u_num) {
-		logger.info("getUser");
-		return Optional.ofNullable(userDao.getUser(u_num));
+	public Optional<User> findByUserNum(int u_num) {
+		logger.info("findByUserNum");
+		return Optional.ofNullable(userDao.findByUserNum(u_num));
 	}
 
 	public int getTotalPage() {
@@ -98,6 +98,20 @@ public class UserService {
 
 	public int approvalUser(int u_num) {
 		return userDao.approvalUser(u_num);
+	/*
+	 * @param u_num 막 회원 가입한 사용자의 회원번호
+	 * @return int	DB에 저장한 결과를 반환한다.
+	 * @description
+	 * 	관리자가 승인하고, 다른 사용자들이 키워드를 줄 수 있게 해주는 단계를 정의
+	 * 	키워드를 받기 위해 EvalueTable에 이동시킨다.
+	 */
+	public int approvalUser(int u_num){
+		User user = userDao.findByUserNum(u_num);
+		user.setU_role(user.getU_role().nextRole());
+		
+		
+		
+		return userDao.approvalUser(user);
 	}
 
 	public Collection<User> getUnApprovalUsers(int pageNo) {

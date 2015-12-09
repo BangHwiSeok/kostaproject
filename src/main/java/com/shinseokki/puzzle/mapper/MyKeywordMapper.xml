@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.shinseokki.puzzle.dao.MyKeywordDao">
+
+	<!-- 나의 키워드 추가 -->
+	<insert id="addMyKeyword" parameterType="com.shinseokki.puzzle.dto.MyKeyword">
+		INSERT INTO
+		MyKeyword(U_NUM, KEYWORD, STATUS, M_COUNT, M_REGDATE)
+		VALUES( #{u_num}, #{keyword},#{status}, 0,  SYSDATE)
+	</insert>
+
+	<!-- 나의 키워드 가져오기 -->
+	<select id="findMyKeyword" parameterType="com.shinseokki.puzzle.dto.MyKeyword" resultType="com.shinseokki.puzzle.dto.MyKeyword">
+		SELECT * FROM MyKeyword
+			WHERE U_NUM = #{u_num}
+				AND STATUS = #{status}
+				 AND KEYWORD = #{keyword}
+	</select>
+
+	<!-- 다른 사람이 MyKeyword가 어울린다고 했을 때, Count 하는 것. -->
+	<update id="upcountMyKeyword">
+		UPDATE MYKEYWORD
+		SET M_COUNT = M_COUNT + 1
+		WHERE
+		U_NUM = #{U_NUM}
+		AND
+		KEYWORD = #{keyword}
+	</update>
+
+	<!-- MyKeyword 삭제 -->
+	<delete id="deleteMyKeyword">
+		DELETE FROM MyKeyword
+		WHERE
+		U_NUM = #{ u_num}
+		AND
+		KEYWORD = #{keyword}
+	</delete>
+
+	<!-- 키워드 정렬(여러개) -->
+	<select id="findMyKeywords" parameterType="int"
+		resultType="com.shinseokki.puzzle.dto.MyKeyword">
+		SELECT * FROM MYKEYWORD WHERE U_NUM = #{u_num}
+	</select>
+	
+	<!-- 전체 키워드 수 -->
+	<select id="countMyKeywords" resultType="Integer">
+		select count(*) from
+		Keyword WHERE U_NUM = #{u_num}
+	</select>
+	<!-- 전체 키워드 수 -->
+	<select id="getMyKeywordCount" resultType="Integer">
+		select count(*) from
+		Keyword
+	</select>
+
+
+</mapper>
+	
+	
+

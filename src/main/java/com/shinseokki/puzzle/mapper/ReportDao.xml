@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.shinseokki.puzzle.dao.ReportDao">
+
+	<!-- 신고보내기 추가 -->
+	<insert id="sendReport" parameterType="com.shinseokki.puzzle.dto.Report">
+		INSERT INTO REPORT(RP_NUM, RP_SENDID, RP_ID, RP_CONTENT, RP_DATE, RP_FILE, RP_CHECK) 
+		values(REPORT_SEQ.NEXTVAL, ${rp_sendid}, ${rp_id}, ${rp_content}, sysdate, ${rp_file}, 'no')
+	</insert>
+	
+	<!-- 신고내역 가져오기 (전체) -->
+	<select id="getReports" resultType="com.shinseokki.puzzle.dto.Report">
+		SELECT * FROM REPORT
+		ORDER BY RP_DATE desc
+	</select>
+	
+	<!-- 체크안한 신고내역 가져오기 (전체) -->
+	<select id="getNoCheckReports" resultType="com.shinseokki.puzzle.dto.Report">
+		SELECT * FROM REPORT
+		WHERE RP_CHECK = 'no'
+		ORDER BY RP_DATE desc
+	</select>
+	
+	<!-- 체크한 신고내역 가져오기 (전체) -->
+	<select id="getCheckReports" resultType="com.shinseokki.puzzle.dto.Report">
+		SELECT * FROM REPORT
+		WHERE RP_CHECK = 'check'
+		ORDER BY RP_DATE desc
+	</select>
+	
+	<!-- 신고내역 가져오기(한개) -->
+	<select id="getReport" resultType="com.shinseokki.puzzle.dto.Report">
+		SELECT * FROM REPORT WHERE RP_NUM = #{rp_num}
+	</select>
+	
+	<!-- 확인한 신고내역 체크하기 -->
+	<update id="checkReport" parameterType="com.shinseokki.puzzle.dto.Report">
+		UPDATE REPORT SET 
+		RP_CHECK = 'check'
+		WHERE RP_NUM = #{rp_num}
+	</update>
+	
+	<!-- 신고 내용 삭제 -->
+	<delete id="deleteReport" parameterType="com.shinseokki.puzzle.dto.Report">
+		DELETE FROM REPORT WHERE RP_NUM = #{rp_num}
+	</delete>
+
+	<!-- 미확인 신고 수 -->
+	<select id="getNoCheckCount" resultType="Integer">
+		select count(*) from REPORT
+		WHERE RP_CHECK = 'no'
+	</select>
+	
+	<!-- 총 신고 수 -->
+	<select id="getReportCount" resultType="Integer">
+		select count(*) from REPORT
+	</select>
+	
+</mapper>
+	
+	
+

@@ -67,6 +67,7 @@ public class ShopController {
 		int cost = item.getI_cost();
 		int userPoint = user.getPoint();
 		
+		// 구현해야 될 부분
 		if(userPoint >= cost){
 		}
 		

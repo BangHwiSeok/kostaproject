@@ -3,6 +3,7 @@ package com.shinseokki.puzzle.dao;
 import java.util.List;
 
 import com.shinseokki.puzzle.dto.Message;
+import com.shinseokki.puzzle.dto.User;
 
 import oracle.sql.DATE;
 
