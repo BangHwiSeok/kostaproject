@@ -41,6 +41,11 @@
 		select count(*) from
 		Keyword
 	</select>
+	
+	<!-- 키워드 찾기 -->
+	<select id="findLikeWord" parameterType="string" resultType="com.shinseokki.puzzle.dto.Keyword">
+		SELECT * FROM KEYWORD WHERE K_NAME LIKE  '%'||#{_parameter}||'%'
+	</select>
 
 	<!-- 키워드 검색 -->
 	<select id="findKeyword" resultType="com.shinseokki.puzzle.dto.Keyword">

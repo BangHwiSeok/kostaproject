@@ -31,8 +31,8 @@
             </div>
           
             <ul class="cf">
-            	<li class="btn1"><a href="#"><img src="${pageContext.request.contextPath}/resources/images/login_div_01.png" alt="아이디 찾기"></a></li>
-                <li class="btn2"><a href="#"><img src="${pageContext.request.contextPath}/resources/images/login_div_02.png" alt="비밀번호 찾기"></a></li>
+            	<li class="btn1"><a href="findidpwd.jsp"><img src="${pageContext.request.contextPath}/resources/images/login_div_01.png" alt="아이디 찾기"></a></li>
+                <li class="btn2"><a href="findidpwd.jsp"><img src="${pageContext.request.contextPath}/resources/images/login_div_02.png" alt="비밀번호 찾기"></a></li>
             </ul>
             <div class="writ">
             <span>PUZZLE</span>&nbsp;의 모든 서비스는 회원가입을 거친 후에 이용하실 수 있습니다<br>

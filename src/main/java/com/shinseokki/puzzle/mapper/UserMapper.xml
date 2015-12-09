@@ -5,8 +5,8 @@
 <mapper namespace="com.shinseokki.puzzle.dao.UserDao">
 	<insert id="addUser" parameterType="com.shinseokki.puzzle.dto.User">
 		INSERT INTO USERS(U_ID,
-		U_PWD, U_BIRTH, U_GENDER,  U_NUM)
-		VALUES(#{u_id},#{u_pwd},#{u_birth},#{u_gender},	user_seq.nextval )
+		U_PWD, U_BIRTH, U_GENDER,  U_NUM, U_ROLE)
+		VALUES(#{u_id},#{u_pwd},#{u_birth},#{u_gender},	user_seq.nextval,#{u_role )
 	</insert>
 	
 	<select id="findByID" resultType="com.shinseokki.puzzle.dto.User">
@@ -30,7 +30,7 @@
 	<!-- 인증되지 않은 User 불러오기 -->
 	<select id="getUnApprovalUsers" resultType="com.shinseokki.puzzle.dto.User">
 		SELECT * FROM
-		(SELECT rownum as r ,USERS.* FROM USERS WHERE U_ACTIVE = 0 AND U_ROLE='ROLE_USER')
+		(SELECT rownum as r ,USERS.* FROM USERS WHERE U_ROLE='ROLE_READY')
 		WHERE r between #{param1} and #{param2}
 	</select>
 	
@@ -44,11 +44,21 @@
 	<update id="changePWD">
 		UPDATE USERS SET U_PWD=#{param2} WHERE U_NUM=#{param1}
 	</update>
+	
+	<!-- Point 빼기 -->
+	<update id="subtractPoint">
+		UPDATE USER SET U_POINT= U_POINT - #{param2} WHERE U_NUMBER = #{param2}
+	</update>
+	
+	<!-- Point 더하기 -->
+	<update id="addPoint">
+		UPDATE USER SET U_POINT= U_POINT + #{param2} WHERE U_NUMBER = #{param2}
+	</update>
 
 	<!-- User 인증 -->
 	<update id="approvalUser" parameterType="int">
 		UPDATE USERS set
-			U_ACTIVE = 1, U_ROLE = #{u_role} 
+			U_ROLE = 'ROLE_USER'
 		WHERE U_NUM = #{u_num}
 	</update>
 	
@@ -58,5 +68,15 @@
 		DELETE USERS
 		WHERE U_NUM=#{u_num}
 	</delete>
-
+	
+	<!-- 전화번호로 ID찾기 -->
+	<select id="findIdByPnum" resultType="com.shinseokki.puzzle.dto.User">
+		SELECT u_id FROM USERS WHERE U_PNUM = #{u_pnum}
+	</select>
+	
+	<!-- 비밀번호 초기화 하고 메일로 임시비밀번호 전송하기 -->
+	<select id="findPwdByIdPhone" resultType="com.shinseokki.puzzle.dto.User">
+		SELECT u_pwd FROM USERS WHERE U_ID=#{u_id} and U_PNUM=#{u_pnum}
+	</select>
+	
 </mapper>

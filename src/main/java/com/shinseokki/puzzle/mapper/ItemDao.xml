@@ -47,7 +47,7 @@
 	<select id="getItemCount" resultType="Integer">
 		select count(*) from ITEM
 	</select>
-
+	
 </mapper>
 	
 	

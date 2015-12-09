@@ -13,7 +13,9 @@ public interface KeywordDao {
 		public int deleteKeyword(String K_NAME);
 		public List<Keyword> getKeywords(int start, int end);
 		int getKeywordCount();
-		public List<Keyword> findKeywords(String words);
+		public List<Keyword> findLikeWord(String word);
+		
+
 		
 	
 	}
