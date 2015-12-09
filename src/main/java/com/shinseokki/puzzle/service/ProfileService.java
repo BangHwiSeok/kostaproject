@@ -23,8 +23,8 @@ public class ProfileService {
 		return profileDao.addProfile(profile);
 	}
 
-	public Collection<Profile> getProfile() {
-		return profileDao.getProfile();
+	public Collection<Profile> find(int u_num) {
+		return profileDao.find(u_num);
 	}
 
 	public int updateProfile(Profile profile) {

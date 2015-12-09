@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.shinseokki.puzzle.dao.EvalHistoryDao;
 import com.shinseokki.puzzle.dao.EvaluationDao;
+import com.shinseokki.puzzle.dao.KeywordDao;
 import com.shinseokki.puzzle.dao.MyKeywordDao;
 import com.shinseokki.puzzle.dao.UserDao;
 import com.shinseokki.puzzle.dto.Keyword;
@@ -22,22 +23,26 @@ public class MyKeywordService {
 	private EvalHistoryDao evalHistoryDao;
 	private UserDao userDao;
 	private EvaluationDao evaluationDao;
+	private KeywordService keywordService;
 	
 	private final int MAXMYKEYWORD = 2;
 	
 	@Autowired
-	public MyKeywordService(SqlSession sqlSession) {
+	public MyKeywordService(SqlSession sqlSession,KeywordService keywordService) {
 		myKeywordDao = sqlSession.getMapper(MyKeywordDao.class);
 		evalHistoryDao = sqlSession.getMapper(EvalHistoryDao.class);
 		userDao = sqlSession.getMapper(UserDao.class);
 		evaluationDao = sqlSession.getMapper(EvaluationDao.class);
+		this.keywordService = keywordService;
 	}
 	
 	@Transactional
 	public boolean saveKeywords(int u_num, int e_num, String key1, String key2){
+		boolean isSaved= true;
 		// 첫번째 키워드 저장
 			// 키워드를 가지고 있는 경우, Exception을 발생시켜 Keyword 저장을 못하게 한다. 
-		if(!duplicatedKeyword(u_num, key1)){
+		/*if(!duplicatedKeyword(u_num, key1) &&  ( keywordService.find(key1) != null  ) ){
+			System.out.println("Keyword1 : "+key1);
 			MyKeyword k = new MyKeyword();
 			k.setKeyword(key1);
 			k.setU_num(u_num);
@@ -46,19 +51,25 @@ public class MyKeywordService {
 			addMyKeyword(k);
 			
 		}else{
-			 throw new RuntimeException("Keyword1 Exists");
-		}
+			isSaved= false;
+		}*/
 		
-		if(!duplicatedKeyword(u_num, key2)){
+		if( (!duplicatedKeyword(u_num, key1) &&  ( keywordService.find(key1) != null  ) ) &&  (!duplicatedKeyword(u_num, key2) &&  ( keywordService.find(key2) != null  )) ){
+			System.out.println("Keyword1 : "+key2);
 			MyKeyword k = new MyKeyword();
 			k.setKeyword(key1);
 			k.setU_num(u_num);
 			k.setStatus(KeywordSelected.RECEIVED);
 			addMyKeyword(k);
+			
+			k.setKeyword(key1);
+			addMyKeyword(k);
 		}else{
-			 throw new RuntimeException("Keyword1 Exists");
+			isSaved =false;
 		}
 		
+		if(!isSaved)
+			return isSaved;
 		// 현재 평가한 사람이 다시 평가를 못하게, 평가 기록을 남긴다.
 		saveHistory(u_num, e_num);
 		
@@ -76,7 +87,7 @@ public class MyKeywordService {
 			evaluationDao.deleteEvaluation(u.getU_num());
 		}
 		
-		return true;
+		return isSaved;
 	}
 	
 	public int saveHistory(int u_num, int e_num){
@@ -89,7 +100,7 @@ public class MyKeywordService {
 		k.setU_num(u_num);
 		k.setStatus(KeywordSelected.RECEIVED);
 		
-		return myKeywordDao.findMyKeyword(k) != null ;
+		return (myKeywordDao.findMyKeyword(k) != null );
 	}
 	
 	

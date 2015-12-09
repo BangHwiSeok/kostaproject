@@ -1,27 +1,27 @@
-@charset "euc-kr";
+@charset "utf-8";
 /* CSS Document */
 
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
-/*�±��� ���ʰ��縦 ���� css����*/
+/*태그의 기초공사를 위한 css문서*/
 
 body, div, p, ul, ol, li, dl, dt, dd, h1, h2, h3, h4, h5, h6,
 fieldset{padding:0px; margin:0px;}
 
 body{font-family: 'Malgun Gothic' 'Nanum Gothic', sans-serif; font-size:12px; line-height:1em; color:#181818}
-/*line-height�Ӽ� : �ٰ���.
-em����=>��밪. 1.4em�� �⺻���� 1.4�� ũ��� ����ϰڴٴ� ��.*/
+/*line-height속성 : 줄간격.
+em단위=>상대값. 1.4em은 기본값의 1.4배 크기로 사용하겠다는 뜻.*/
 
-/*a�±��� ��� ���¿� ���� �ٸ� ��Ÿ���� �����Ҽ� ����.
-a:link        => a�±��� �⺻ ����
-a:hover       => a�±׿� ���콺 �÷������� ����
-a:active      => a�±׸� ���콺�� �������ִ� ������ ����
-a:visited     => a�±��� ��θ� ����غ����� �������� ���� */
+/*a태그의 경우 상태에 따라 다른 스타일을 지정할수 있음.
+a:link        => a태그의 기본 상태
+a:hover       => a태그에 마우스 올렸을때의 상태
+a:active      => a태그를 마우스로 누르고있는 동안의 상태
+a:visited     => a태그의 경로를 사용해본적이 있을때의 상태 */
 
 a{color:#181818; text-decoration:none;}
-/*text-decoration�Ӽ�: �ؽ�Ʈ�� ���� �׾��ִ� �Ӽ�
- text-decoration:overline      => �ؽ�Ʈ ž��
- text-decoration:underline     => �ؽ�Ʈ ���ҿ�
- text-decoration:line-through  => �ؽ�Ʈ ���
+/*text-decoration속성: 텍스트에 줄을 그어주는 속성
+ text-decoration:overline      => 텍스트 탑에
+ text-decoration:underline     => 텍스트 바텀에
+ text-decoration:line-through  => 텍스트 가운데
 */
 
 img{border:0px; vertical-align:top;}
@@ -31,7 +31,7 @@ legend{display:none;}
 
 
 ul, ol{list-style:none;}
-/*ul, il{} => ul�±׿� ol�±׿� ������ �Ӽ��� ����ϰڴٴ� ��.*/
+/*ul, il{} => ul태그와 ol태그에 동일한 속성을 사용하겠다는 뜻.*/
 
-.cf{}/*float�ۼ��� ���� �±׸� ���δ� �����±׿��� ������ cfŬ������ �߰��س���.*/
+.cf{}/*float송성을 가진 태그를 감싸는 엄마태그에게 무조건 cf클래스를 추가해놓음.*/
 .cf:after{clear:both; content:""; display:block;}

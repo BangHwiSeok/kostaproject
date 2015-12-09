@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.shinseokki.puzzle.dao.EvaluationDao;
 import com.shinseokki.puzzle.dao.UserDao;
 import com.shinseokki.puzzle.dto.Profile;
 import com.shinseokki.puzzle.dto.Role;
@@ -27,11 +28,13 @@ public class UserService {
 	private final static int MAXPAGE = 10;
 	private UserDao userDao;
 	private ProfileService profileService;
+	private EvaluationDao evaluationDao;
 
 	@Autowired
 	public UserService(SqlSession sqlSession, ProfileService profileService) {
 		logger.info("Constructed");
 		userDao = sqlSession.getMapper(UserDao.class);
+		evaluationDao = sqlSession.getMapper(EvaluationDao.class);
 		this.profileService = profileService;
 	}
 	
@@ -94,7 +97,7 @@ public class UserService {
 		User user = userDao.findByUserNum(u_num);
 		user.setU_role(user.getU_role().nextRole());
 		
-		
+		evaluationDao.addEvaluation(user.getU_num());
 		
 		return userDao.approvalUser(user);
 	}

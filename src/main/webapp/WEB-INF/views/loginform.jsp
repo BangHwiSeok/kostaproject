@@ -4,8 +4,10 @@
 <head>
 <title>로그인</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link href="${pageContext.request.contextPath}/resources/css/base.css" rel="stylesheet" type="text/css" />
-<link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" type="text/css" />
+<link href="${pageContext.request.contextPath}/resources/css/base.css"
+	rel="stylesheet" type="text/css" />
+<link href="${pageContext.request.contextPath}/resources/css/main.css"
+	rel="stylesheet" type="text/css" />
 </head>
 <body>
 	<div id="wrap">
@@ -37,38 +39,46 @@
 					src="${pageContext.request.contextPath}/resources/images/login_div_05.png"
 					alt="login">
 			</div>
-			<form method="post">
+
 			<div class="container">
-				<div class="u_id">
-					<input type="text" name="username" alt="아이디" placeholder="아이디 입력"
-						style="width: 200px; height: 25px; border-radius: 20px; text-align: center;">
-				</div>
-				<div class="u_pwd">
-					<input type="password" name="password" alt="비밀번호" placeholder="비밀번호 입력"
-						style="width: 200px; height: 25px; border-radius: 20px; text-align: center;">
-				</div>
+				<form method="post">
 
-				<div class="loginok">
-					<input type="image" alt="로그인 클릭" src="${pageContext.request.contextPath}/resources/images/loginclick.png">
-				</div>
+					<div class="u_id">
+						<input type="text" name="username" alt="아이디" placeholder="아이디 입력"
+							style="width: 200px; height: 25px; border-radius: 20px; text-align: center;">
+					</div>
+					<div class="u_pwd">
+						<input type="password" name="password" alt="비밀번호"
+							placeholder="비밀번호 입력"
+							style="width: 200px; height: 25px; border-radius: 20px; text-align: center;">
+					</div>
 
-				<ul class="cf">
-					<li class="btn1"><a href="#"><img
-							src="${pageContext.request.contextPath}/resources/images/login_div_01.png"
-							alt="아이디 찾기"></a></li>
-					<li class="btn2"><a href="#"><img
-							src="${pageContext.request.contextPath}/resources/images/login_div_02.png"
-							alt="비밀번호 찾기"></a></li>
-				</ul>
+					<div class="loginok">
+						<input type="image" alt="로그인 클릭" onclick="document.forms[0].submit()"
+							src="${pageContext.request.contextPath}/resources/images/loginclick.png">
+					</div>
+
+					<ul class="cf">
+						<li class="btn1"><a href="#"><img
+								src="${pageContext.request.contextPath}/resources/images/login_div_01.png"
+								alt="아이디 찾기"></a></li>
+						<li class="btn2"><a href="#"><img
+								src="${pageContext.request.contextPath}/resources/images/login_div_02.png"
+								alt="비밀번호 찾기"></a></li>
+					</ul>
+					
 				</form>
 				<div class="writ">
-					<span>PUZZLE</span>&nbsp;의 모든 서비스는 회원가입을 거친 후에 이용하실 수 있습니다<br>
-					<h4>나만의 이상형찾기, PUZZLE로 어서 놀러오세요</h4>
-				</div>
+				<span>PUZZLE</span>&nbsp;의 모든 서비스는 회원가입을 거친 후에 이용하실 수 있습니다<br>
+				<h4>나만의 이상형찾기, PUZZLE로 어서 놀러오세요</h4>
 			</div>
-			<!--main-->
+			</div>
+			
+			
 		</div>
-		<!--wrap-->
+		<!--main-->
 	</div>
+	<!--wrap-->
+
 </body>
 </html>

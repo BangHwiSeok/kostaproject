@@ -81,11 +81,11 @@ private static final Logger logger = LoggerFactory.getLogger(KeywordController.c
 	
 	
 	@RequestMapping(value="{id}/update", method=RequestMethod.GET)
-	public String upadteform(@PathVariable("id") Integer id, String K_NAME, Model model) {
+	public String upadteform(@PathVariable("id") Integer id, String k_name, Model model) {
 		//model은 객체를 담아주는 역할
 		
 		Keyword keyword = new Keyword();
-		keyword = keywordDao.getKeyword();
+		keyword = keywordDao.find(k_name);
 		
 		keywordDao.updateKeyword(keyword);
 		
@@ -95,10 +95,9 @@ private static final Logger logger = LoggerFactory.getLogger(KeywordController.c
 	}
 
 	@RequestMapping("/updateform")
-	public String update(String K_NAME, String K_GROUP, Model model) {
+	public String update(String k_name, String K_GROUP, Model model) {
 		
-		Keyword keyword = new Keyword();
-		keyword = keywordDao.getKeyword();
+		Keyword keyword = keywordDao.find(k_name);
 		keyword.setK_GROUP(K_GROUP);
 		
 		keywordDao.updateKeyword(keyword);
@@ -109,13 +108,12 @@ private static final Logger logger = LoggerFactory.getLogger(KeywordController.c
 	
 	
 	@RequestMapping(value="{id}/delete", method=RequestMethod.GET)
-	public String deleteform(@PathVariable("id") Integer id,String K_NAME) {
+	public String deleteform(@PathVariable("id") Integer id,String k_name) {
 		
 		
-		Keyword keyword = new Keyword();
-		keyword = keywordDao.getKeyword(); 
+		Keyword keyword = keywordDao.find(k_name);
 		
-		keywordDao.deleteKeyword(K_NAME);
+		keywordDao.deleteKeyword(keyword.getK_NAME());
 		
 		
 		return "OK"; // deleteform.jsp

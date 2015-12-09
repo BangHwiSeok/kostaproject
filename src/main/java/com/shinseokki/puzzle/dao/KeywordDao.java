@@ -8,7 +8,7 @@ public interface KeywordDao {
 
 	
 		public int addkeyword(Keyword keyword);
-		public Keyword getKeyword(); 
+		public Keyword find(String k_name); 
 		public int updateKeyword(Keyword keyword);
 		public int deleteKeyword(String K_NAME);
 		public List<Keyword> getKeywords(int start, int end);

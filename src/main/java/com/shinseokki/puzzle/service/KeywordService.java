@@ -10,7 +10,7 @@ import com.shinseokki.puzzle.dao.KeywordDao;
 import com.shinseokki.puzzle.dto.Keyword;
 
 @Service
-public abstract class KeywordService {
+public class KeywordService {
 	private KeywordDao keywordDao;
 	
 	@Autowired
@@ -21,8 +21,8 @@ public abstract class KeywordService {
 	public int addKeyword(Keyword keyword){
 		return keywordDao.addkeyword(keyword);
 	}
-	public Keyword getKeyword(){
-		return keywordDao.getKeyword();
+	public Keyword find(String k_name){
+		return keywordDao.find(k_name);
 	}
 	
 	public int updateKeyword(Keyword keyword){
