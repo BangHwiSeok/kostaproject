@@ -99,10 +99,12 @@
 														dataType : 'json',
 														jsonpCallback : 'callback',
 														success : function(data) {
-															console
-																	.log(data.callback);
-															window.location.href = '${pageContext.request.contextPath}';
-															alert('test');
+															if(data.callback){
+																window.location.href = '${pageContext.request.contextPath}';
+																alert('test');
+															}else{
+																alert('keyword를 다시 입력해주세요');
+															}
 														},
 														error : function(xhr,
 																status, error) {
@@ -152,9 +154,11 @@
 	<c:if test="${!non_eval}">
 		<p>${eval.u_num }</p>
 		<div id="user">
-			<input id="u_num" type="hidden" value="15" /> <img alt="User"
-				src="${pageContext.request.contextPath }/resources/15/150.jpg"
+			<c:forEach var="p" items="${profiles }">
+			<input id="u_num" type="hidden" value="${eval.u_num }" /> <img alt="User"
+				src="${pageContext.request.contextPath }/resources/${p.u_num} /${p.u_num }${p.p_photonum}${p.p_extendtype}"
 				width="100px" height="150px" />
+				</c:forEach>
 		</div>
 		<form id="eval">
 			<div>

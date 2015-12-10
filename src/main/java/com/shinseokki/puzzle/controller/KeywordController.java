@@ -93,11 +93,11 @@ private static final Logger logger = LoggerFactory.getLogger(KeywordController.c
 	
 	
 	@RequestMapping(value="{id}/update", method=RequestMethod.GET)
-	public String upadteform(@PathVariable("id") Integer id, String K_NAME, Model model) {
+	public String upadteform(@PathVariable("id") Integer id, String k_name, Model model) {
 
 		
 		Keyword keyword = new Keyword();
-		keyword = keywordDao.getKeyword();
+		keyword = keywordDao.find(k_name);
 		
 		keywordDao.updateKeyword(keyword);
 		
@@ -110,15 +110,27 @@ private static final Logger logger = LoggerFactory.getLogger(KeywordController.c
 	
 	
 	
-	@RequestMapping(value="{id}/delete", method=RequestMethod.GET)
-	public String deleteform(@PathVariable("id") Integer id,String K_NAME) {
 
+	@RequestMapping("/updateform")
+	public String update(String k_name, String K_GROUP, Model model) {
+		
+		Keyword keyword = keywordDao.find(k_name);
+		keyword.setK_GROUP(K_GROUP);
+		
+		keywordDao.updateKeyword(keyword);
 		
 		
-		Keyword keyword = new Keyword();
-		keyword = keywordDao.getKeyword(); 
+		return "OK";
+	}
+	
+	
+	@RequestMapping(value="{id}/delete", method=RequestMethod.GET)
+	public String deleteform(@PathVariable("id") Integer id,String k_name) {
 		
-		keywordDao.deleteKeyword(K_NAME);
+		
+		Keyword keyword = keywordDao.find(k_name);
+		
+		keywordDao.deleteKeyword(keyword.getK_NAME());
 		
 		
 
@@ -144,7 +156,7 @@ private static final Logger logger = LoggerFactory.getLogger(KeywordController.c
 		//keywordDao.deleteKeyword(K_NAME);
 		logger.info("findKeywords : {}",keywords.toString());
 		
-		return keywords; //
+		return keywords; 
 
 	}
 	

@@ -13,5 +13,7 @@ public interface MyKeywordDao {
 		public Collection<MyKeyword> findMyKeywords(int u_num);
 		int getMyKeywordCount();
 		int countMyKeywords(int u_num);
+		
+		public Collection<Integer> findUserNumByKeyword(int u_num,String keyword,String gender);
 	}
 

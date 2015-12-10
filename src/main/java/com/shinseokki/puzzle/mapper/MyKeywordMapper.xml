@@ -45,15 +45,23 @@
 		SELECT * FROM MYKEYWORD WHERE U_NUM = #{u_num}
 	</select>
 	
+	<!-- 키워드가 같은 유저 NUMBER 반환 -->
+	<select id="findUserNumByKeyword" resultType="int">
+		SELECT m.u_num as U_NUM 
+			FROM 
+			MYKEYWORD  m INNER JOIN USERS u ON m.u_num = u.u_num
+		WHERE KEYWORD = #{param2} AND u.U_NUM &lt;&gt; #{param1} AND u.U_GENDER &lt;&gt; #{param3}
+	</select>
+	
 	<!-- 전체 키워드 수 -->
-	<select id="countMyKeywords" resultType="Integer">
+	<select id="countMyKeywords" resultType="int">
 		select count(*) from
-		Keyword WHERE U_NUM = #{u_num}
+		MyKeyword WHERE U_NUM = #{u_num}
 	</select>
 	<!-- 전체 키워드 수 -->
-	<select id="getMyKeywordCount" resultType="Integer">
+	<select id="getMyKeywordCount" resultType="int">
 		select count(*) from
-		Keyword
+		MyKeyword
 	</select>
 
 

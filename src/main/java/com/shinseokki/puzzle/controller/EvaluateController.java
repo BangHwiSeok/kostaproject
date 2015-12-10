@@ -1,5 +1,6 @@
 package com.shinseokki.puzzle.controller;
 
+import java.util.Collection;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,13 +15,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.shinseokki.puzzle.dao.EvalHistoryDao;
 import com.shinseokki.puzzle.dto.CurrentUser;
 import com.shinseokki.puzzle.dto.Evaluation;
-import com.shinseokki.puzzle.dto.KeywordSelected;
-import com.shinseokki.puzzle.dto.MyKeyword;
+import com.shinseokki.puzzle.dto.Profile;
 import com.shinseokki.puzzle.service.EvaluationService;
 import com.shinseokki.puzzle.service.MyKeywordService;
+import com.shinseokki.puzzle.service.ProfileService;
 
 @RestController
 @RequestMapping("/evalues")
@@ -28,12 +28,14 @@ public class EvaluateController {
 	private final static Logger logger = LoggerFactory.getLogger(EvaluateController.class);
 	private EvaluationService evaluationService;
 	private MyKeywordService myKeywordService;
+	private ProfileService profileService;
 	
 	private int currentUserNum = 15;
 	@Autowired
-	public EvaluateController(EvaluationService evaluationService,MyKeywordService myKeywordService) {
+	public EvaluateController(EvaluationService evaluationService,MyKeywordService myKeywordService, ProfileService profileService) {
 		this.evaluationService = evaluationService;
 		this.myKeywordService = myKeywordService;
+		this.profileService = profileService;
 	}
 
 	/*
@@ -62,6 +64,10 @@ public class EvaluateController {
 				// -> 평가한 기록을 남긴다.
 			mav.addObject("non_eval",false);
 			mav.addObject("eval",eval);
+				// Profile에 있는 사진을 가져온다.
+			Collection<Profile> profileList = profileService.find(eval.getU_num());
+			mav.addObject("profiles", profileList);
+			
 			logger.info("EVAL {} ",eval.getE_eval());
 		}
 		

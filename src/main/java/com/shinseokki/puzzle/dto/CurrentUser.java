@@ -30,6 +30,9 @@ public class CurrentUser extends org.springframework.security.core.userdetails.U
 	public int getPoint(){
 		return user.getU_point();
 	}
+	public String getGender(){
+		return user.getU_gender();
+	}
 
 	@Override
 	public String toString() {
