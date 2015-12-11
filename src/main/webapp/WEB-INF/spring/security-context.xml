@@ -18,6 +18,8 @@
 			access="permitAll()" />
 		<security:intercept-url pattern="/signup"
 			access="permitAll()" />
+		<security:intercept-url pattern="/"
+			access="permitAll()" />
 		<security:intercept-url pattern="/**"
 			access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
 		<security:form-login login-page="/login" />

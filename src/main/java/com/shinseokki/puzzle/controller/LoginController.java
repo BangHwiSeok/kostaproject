@@ -43,6 +43,11 @@ public class LoginController {
 		binder.addValidators(userValidator);
 	}
 	
+	@RequestMapping("/")
+	public String mainHome(){
+		return "main";
+	}
+	
 	@RequestMapping(value="/login", method=RequestMethod.GET)
 	public String loginForm(){
 		return "loginform";

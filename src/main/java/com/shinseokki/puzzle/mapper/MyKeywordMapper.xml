@@ -63,7 +63,13 @@
 		select count(*) from
 		MyKeyword
 	</select>
-
+	
+	<!-- 쿼리를 사용하는 사용자가 아니면서 해당 키워드를 가진 사람 찾기 -->
+	<select id="findMyKeywordByNumKeyword" resultType="com.shinseokki.puzzle.dto.MyKeyword">
+		SELECT 
+			FROM KEYWORD
+		WHERE U_NUM &gt;&lt;=#{param1} AND KEYWORD = #{param2}
+	</select>
 
 </mapper>
 	
