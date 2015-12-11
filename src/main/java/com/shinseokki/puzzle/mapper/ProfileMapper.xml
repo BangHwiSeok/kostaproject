@@ -13,7 +13,7 @@
 	</insert>
 
 	<!-- Profile 가져오기 -->
-	<select id="getProfile" resultType="com.shinseokki.puzzle.dto.Profile">
+	<select id="find" resultType="com.shinseokki.puzzle.dto.Profile">
 		SELECT * FROM PROFILE WHERE U_NUM = #{u_num}
 	</select>
 

@@ -32,7 +32,11 @@
 							FROM EVALUATION E 
 					WHERE E.E_EVAl &lt; 0 
 							AND 
-							U_NUM NOT IN (SELECT U_NUM FROM EVALHISTORY WHERE E_NUM = #{e_num})
+							U_NUM NOT IN 
+								(SELECT U_NUM 
+									FROM EVALHISTORY 
+									WHERE E_NUM = #{e_num} AND (TRUNC( SYSDATE) - TRUNC(regdate)   &gt; 1 )
+								)
 					ORDER BY E_REGDATE ASC
 				) 
 		WHERE r = 1

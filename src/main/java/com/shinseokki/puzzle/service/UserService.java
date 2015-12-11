@@ -6,15 +6,21 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMessage.RecipientType;
+
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.shinseokki.puzzle.dao.EvaluationDao;
 import com.shinseokki.puzzle.dao.UserDao;
 import com.shinseokki.puzzle.dto.Profile;
 import com.shinseokki.puzzle.dto.Role;
@@ -26,16 +32,24 @@ public class UserService {
 	private final static Logger logger = LoggerFactory.getLogger(UserService.class);
 	private final static int MAXPAGE = 10;
 	private UserDao userDao;
+	private UserService userService;
 	private ProfileService profileService;
+	protected JavaMailSender mailSender;
+	private EvaluationDao evaluationDao;
 
 	@Autowired
 	public UserService(SqlSession sqlSession, ProfileService profileService) {
 		logger.info("Constructed");
 		userDao = sqlSession.getMapper(UserDao.class);
+		evaluationDao = sqlSession.getMapper(EvaluationDao.class);
 		this.profileService = profileService;
+
+		userService = sqlSession.getMapper(UserService.class);
+		
+
 	}
-	
-	public Optional<User> findByID(String u_id){
+
+	public Optional<User> findByID(String u_id) {
 		logger.info("findByID");
 		return Optional.ofNullable(userDao.findByID(u_id));
 	}
@@ -44,45 +58,49 @@ public class UserService {
 		logger.info("findByUserNum");
 		return Optional.ofNullable(userDao.findByUserNum(u_num));
 	}
-	public int getTotalPage(){
-		return (int) Math.ceil(userDao.getCount()/((float)MAXPAGE));
+
+	public int getTotalPage() {
+		return (int) Math.ceil(userDao.getCount() / ((float) MAXPAGE));
 	}
-	
+
 	// 비밀번호 변경 및 암호화
-	public int changePwd(int u_num, String pwd){
+	public int changePwd(int u_num, String pwd) {
 		String password = new BCryptPasswordEncoder().encode(pwd);
-		
+
 		return userDao.changePWD(u_num, password);
 	}
-	
-	
+
 	@Transactional
-	public int deleteUser(int u_num, String path){
-		removeDIR(path+File.separatorChar+u_num);
-		
+	public int deleteUser(int u_num, String path) {
+		removeDIR(path + File.separatorChar + u_num);
+
 		profileService.deleteProfile(u_num);
-		
+
 		return userDao.deleteUser(u_num);
 	}
+
 	// User의 사진을 모두 지운다.
-	public void removeDIR(String path){
-		File[] listFile = new File(path).listFiles(); 
-		try{
-			if(listFile.length > 0){
-				for(int i = 0 ; i < listFile.length ; i++){
-					if(listFile[i].isFile()){
-						listFile[i].delete(); 
-					}else{
+	public void removeDIR(String path) {
+		File[] listFile = new File(path).listFiles();
+		try {
+			if (listFile.length > 0) {
+				for (int i = 0; i < listFile.length; i++) {
+					if (listFile[i].isFile()) {
+						listFile[i].delete();
+					} else {
 						removeDIR(listFile[i].getPath());
 					}
 					listFile[i].delete();
 				}
 			}
-		}catch(Exception e){
+		} catch (Exception e) {
 			System.err.println(System.err);
 		}
-			
+
 	}
+
+	public int approvalUser(int u_num) {
+		return userDao.approvalUser(u_num);
 	/*
 	 * @param u_num 막 회원 가입한 사용자의 회원번호
 	 * @return int	DB에 저장한 결과를 반환한다.
@@ -94,27 +112,27 @@ public class UserService {
 		User user = userDao.findByUserNum(u_num);
 		user.setU_role(user.getU_role().nextRole());
 		
-		
+		evaluationDao.addEvaluation(user.getU_num());
 		
 		return userDao.approvalUser(user);
 	}
 
-	public Collection<User> getUnApprovalUsers(int pageNo){
-		return userDao.getUnApprovalUsers( (pageNo-1)*MAXPAGE+1, (pageNo-1)*MAXPAGE+MAXPAGE );
+	public Collection<User> getUnApprovalUsers(int pageNo) {
+		return userDao.getUnApprovalUsers((pageNo - 1) * MAXPAGE + 1, (pageNo - 1) * MAXPAGE + MAXPAGE);
 	}
-	public int countByUnActiveType(){
+
+	public int countByUnActiveType() {
 		return userDao.countByActiveType();
 	}
+
 	// ACTIVE Type에 따라 유저 정보를 확인한다.
-	public int countByActiveType(){
+	public int countByActiveType() {
 		return userDao.countByActiveType();
 	}
-	
-	public Collection<User> getUsers(int pageNo){
-		return userDao.getUsers( (pageNo-1)*MAXPAGE+1, (pageNo-1)*MAXPAGE+MAXPAGE );
+
+	public Collection<User> getUsers(int pageNo) {
+		return userDao.getUsers((pageNo - 1) * MAXPAGE + 1, (pageNo - 1) * MAXPAGE + MAXPAGE);
 	}
-	
-	
 
 	@Transactional
 	public boolean addUser(UserCreateForm form, String path) {
@@ -131,12 +149,12 @@ public class UserService {
 		userDao.addUser(user);
 
 		boolean isSave = false;
-		
+
 		// 저장된 User의 회원번호를 받기 위해 저장된 정보 받기
 		user = userDao.findByID(user.getU_id());
-		
+
 		// IMAGE 저장
-			// IMAGE는 회원의 회원번호를 폴더이름으로 하고 IMAGE는 image+숫자로 저장된다.
+		// IMAGE는 회원의 회원번호를 폴더이름으로 하고 IMAGE는 image+숫자로 저장된다.
 		try {
 			isSave = saveProfileImage(form, path, user.getU_num());
 		} catch (IllegalStateException e) {
@@ -154,7 +172,8 @@ public class UserService {
 		return isSave;
 	}
 
-	private boolean saveProfileImage(UserCreateForm form, String path, int u_num) throws IllegalStateException, IOException {
+	private boolean saveProfileImage(UserCreateForm form, String path, int u_num)
+			throws IllegalStateException, IOException {
 		int i = 0;
 		Profile profile = new Profile();
 		String filepath = path + File.separatorChar + u_num;
@@ -173,16 +192,15 @@ public class UserService {
 		if (i < 2) {
 			return false;
 		} else {
-			
-			
+
 			int j = 0;
 			profile.setU_num(u_num);
-			
+
 			for (List<MultipartFile> files = form.getPhotoes(); j < i; j++) {
 				MultipartFile file = files.get(j);
 				String extendType = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
-				
-				file.transferTo(new File(filepath+File.separatorChar+u_num+j+extendType));
+
+				file.transferTo(new File(filepath + File.separatorChar + u_num + j + extendType));
 				System.out.println("FILE TYPE : " + extendType);
 				profile.setP_extendtype(extendType);
 				profile.setP_photonum(j);
@@ -193,4 +211,66 @@ public class UserService {
 		return true;
 	}
 
+	// controller단에서 u_pnum을 받아온다
+
+	public String findIdByPhone(String u_pnum) {
+
+		if (u_pnum != null && !u_pnum.equals("")) {
+
+			User user = userDao.findIdByPhone(u_pnum);
+
+			if (user != null) {
+
+				logger.info("[findId] - U_id:[" + user.getU_id() + "] / 아이디 찾기");
+
+				return user.getU_id();
+			}
+
+		}
+		return "";
+
+	}
+
+	public String findPwdByIdPhone(String u_id, String u_pnum) {
+
+		if (u_id != null && !u_id.equals("") && u_pnum != null && !u_pnum.equals("")) {
+
+			User user = userDao.findPwdByIdPhone(u_id, u_pnum);
+
+			if (user != null) {
+
+				logger.info("[findId] - U_pwd:[" + user.getU_pwd() + "] / 비밀번호 찾기");
+
+				changePwd(user.getU_num(), "1234");
+				try {
+					sendMail(user.getU_id(), "1234");
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				return "OK";
+			}
+		}
+		
+
+		return "NO";
+
+	}
+
+	public boolean sendMail(String id, String pwd) throws Exception {
+		try {
+			MimeMessage msg = mailSender.createMimeMessage();
+			msg.setFrom("someone@paran.com"); // 송신자를 설정해도 소용없지만 없으면 오류가 발생한다
+			msg.setSubject("제목입니다");
+			msg.setText("비밀번호는 " + pwd + " 입니다");
+			msg.setRecipient(RecipientType.TO, new InternetAddress(id));
+
+			mailSender.send(msg);
+			return true;
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		return false;
+	}
 }

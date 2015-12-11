@@ -3,8 +3,8 @@ package com.shinseokki.puzzle.dto;
 import java.sql.Date;
 
 public class EvalHistory {
-	private int u_num;
-	private int e_num;
+	private int u_num;	// 평가 당하는 사람
+	private int e_num;		// 평가한 사람
 	private Date regdate;
 	
 	public int getU_num() {

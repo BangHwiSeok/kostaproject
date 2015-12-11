@@ -1,10 +1,14 @@
 package com.shinseokki.puzzle.dto;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-import javax.validation.constraints.NotNull;
-
-public class User {
+public class User implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1598508292332127400L;
+	
 	private String u_id;
 	private String u_pwd;
 	private String u_pnum;
@@ -21,7 +25,9 @@ public class User {
 	private int u_seritem;
 	private int u_msgactive;
 	private int u_active;
+
 	
+
 	
 	public String getU_id() {
 		return u_id;
