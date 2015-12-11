@@ -9,11 +9,14 @@
 <c:forEach items="${keywords}" var="keyword"> <!-- list값들을 보여주기 위해 -->
 	<tr id="${keyword.pageNo}">
 		
-		<td>${keyword}</td>
-	
+		<td>${keyword.K_NAME}</td>
+		<td>${keyword.K_GROUP}</td>
+		
 	</tr>
 </c:forEach>
 
 </table>
 
 <input type="hidden" value="${pageNo}"/>  
+<input type="text" name="addKeyword"/>
+<input type="submit" value="전송"/>

@@ -42,6 +42,8 @@
 				<td colspan="2">
 					<input type="submit" value="로그인">
 					<input type="reset"  value="취소">
+					&nbsp;
+					<a href="findidpwd.jsp">아이디/패스워드찾기</a>
 				</td>
 			</tr>
 		</table>

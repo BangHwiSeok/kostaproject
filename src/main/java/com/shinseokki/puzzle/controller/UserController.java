@@ -13,11 +13,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.shinseokki.puzzle.dao.UserDao;
 import com.shinseokki.puzzle.dto.CurrentUser;
 import com.shinseokki.puzzle.service.UserService;
+
 
 @RestController
 @RequestMapping("/members")
@@ -27,6 +30,7 @@ public class UserController {
 	@Autowired
 	public UserController(UserService userService) {
 		this.userService = userService;
+		
 	}
 
 	/*
@@ -75,6 +79,8 @@ public class UserController {
 		
 		return "OK";
 	}
+	
+	
 	
 	@RequestMapping(value = "/{id}/approval", method = RequestMethod.GET)
 	public String approveUser(@PathVariable Integer id, Model model) {
@@ -143,5 +149,34 @@ public class UserController {
 
 		return mav;
 	}
+	
 
+    @RequestMapping("/findid")
+    @ResponseBody
+    public String findIdByPhone(String u_pnum){
+    	logger.info("User phonenumber :{} ", u_pnum);
+    	
+    	String id = userService.findIdByPhone(u_pnum);
+    	
+    	if(id.equals("")){
+    		id= "해당 휴대폰 번호를 찾을 수 없습니다.";
+    	}
+    	
+        return id;
+    }
+
+    @RequestMapping("/findpwd")
+    public String findPwdByIdPhone(String u_id, String u_pnum){
+    	logger.info("User ID:{}  User Phone:{}", u_id, u_pnum);
+    
+    	String findpwd = userService.findPwdByIdPhone(u_id, u_pnum);
+    	if(findpwd==""){
+    		findpwd= "해당 비밀번호를 찾을 수 없습니다.";
+    	}
+    	
+    	return findpwd;
+    }
+    
+    
+    
 }

@@ -25,7 +25,9 @@ public class User implements Serializable{
 	private int u_seritem;
 	private int u_msgactive;
 	private int u_active;
+
 	
+
 	
 	public String getU_id() {
 		return u_id;
