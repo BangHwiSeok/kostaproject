@@ -99,8 +99,6 @@ public class UserService {
 
 	}
 
-	public int approvalUser(int u_num) {
-		return userDao.approvalUser(u_num);
 	/*
 	 * @param u_num 막 회원 가입한 사용자의 회원번호
 	 * @return int	DB에 저장한 결과를 반환한다.
