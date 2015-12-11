@@ -64,7 +64,7 @@ public class MatchController {
 	}
 	
 	@RequestMapping(value="/search",method=RequestMethod.POST)
-	public String 보여주기Search(@RequestParam("key[]") String[] key, Model model){
+	public String searchMatching(@RequestParam("key[]") String[] key, Model model){
 		logger.info("보여주기 Come In : /matches/meet");
 		System.out.println(key.length);
 		Arrays.asList(key).forEach((s) -> {
