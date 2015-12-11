@@ -10,10 +10,13 @@
 <body>
 <c:forEach var="user" items="${users }">
 <p>${user.key }---${user.value }</p>
+	<c:forEach var="profile" items="${user.value }">
+		<img src="${pageContext.request.contextPath }/resources/${profile.u_num}/${profile.u_num}${profile.p_photonum}${profile.p_extendtype}" />
+	</c:forEach>
 </c:forEach>
-<img src="${pageContext.request.contextPath }/resources/${profiles[0].u_num}/${profiles[0].u_num}${profiles[0].p_photonum}${profiles[0].p_extendtype}" />
+<%-- <img src="${pageContext.request.contextPath }/resources/${profiles[0].u_num}/${profiles[0].u_num}${profiles[0].p_photonum}${profiles[0].p_extendtype}" />
 <c:forEach var="profile" items="${profiles }">
 	<img src="${pageContext.request.contextPath }/resources/${profile.u_num}/${profile.u_num}${profile.p_photonum}${profile.p_extendtype}" />
-</c:forEach>
+</c:forEach> --%>
 </body>
 </html>
