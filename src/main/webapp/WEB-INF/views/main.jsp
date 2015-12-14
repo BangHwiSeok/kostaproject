@@ -19,8 +19,8 @@
             <div class="maintitle2"><img src="${pageContext.request.contextPath}/resources/images/main_text_01.png" alt="타이틀2"></div>
         </div>
         <div class="topbtn">
-        	<div class="btn1"><a href="${pageContext.request.contextPath}/matches"><img src="${pageContext.request.contextPath}/resources/images/main_01.jpg" alt="맞춤"></a></div>
-        	<div class="btn2"><a href="#"><img src="${pageContext.request.contextPath}/resources/images/main_02.jpg" alt="맞춤"></a></div>
+        	<div class="btn1"><a href="${pageContext.request.contextPath}/matches/meet"><img src="${pageContext.request.contextPath}/resources/images/main_01.jpg" alt="맞춤"></a></div>
+        	<div class="btn2"><a href="${pageContext.request.contextPath}/matches/search"><img src="${pageContext.request.contextPath}/resources/images/main_02.jpg" alt="맞춤"></a></div>
             <div class="subtitle"><img src="${pageContext.request.contextPath}/resources/images/main_text_02.png"></div>
         </div>
     </div>

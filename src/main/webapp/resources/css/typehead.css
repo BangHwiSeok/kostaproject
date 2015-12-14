@@ -1,6 +1,15 @@
 @CHARSET "UTF-8";
 .typeahead, .tt-query, .tt-hint {
-	width: 106px;
+	margin-top:38px; 
+	margin-left:-45px; 
+	width:400px; 
+	background-color:transparent; 
+	font-size:50px; 
+	height:70px;
+	border:none; 
+	text-align:center; 
+	 color:#FFF;
+	/* width: 106px;
 	height: 30px;
 	padding: 8px 12px;
 	font-size: 24px;
@@ -9,11 +18,11 @@
 	-webkit-border-radius: 8px;
 	-moz-border-radius: 8px;
 	border-radius: 8px;
-	outline: none;
+	outline: none; */
 }
 
 .typeahead {
-	background-color: #fff;
+	background-color:transparent;
 }
 
 .typeahead:focus {
@@ -27,7 +36,7 @@
 }
 
 .tt-hint {
-	color: #999
+	color: transparent
 }
 
 .tt-menu {

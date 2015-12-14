@@ -48,11 +48,11 @@ private static final Logger logger = LoggerFactory.getLogger(KeywordController.c
 	}
 	
          
-	@RequestMapping(value="/list", method=RequestMethod.GET)
+	/*@RequestMapping(value="/list", method=RequestMethod.GET)
 	public ModelAndView getKeywords(@RequestParam(value="pageNo", required=false, defaultValue="1") Integer pageNo, HttpServletResponse resp) throws Exception {
 		ModelAndView mav = new ModelAndView("keywords/findKeyword");
 		return mav;
-	}
+	}*/
 	
 	@RequestMapping(method=RequestMethod.POST)
 	public String addKeyword(String K_NAME, String K_GROUP, Model model){

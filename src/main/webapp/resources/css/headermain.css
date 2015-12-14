@@ -1,0 +1,15 @@
+@charset "euc-kr";
+/* CSS Document */
+
+#headerwrap{width:1024px; height:66px; margin:0 auto;margin-top:-66px;}
+
+#header{position:relative;}
+#header .logo{position:relative; top:-50px; left:40px; width:160px;}
+#header .logout{position:relative; top:-90px; left:930px; width:80px;}
+#header .mypage{position:relative; top:-121px; left:838px; width:80px;}
+
+
+#header ul{position:relative; top:-141px;top: -64px;; color:#fff; width:450px;list-style: none;}
+#header ul li{float:left; margin-right:5px; font-size:15px; }
+#header ul li a{color:#FFF; text-decoration: none;}
+#header ul li a:hover{font-weight:bold;}

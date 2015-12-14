@@ -9,6 +9,12 @@
 		VALUES(#{u_id},#{u_pwd},#{u_birth},#{u_gender},	user_seq.nextval,#{u_role} )
 	</insert>
 	
+	<!-- <select id="findUserInfoByNum" resultType="com.shinseokki.puzzle.dto.UserInfo">
+		SELECT * 
+		FROM USERS U INNER JOIN PROFILE P ON U.U_NUM = P.U_NUM
+		WHERE U.U_NUM = #{u_num}
+	</select>
+	 -->
 	<select id="findByID" resultType="com.shinseokki.puzzle.dto.User">
 		SELECT * FROM USERS WHERE U_ID=
 		#{u_id}
@@ -37,7 +43,7 @@
 	<!-- 인증되지 않은 User의 수 -->
 	<select id="countByActiveType" resultType="int">
 		SELECT COUNT(*) FROM
-		USERS WHERE U_ACTIVE=0
+		USERS WHERE U_ROLE='ROLE_READY'
 	</select>
 	
 	<!-- User PWD 변경 -->

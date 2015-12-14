@@ -6,10 +6,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMessage.RecipientType;
-
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,21 +17,24 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.shinseokki.puzzle.dao.EvaluationDao;
+import com.shinseokki.puzzle.dao.MyKeywordDao;
 import com.shinseokki.puzzle.dao.UserDao;
 import com.shinseokki.puzzle.dto.Profile;
 import com.shinseokki.puzzle.dto.Role;
 import com.shinseokki.puzzle.dto.User;
 import com.shinseokki.puzzle.dto.UserCreateForm;
+import com.shinseokki.puzzle.dto.UserInfo;
 
 @Service
 public class UserService {
 	private final static Logger logger = LoggerFactory.getLogger(UserService.class);
 	private final static int MAXPAGE = 10;
 	private UserDao userDao;
-	private UserService userService;
 	private ProfileService profileService;
 	protected JavaMailSender mailSender;
 	private EvaluationDao evaluationDao;
+	
+	private MyKeywordDao myKeywordDao;
 
 	@Autowired
 	public UserService(SqlSession sqlSession, ProfileService profileService) {
@@ -43,9 +42,7 @@ public class UserService {
 		userDao = sqlSession.getMapper(UserDao.class);
 		evaluationDao = sqlSession.getMapper(EvaluationDao.class);
 		this.profileService = profileService;
-
-		userService = sqlSession.getMapper(UserService.class);
-		
+		myKeywordDao = sqlSession.getMapper(MyKeywordDao.class);
 
 	}
 
@@ -99,8 +96,6 @@ public class UserService {
 
 	}
 
-	public int approvalUser(int u_num) {
-		return userDao.approvalUser(u_num);
 	/*
 	 * @param u_num 막 회원 가입한 사용자의 회원번호
 	 * @return int	DB에 저장한 결과를 반환한다.
@@ -210,10 +205,24 @@ public class UserService {
 
 		return true;
 	}
+	/*
+	 * @param in u_num 찾을 User Num
+	 * @description
+	 * 	u_num를 가진 회원의 정보 ( 사진, keyword)를 가져오기 위한 것
+	 */
+	
+	public UserInfo getUserInfo(int u_num){
+		UserInfo info = new UserInfo();
+		info.setUser(userDao.findByUserNum(u_num));
+		info.setProfiles(profileService.find(u_num));
+		info.setMyKeywords(myKeywordDao.findMyKeywords(u_num));
+		
+		return info;
+	}
 
 	// controller단에서 u_pnum을 받아온다
 
-	public String findIdByPhone(String u_pnum) {
+	/*public String findIdByPhone(String u_pnum) {
 
 		if (u_pnum != null && !u_pnum.equals("")) {
 
@@ -272,5 +281,5 @@ public class UserService {
 			ex.printStackTrace();
 		}
 		return false;
-	}
+	}*/
 }
