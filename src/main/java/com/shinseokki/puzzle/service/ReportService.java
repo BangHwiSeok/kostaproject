@@ -36,18 +36,24 @@ public class ReportService {
 		reportDao = sqlSession.getMapper(ReportDao.class);
 	}
 	
-	// 토탈페이지 받아오기 (int 값)
+	// 토탈 페이지 받아오기 (int 값)
 	public int getTotalPage(){
 		return (int) Math.ceil(reportDao.getReportCount()/((float)MAXPAGE));
 	}
 	
-	// 토탈페이지 받아오기 (int 값)
+	// 체크안한 내역으로 페이징 받아오기 (int 값)
 	public int getNoCheckTotalPage(){
 		return (int) Math.ceil(reportDao.getNoCheckCount()/((float)MAXPAGE));
 	}
 	
+	// 체크한 내역으로 페이징 받아오기 (int 값)
+	public int getCheckTotalPage(){
+		return (int) Math.ceil((reportDao.getReportCount()-reportDao.getNoCheckCount())/((float)MAXPAGE));
+	}
+	
 	// 모든 신고건수 가져오기
 	public Collection<Report> getReports(int pageNo){
+		//pageNo = getTotalPage();
 		return reportDao.getReports( (pageNo-1)*MAXPAGE+1, (pageNo-1)*MAXPAGE+MAXPAGE );
 	}
 	
@@ -117,5 +123,8 @@ public class ReportService {
 	public int getReportCount(){
 		return reportDao.getReportCount();
 	}
-
+	
+	
+	
+	
 }

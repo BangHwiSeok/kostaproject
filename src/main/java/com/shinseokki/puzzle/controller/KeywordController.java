@@ -1,10 +1,7 @@
 package com.shinseokki.puzzle.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-
-import javax.servlet.http.HttpServletResponse;
 
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
@@ -48,11 +45,11 @@ private static final Logger logger = LoggerFactory.getLogger(KeywordController.c
 	}
 	
          
-	@RequestMapping(value="/list", method=RequestMethod.GET)
+	/*@RequestMapping(value="/list", method=RequestMethod.GET)
 	public ModelAndView getKeywords(@RequestParam(value="pageNo", required=false, defaultValue="1") Integer pageNo, HttpServletResponse resp) throws Exception {
 		ModelAndView mav = new ModelAndView("keywords/findKeyword");
 		return mav;
-	}
+	}*/
 	
 	@RequestMapping(method=RequestMethod.POST)
 	public String addKeyword(String K_NAME, String K_GROUP, Model model){
@@ -69,7 +66,7 @@ private static final Logger logger = LoggerFactory.getLogger(KeywordController.c
 		}
        
          
-	@RequestMapping(value="list", method=RequestMethod.GET)
+	@RequestMapping(value="/list", method=RequestMethod.GET)
 	public ModelAndView getKeywords(@RequestParam(value="pageNo", required=false, defaultValue="1") Integer pageNo) throws Exception {
 
 		logger.info("getKeywordPaging!");

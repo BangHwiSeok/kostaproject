@@ -32,7 +32,6 @@ public class UserService {
 	private final static Logger logger = LoggerFactory.getLogger(UserService.class);
 	private final static int MAXPAGE = 10;
 	private UserDao userDao;
-	private UserService userService;
 	private ProfileService profileService;
 	protected JavaMailSender mailSender;
 	private EvaluationDao evaluationDao;
@@ -43,9 +42,6 @@ public class UserService {
 		userDao = sqlSession.getMapper(UserDao.class);
 		evaluationDao = sqlSession.getMapper(EvaluationDao.class);
 		this.profileService = profileService;
-
-		userService = sqlSession.getMapper(UserService.class);
-		
 
 	}
 

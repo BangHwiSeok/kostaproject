@@ -2,7 +2,10 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script type="text/javascript">
+	
+	// 신고내역 상세보기
 	function getReport(rp_num) {
 		window.open(rp_num+"/getReport", "_blank", 
 				"toolbar=yes, scrollbars=yes, resizable=yes, top=center, left=center, width=400, height=400")
@@ -23,29 +26,107 @@
 			error:function(data){
 				alert("fail");
 			}
-	
 		};
 	}
-	
- */	
+*/	
+ 
+// 차트 연습 (반 파이 차트)
+$(function () {
+    $('#container').highcharts({
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: 0,
+            plotShadow: false
+        },
+        title: {
+            text: '나의<br><b>키워드</b>',
+            align: 'center',
+            verticalAlign: 'middle',
+            y: 80
+        },
+        /* tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        }, */
+        plotOptions: {
+            pie: {
+                dataLabels: {
+                    enabled: true,
+                    distance: 30,
+                    style: {
+                        fontWeight: 'bold',
+                        color: 'black',
+                        //textShadow: '0px 1px 2px black'
+                    }
+                },
+                startAngle: -90,
+                endAngle: 90,
+                center: ['50%', '85%']
+            }
+        },
+        series: [{
+            type: 'pie',
+            name: '나의키워드',
+            innerSize: '50%',
+            data: [
+                ['Firefox',   10],
+                ['IE',       1],
+                ['Chrome', 1],
+                ['Safari',    1],
+                ['Opera',     1],
+                {
+                    name: 'Unknown',
+                    y: 1,
+                    dataLabels: {
+                        enabled: false
+                    }
+                }
+            ]
+        }]
+    });
+});
 
 </script>
+<style>
+	#report_table{
+		width:600px;
+	}
+</style>
 <body>
-	<table>
-	<tr>
-		<td>확인여부</td>
-		<td>내용</td>
-		<td>발신인</td>
-		<td>발신시간</td>
-	</tr>
-	<c:forEach items="${reportList}" var="List">
+	<div id="container" style="min-width: 400px; max-width:600px; height: 400px; margin: 0;"></div>
+	<table id="report_table">
 		<tr>
-			<td>${List.rp_check }</td>
-			<td><span onclick="getReport(${List.rp_num});">${List.rp_content }</span></td>
-			<td>${List.rp_sendid }</td>
-			<td>${List.rp_date }</td>
+			<td>신고번호</td>
+			<td>확인여부</td>
+			<td>내용</td>
+			<td>발신인</td>
+			<td>발신시간</td>
 		</tr>
-	</c:forEach>
+		<c:forEach items="${reportList}" var="List">
+			<tr>
+				<td>${List.rp_num }</td>
+				<td>${List.rp_check }</td>
+				<td><span onclick="getReport(${List.rp_num});">${List.rp_content }</span></td>
+				<td>${List.rp_sendid }</td>
+				<td>${List.rp_date }</td>
+			</tr>
+		</c:forEach>
 	</table>
+	<%-- <div class="pagingBar">
+			<a href="javascript:goPage('1')" class="first">처음 페이지</a> 
+			<a href="javascript:goPage(${pageNo})" class="prev">이전 페이지</a> 
+			<span> <c:forEach var="i" begin="${pageNo}" end="${pageNo}" step="1">
+					<c:choose>
+						<c:when test="${i eq pageNo}">
+							<a href="javascript:goPage(${i})" class="choice">${i}</a>
+						</c:when>
+						<c:otherwise>
+							<a href="javascript:goPage(${i})">${i}</a>
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+			</span> <a href="javascript:getCheckReports()" class="next">다음 페이지</a> 
+			<a href="javascript:goPage(${PageNo})" class="last">마지막 페이지</a>
+		</div> --%>
 	<div>미체크${noCheckCount }/${allCount }</div>
+
 </body>

@@ -49,10 +49,8 @@ public class ReportController {
 		try {
 			reportService.sendReport(reportForm, req.getSession().getServletContext().getRealPath("/resources"), u_num);
 		} catch (IllegalStateException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -67,47 +65,50 @@ public class ReportController {
 		mav.addObject("reportList", reportService.getReports(pageNo));
 		mav.addObject("allCount", reportService.getReportCount());
 		mav.addObject("noCheckCount", reportService.getNoCheckCount());
-		
+		mav.addObject("pageNo", 1);
 		return mav;
 	}
 	
 	
 	// 모든 신고내역 보기
 	@RequestMapping("/getAllReports")
-	public ModelAndView getAllReports(@RequestParam(value = "pageNo", required = false, defaultValue = "1") Integer pageNo,
-			Model model) {
+	public ModelAndView getAllReports(//@PathVariable 
+			@RequestParam(value = "pageNo", required = false, defaultValue = "1") 
+										Integer pageNo,	Model model) {
 		ModelAndView mav = new ModelAndView("reports/reportlist");
 		
 		mav.addObject("reportList", reportService.getReports(pageNo));
 		mav.addObject("allCount", reportService.getReportCount());
 		mav.addObject("noCheckCount", reportService.getNoCheckCount());
-		
+		mav.addObject("pageNo", reportService.getTotalPage());
 		return mav;
 	}
 
 	// 체크한 신고내역 보기
 	@RequestMapping("/getCheckReports")
-	public ModelAndView getCheckReports(@RequestParam(value = "pageNo", required = false, defaultValue = "1") Integer pageNo,
-			Model model) {
+	public ModelAndView getCheckReports(//@PathVariable 
+			@RequestParam(value = "pageNo", required = false, defaultValue = "1") 
+			Integer pageNo, Model model) {
 		ModelAndView mav = new ModelAndView("reports/reportlist");
 		
 		mav.addObject("reportList", reportService.getCheckReports(pageNo));
 		mav.addObject("allCount", reportService.getReportCount());
 		mav.addObject("noCheckCount", reportService.getNoCheckCount());
-		
+		mav.addObject("pageNo", reportService.getCheckTotalPage());
 		return mav;
 	}
 
 	// 미체크한 신고내역 보기
 	@RequestMapping("/getNoCheckReports")
-	public ModelAndView getNoCheckReports(@RequestParam(value = "pageNo", required = false, defaultValue = "1") Integer pageNo,
-			Model model) {
+	public ModelAndView getNoCheckReports(//@PathVariable 
+			@RequestParam(value = "pageNo", required = false, defaultValue = "1") 
+			Integer pageNo, Model model) {
 		ModelAndView mav = new ModelAndView("reports/reportlist");
 		
 		mav.addObject("reportList", reportService.getNoCheckReports(pageNo));
 		mav.addObject("allCount", reportService.getReportCount());
 		mav.addObject("noCheckCount", reportService.getNoCheckCount());
-		
+		mav.addObject("pageNo", reportService.getNoCheckTotalPage());
 		return mav;
 	}
 	

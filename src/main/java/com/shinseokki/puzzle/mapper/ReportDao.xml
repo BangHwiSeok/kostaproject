@@ -13,21 +13,40 @@
 	
 	<!-- 신고내역 가져오기 (전체) -->
 	<select id="getReports" resultType="com.shinseokki.puzzle.dto.Report">
-		SELECT * FROM REPORT
-		ORDER BY RP_DATE desc
+		<!-- 페이징 시 사용
+		SELECT * FROM
+		(SELECT ROWNUM, REPORT.* FROM REPORT
+		ORDER BY RP_DATE desc)
+		WHERE ROWNUM BETWEEN ${param1} AND ${param2}
+		 -->
+		SELECT * FROM REPORT ORDER BY RP_DATE desc
 	</select>
 	
 	<!-- 체크안한 신고내역 가져오기 (전체) -->
 	<select id="getNoCheckReports" resultType="com.shinseokki.puzzle.dto.Report">
-		SELECT * FROM REPORT
+		<!-- 페이징 시 사용
+		SELECT * FROM
+		(SELECT ROWNUM, REPORT.* FROM REPORT
 		WHERE RP_CHECK = 'no'
+		ORDER BY RP_DATE desc)
+		WHERE ROWNUM BETWEEN ${param1} AND ${param2}
+		-->
+		SELECT * FROM REPORT 
+		WHERE RP_CHECK = 'no' 
 		ORDER BY RP_DATE desc
 	</select>
 	
 	<!-- 체크한 신고내역 가져오기 (전체) -->
 	<select id="getCheckReports" resultType="com.shinseokki.puzzle.dto.Report">
-		SELECT * FROM REPORT
+		<!-- 페이징 시 사용
+		SELECT * FROM
+		(SELECT ROWNUM, REPORT.* FROM REPORT
 		WHERE RP_CHECK = 'check'
+		ORDER BY RP_DATE desc)
+		WHERE ROWNUM BETWEEN ${param1} AND ${param2} 
+		-->
+		SELECT * FROM REPORT 
+		WHERE RP_CHECK = 'check' 
 		ORDER BY RP_DATE desc
 	</select>
 	
