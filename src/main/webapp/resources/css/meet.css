@@ -1,0 +1,38 @@
+@charset "euc-kr";
+/* CSS Document */
+
+#wrap{width:1024px; height:534px; margin:0 auto;}
+
+#container{widows:800px; height:460px;}
+
+#container div.title{font-size:70px; color:#333; margin-top:60px; height:70px;}
+#container div.title span{ color:#FF2D2D; font-weight:bold;}
+
+#container div.subtitle{font-size:20px; color:#333; height:20px; margin-top:32px;margin-bottom:20px;}
+
+#container div.main div.line{width:800px; height:30px; background-color:#FF2D2D;}
+
+#container div.main div.image{padding:15px; width:800px;}
+#container div.main div.image div.img1{float:left; width:233px; height:290px; margin-right:10px; margin-left:28.5px;}
+#container div.main div.image div.img1 div.inimg{height:178px; background-color:#F00; padding:0 20px 2px 20px; margin: 0}
+.myimage img {height: 180px;  background-color:#F00; padding:0 ; margin: 0}
+div.inimg {position: relative;}
+
+#container div.main div.image div.img1 div.btn1 div.btn1left{float:left; background-color:#0FC; width:116.5px; height:112px;}
+#container div.main div.image div.img1 div.btn1 div.btn1right{float:left; background-color:#990; width:116.5px; height:112px;}
+
+#container div.main div.image div.img2{float:left; width:233px; height:290px; margin-right:10px;}
+#container div.main div.image div.img2 div.inimg2{height:178px; background-color:#F00; padding:0 20px 2px 20px;}
+#container div.main div.image div.img2 div.btn2 div.btn2left{float:left; background-color:#0FC; width:116.5px; height:112px;}
+#container div.main div.image div.img2 div.btn2 div.btn2right{float:left; background-color:#990; width:116.5px; height:112px;}
+
+#container div.main div.image div.img3{float:left; width:233px; height:290px;}
+#container div.main div.image div.img3 div.inimg3{height:178px; background-color:#F00; padding:0 20px 2px 20px;}
+#container div.main div.image div.img3 div.btn3 div.btn3left{float:left; background-color:#0FC; width:116.5px; height:112px;}
+#container div.main div.image div.img3 div.btn3 div.btn3right{float:left; background-color:#990; width:116.5px; height:112px;}
+
+#container div.main div.image div.subline1{width:2px; height:290px; background-color:#999; float:left;margin-right:10px;}
+#container div.main div.image div.subline2{width:2px; height:290px; background-color:#999; float:left;margin-right:10px;}
+
+#container div.main div.underline{width:800px; height:4px; background-color:#FF2D2D; clear:both; position:relative; top:10px; margin-bottom:20px;}
+

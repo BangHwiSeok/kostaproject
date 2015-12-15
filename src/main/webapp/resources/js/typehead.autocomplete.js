@@ -1,7 +1,6 @@
 /**
  * 
  */
-
 function autocomplete(bindingtarget, form, usernum, contextpath, targetURL, target) {
 						$(bindingtarget)
 								.bind(
@@ -68,4 +67,6 @@ function autocomplete(bindingtarget, form, usernum, contextpath, targetURL, targ
 							source : bestPictures.ttAdapter()
 
 						});
+						
+						
 					}

@@ -27,6 +27,7 @@ public class MyKeywordService {
 	
 	private final int MAXMYKEYWORD = 2;
 	
+	
 	@Autowired
 	public MyKeywordService(SqlSession sqlSession,KeywordService keywordService) {
 		myKeywordDao = sqlSession.getMapper(MyKeywordDao.class);
@@ -34,6 +35,7 @@ public class MyKeywordService {
 		userDao = sqlSession.getMapper(UserDao.class);
 		evaluationDao = sqlSession.getMapper(EvaluationDao.class);
 		this.keywordService = keywordService;
+		System.out.println("MyKeywordService Constructed");
 	}
 	
 	@Transactional
