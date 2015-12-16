@@ -14,12 +14,18 @@
 	<security:http pattern="/resources/**" security="none" />
 	<security:http use-expressions="true">
 		<security:csrf disabled="true" />
+		
+		<security:intercept-url pattern="/findIdPwd"
+			access="permitAll()" />
+			
 		<security:intercept-url pattern="/login"
 			access="permitAll()" />
+		
 		<security:intercept-url pattern="/signup"
 			access="permitAll()" />
+		
 		<security:intercept-url pattern="/**"
-			access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
+			access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')" />
 		<security:form-login login-page="/login" />
 		<security:logout logout-url="/logout"
 			logout-success-url="/login" />

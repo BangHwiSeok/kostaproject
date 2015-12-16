@@ -1,6 +1,5 @@
 package com.shinseokki.puzzle.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 

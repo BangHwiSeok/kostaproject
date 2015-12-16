@@ -27,6 +27,12 @@ public class User implements Serializable{
 	private int u_active;
 	
 	
+
+	
+	
+	
+	
+	
 	public String getU_id() {
 		return u_id;
 	}

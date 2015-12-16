@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.shinseokki.puzzle.dao.MessageDao">
+
+<!-- 보내는 메세지 -->
+<insert id="sendMsg" >
+	INSERT INTO MESSAGE(SENDER, RECEIVER, REGDATE, CONTENTS) values (#{param1}, #{param2}, sysdate, #{param3})
+</insert>
+
+<!-- 메세지 보여주기 -->
+<select id="selectMsg" resultType="com.shinseokki.puzzle.dto.Message">
+	SELECT * FROM MESSAGE WHERE sender=#{param1} and receiver=#{param2}
+</select>
+
+</mapper>

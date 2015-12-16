@@ -16,7 +16,7 @@
 			u_pwd.focus();
 			return false;
 		}
-		if(u_pnum.value==""	{
+		if(u_pnum.value==""){
 			alert("연락처를 입력해 주세요");
 			u_num.focus();
 			return false;

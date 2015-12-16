@@ -3,16 +3,21 @@ package com.shinseokki.puzzle.controller;
 import java.util.Locale;
 import java.util.Map;
 
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMessage.RecipientType;
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -27,6 +32,7 @@ public class UserController {
 	@Autowired
 	public UserController(UserService userService) {
 		this.userService = userService;
+		
 	}
 
 	/*
@@ -143,5 +149,33 @@ public class UserController {
 
 		return mav;
 	}
+	
 
+	@RequestMapping("/findid")
+    @ResponseBody
+    public String findIdByPhone(String u_pnum){
+    	logger.info("User phonenumber :{} ", u_pnum);
+    	
+    	String id = userService.findIdByPhone(u_pnum);
+    	
+    	if(id.equals("")){
+    		id= "해당 휴대폰 번호를 찾을 수 없습니다.";
+    	}
+    	
+        return "members/findIdPwd";
+    }
+
+   @RequestMapping("/findpwd")
+    public String findPwdByIdPhone(String u_id, String u_pnum){
+    	logger.info("User ID:{}  User Phone:{}", u_id, u_pnum);
+    
+    	String findpwd = userService.findPwdByIdPhone(u_id, u_pnum);
+    	if(findpwd==""){
+    		findpwd= "해당 비밀번호를 찾을 수 없습니다.";
+    	}
+    	
+    	return "members/findIdPwd";
+    }
+
+   
 }
