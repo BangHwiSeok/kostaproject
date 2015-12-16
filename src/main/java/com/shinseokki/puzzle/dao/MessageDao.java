@@ -1,18 +1,17 @@
 package com.shinseokki.puzzle.dao;
 
-import java.util.List;
+import java.util.Collection;
+import java.util.Map;
 
 import com.shinseokki.puzzle.dto.Message;
-import com.shinseokki.puzzle.dto.User;
-
-import oracle.sql.DATE;
 
 public interface MessageDao {
-	public int SendMessage(Message MessageId);
-	public int receiver(String receiver);
-	public int sender(String sender);
-	public int contents(String contents);
-	public List<Message> getDate(int MessageId, DATE regdate);
+	public int save(Message msg);
+	public Message findByMsgID(int msgNum);
+	public Collection<Message> find(int receiverNum, int senderNum);
+	public int updateMessage(int receiverNum, int senderNum);
+	public Map<String, Integer> countMessagInfo(int receiverNum, int senderNum);
+	
 	
 	
 	

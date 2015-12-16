@@ -18,6 +18,14 @@
 				    	}
 				    	function saveHistory(u_num){
 				    		alert(u_num);
+				    		$.ajax({
+				    			url: '${pageContext.request.contextPath}/histories/create/'+u_num,
+				    			method:'POST',
+				    			success:function(data){
+				    				alert('OK');
+				    			}
+				    			
+				    		});
 				    	}
 				  	</script>
 			
