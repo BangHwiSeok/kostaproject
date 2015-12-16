@@ -4,11 +4,45 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.shinseokki.puzzle.dao.MessageDao">
-	<select id="message" resultType="com.shinseokki.puzzle.dto.Message">
-		SELECT * FROM Message WHERE (S=a and R=b) or (S=b and R=a) ORDER BY  asc;
+	<insert id="save" parameterType="com.shinseokki.puzzle.dto.Message"  >
+		<selectKey keyProperty="msgNum" resultType="Integer" order="BEFORE">
+                select msg_seq.NEXTVAL FROM Dual
+        </selectKey>
+		INSERT INTO 
+		MESSAGE(MSGNUM,RECEIVER, SENDER,CONTENTS,REGDATE) 
+		VALUES(#{msgNum},#{receiver},#{sender}, #{contents}, SYSDATE)
+	</insert>
+	
+	<select id="find" resultType="com.shinseokki.puzzle.dto.Message">
+		SELECT *
+		FROM MESSAGE
+		WHERE (RECEIVER = #{param1} AND SENDER = #{param2})
+					OR  
+					(RECEIVER = #{param2} AND SENDER = #{param1})
+					ORDER BY REGDATE ASC
 	</select>
 	
-	<insert id="messageinsert" >
-		
-	</insert>
+	<select id="findByMsgID" resultType="com.shinseokki.puzzle.dto.Message">
+		SELECT *
+		FROM MESSAGE
+		WHERE 
+			MSGNUM=#{msgNum}
+	</select>
+	
+
+	<!-- countMessagInfo(int receiverNum, int senderNum) -->
+	<select id="countMessagInfo" resultType="hashmap">
+	SELECT *
+		FROM 		
+		( SELECT COUNT(*) as receivedNum, NVL(SUM(isRead),0) as unReadNum FROM Message WHERE (RECEIVER = #{param1} AND SENDER = #{param2}) ),
+		( SELECT COUNT(*) as sendedNum FROM Message WHERE (SENDER  = #{param1} AND RECEIVER = #{param2}) )
+	</select>
+	
+	
+	<update id="updateMessage">
+		UPDATE 
+		MESSAGE
+		SET ISREAD = 0
+		WHERE SENDER = #{param2} AND RECEIVER=#{param1}
+	</update>
 </mapper>

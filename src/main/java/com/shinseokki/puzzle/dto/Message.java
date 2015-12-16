@@ -1,62 +1,68 @@
 package com.shinseokki.puzzle.dto;
 
-import oracle.sql.DATE;
+import java.sql.Date;
 
 public class Message {
+	private int msgNum;
+	private int receiver;
+	private int sender;
+	private String contents;
+	private int isRead;
+	private Date regdate;
 	
-	public int u_num;
-	public int MessageId;
-	public String receiver;
-	public String sender;
-	public String contents;
-	public DATE regdate;
-	
-	
-	public DATE getRegdate() {
-		return regdate;
-	}
-
-	public void setRegdate(DATE regdate) {
-		this.regdate = regdate;
+	public Message(){
+		
 	}
 	
-	public String getContents() {
-		return contents;
-	}
-	
-	public void setContents(String contents) {
+	public Message(int receiver, int sender,String contents){
+		this.receiver = receiver;
+		this.sender = sender;
 		this.contents = contents;
 	}
 	
-	public int getU_num() {
-		return u_num;
+	public int getMsgNum() {
+		return msgNum;
 	}
-	
-	public void setU_num(int u_num) {
-		this.u_num = u_num;
+	public void setMsgNum(int msgNum) {
+		this.msgNum = msgNum;
 	}
-	
-	public int getMessageId() {
-		return MessageId;
-	}
-	public void setMessageId(int messageId) {
-		MessageId = messageId;
-	}
-	
-	public String getReceiver() {
+	public int getReceiver() {
 		return receiver;
 	}
-	public void setReceiver(String receiver) {
+	public void setReceiver(int receiver) {
 		this.receiver = receiver;
 	}
-	
-	public String getSender() {
+	public int getSender() {
 		return sender;
 	}
-	
-	public void setSender(String sender) {
+	public void setSender(int sender) {
 		this.sender = sender;
 	}
+	public String getContents() {
+		return contents;
+	}
+	public void setContents(String contents) {
+		this.contents = contents;
+	}
+	public int getIsRead() {
+		return isRead;
+	}
+	public void setIsRead(int isRead) {
+		this.isRead = isRead;
+	}
+	public Date getRegdate() {
+		return regdate;
+	}
+	public void setRegdate(Date regdate) {
+		this.regdate = regdate;
+	}
+
+	@Override
+	public String toString() {
+		return "Message [msgNum=" + msgNum + ", receiver=" + receiver + ", sender=" + sender + ", contents=" + contents
+				+ ", isRead=" + isRead + ", regdate=" + regdate + "]";
+	}
+	
 	
 	
 }

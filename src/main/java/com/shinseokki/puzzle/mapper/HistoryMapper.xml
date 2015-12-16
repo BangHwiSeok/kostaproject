@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.shinseokki.puzzle.dao.HistoryDao">
+	<insert id="save" parameterType="com.shinseokki.puzzle.dto.History"  >
+		INSERT INTO 
+		HISTORY (H_SEQNUM, U_NUM, H_NUM, H_REGDATE  ) 
+		VALUES(history_seq.nextval,#{u_num},#{h_num}, SYSDATE)
+	</insert>
+	
+	<select id="find" resultType="com.shinseokki.puzzle.dto.History">
+		SELECT *
+		FROM HISTORY
+		WHERE U_NUM = #{u_num} 
+			AND (  SYSDATE - H_REGDATE &lt; 7  )
+					ORDER BY H_REGDATE ASC
+	</select>
+	
+</mapper>
