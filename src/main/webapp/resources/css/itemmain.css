@@ -1,0 +1,48 @@
+@charset "euc-kr";
+/* CSS Document */
+
+#wrap{width:100%px; margin:0 auto;}
+
+/*Çì´õ*/
+#header{position:relative; height:66px;}
+#header .logo{position:relative;  width:160px;top:35px; left:-320px;}
+#header .mypage{ width:80px; float:left; margin-right:20px;}
+#header .logout{width:80px; float:left;}
+.headerwidth{position:relative; top:-22px; width:1024px;}
+
+#header ul{color:#fff; width:450px; float:left; margin-top:10px; margin-left:300px;}
+#header ul li{float:left; margin-right:5px; font-size:15px;}
+#header ul li a{color:#FFF;}
+#header ul li a:hover{font-weight:bold;}
+
+/*footer*/
+#footer {width:1024px; position:fixed; bottom:0px; margin-bottom:8px;}
+#footer div.footertitle{color:#fff; letter-spacing:1px; line-height:16px; font-size:8px; padding-top:7px; float:left; text-align:left; padding-left:350px;}
+#footer div.name{color:#fff; font-size:24px;top:-20px; padding-top:30px;}
+
+
+
+
+#container{margin-top:30px; width:1024px;}
+
+#container div.title{font-size:45px; height:45px;}
+#container div.title span{font-weight:bold; color:#FF2D2D;}
+
+#container div.subtitle{color:#333;}
+#container div.subtitle span{color:#FF2D2D; font-weight:bold;}
+
+#container div.main{margin-top:25px; font-size:15px;}
+#container div.main div.mainleft div.menu{height:20px}
+#container div.main div.mainleft{width:800px;}
+#container div.main div.mainleft div.item1{float:left; width:399px; background-color:#F03; height:20px;color:#FFF; padding-top:5px;}
+#container div.main div.mainleft div.puzzle1{float:left; width:199px; background-color:#F03; height:20px;color:#FFF; padding-top:5px;}
+#container div.main div.mainleft div.bgo1{float:left; width:200px; background-color:#F03; height:20px; color:#FFF; padding-top:5px;}
+
+
+#container div.main div.mainleft div.list{height:20px; margin-top:13px; }
+#container div.main div.mainleft div.list div.itemname1{float:left; width:399px; margin-top:10px; }
+#container div.main div.mainleft div.list div.puzzlename1{float:left; width:199px; margin-top:10px;}
+#container div.main div.mainleft div.list div.bgoname1{width:200px; float:left; margin-top:10px;}
+
+#container div.main div.mainleft div.bgoname1 a{color:#F03; border:1px solid #F06; border-radius:5px; width:28px; padding-right:10px; padding-left:10px;}
+#container div.main div.mainleft div.bgoname1 a:hover{color:#F03; font-weight:bold;}

@@ -1,6 +1,5 @@
 package com.shinseokki.puzzle.controller;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,13 +9,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.shinseokki.puzzle.dao.MessageDao;
 import com.shinseokki.puzzle.dto.CurrentUser;
 import com.shinseokki.puzzle.dto.History;
-import com.shinseokki.puzzle.dto.HistoryInfo;
 import com.shinseokki.puzzle.service.HistoryService;
 
 @RestController
@@ -32,13 +31,22 @@ public class HistoryController {
 	}
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public ModelAndView historyHome(CurrentUser user, Model model){
+	public ModelAndView historyHome(@RequestParam(value="pageNo", required=false,defaultValue="1") Integer pageNo,CurrentUser user, Model model){
 		ModelAndView mav = new ModelAndView("histories/home");
 		/*mav.addObject("total", messageDao.countMessagInfo(42, 21));*/
-		Collection<HistoryInfo> info = historyService.find(user.getUserNum());
-		System.out.println(info);
-		mav.addObject("histories",historyService.find(user.getUserNum()) );
+		/*Collection<HistoryInfo> info = historyService.find(user.getUserNum());
+		System.out.println(info);*/
+		int totalPage = calculateTotalPage(historyService.countAmout(user.getUserNum()),historyService.MAX_PAGE);
+		pageNo = pageNo > totalPage ? totalPage : pageNo;
+		mav.addObject("histories",historyService.find(user.getUserNum(),pageNo) );
+		// total page
+		mav.addObject("totalPage",totalPage);
+		
 		return mav;
+	}
+	
+	private int calculateTotalPage(int amout, int maxPage){
+		return  (int) Math.ceil( ( (double)amout)/ maxPage);
 	}
 	
 	/**

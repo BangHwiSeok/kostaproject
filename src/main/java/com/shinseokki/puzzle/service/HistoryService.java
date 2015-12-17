@@ -15,6 +15,7 @@ import com.shinseokki.puzzle.dto.HistoryInfo;
 
 @Service
 public class HistoryService {
+	public  final int MAX_PAGE = 3;
 	private HistoryDao historyDao;
 	private MessageService messageService;
 	private ProfileService profileService;
@@ -33,9 +34,13 @@ public class HistoryService {
 	}
 	
 	
-	public Collection<HistoryInfo> find(int u_num){
+	public Collection<HistoryInfo> find(int u_num, int pageNo){
 		Collection<HistoryInfo> historyCollection = new ArrayList<HistoryInfo>(); 
-		historyDao.find(u_num).stream().forEach((h)->{
+		
+		int startNo = (pageNo -1) * MAX_PAGE  + 1;
+		int endNo = startNo + MAX_PAGE;
+		
+		historyDao.find(u_num,startNo,endNo).stream().forEach((h)->{
 			HistoryInfo info = new HistoryInfo();
 			// History를 담는다.
 			info.setHistory(h);
@@ -58,5 +63,9 @@ public class HistoryService {
 		
 		
 		return historyCollection;
+	}
+	
+	public int countAmout(int u_num){
+		return historyDao.countAmout(u_num);
 	}
 }

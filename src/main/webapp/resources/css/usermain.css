@@ -1,0 +1,168 @@
+@charset "euc-kr";
+/* CSS Document */
+
+#wrap{width:100%; height:666px; margin:0 auto;}
+
+/*Çì´õ*/
+#header{position:relative; height:66px;}
+#header .logo{position:relative;  width:160px;top:35px; left:-320px;}
+#header .mypage{ width:80px; float:left; margin-right:20px;}
+#header .logout{width:80px; float:left;}
+.headerwidth{position:relative; top:-22px; width:1024px;}
+
+#header ul{color:#fff; width:450px; float:left; margin-top:10px; margin-left:300px;}
+#header ul li{float:left; margin-right:5px; font-size:15px;}
+#header ul li a{color:#FFF;}
+#header ul li a:hover{font-weight:bold;}
+
+
+.main{ width:1280px;}
+.main div.leftmenu{width:350px; margin-top:30px; height:500px; float:left; margin-left:45px;}
+.main div.leftmenu form.userdata{height:30px;}
+.main div.leftmenu form.userdata div.userdataname{font-size:20px; color:#F03; font-weight:bold; margin-bottom:12px; text-align:left;}
+.main div.leftmenu form.userdata div.userdataname span{font-size:15px; color:#666; font-weight:normal;}
+
+.main div.leftmenu form.userdata div.userdatalist{}
+.main div.leftmenu form.userdata div.userdatalist div.id{}
+.main div.leftmenu form.userdata div.userdatalist div.id div.left{width:125px; background-color:#F03; text-align:left; padding:5px; color:#FFF; font-size:15px; float:left; margin-right:5px;}
+.main div.leftmenu form.userdata div.userdatalist div.id div.right{float:left;}
+.main div.leftmenu form.userdata div.userdatalist div.id div.right input{width:210px; background-color:#666; color:#FFF; text-align:right;}
+
+
+.main div.leftmenu form.userdata div.userdatalist div.pwd{clear:both;}
+.main div.leftmenu form.userdata div.userdatalist div.pwd div.left{width:125px; background-color:#F03; text-align:left; padding:5px; color:#FFF; font-size:15px; float:left; margin-right:5px; margin-top:3px;}
+.main div.leftmenu form.userdata div.userdatalist div.pwd div.right{float:left; margin-top:3px;}
+.main div.leftmenu form.userdata div.userdatalist div.pwd div.right input{width:210px; background-color:#999; color:#FFF; text-align:right;}
+
+
+.main div.leftmenu form.userdata div.userdatalist div.checkpwd{clear:both;}
+.main div.leftmenu form.userdata div.userdatalist div.checkpwd div.left{width:125px; background-color:#F03; text-align:left; padding:5px; color:#FFF; font-size:15px; float:left; margin-right:5px; margin-top:3px;}
+.main div.leftmenu form.userdata div.userdatalist div.checkpwd div.right{float:left; margin-top:3px;}
+.main div.leftmenu form.userdata div.userdatalist div.checkpwd div.right input{width:210px; background-color:#999; color:#FFF; text-align:right;}
+
+
+.main div.leftmenu form.userdata div.userdatalist div.pnum{clear:both;}
+.main div.leftmenu form.userdata div.userdatalist div.pnum div.left{width:125px; background-color:#F03; text-align:left; padding:5px; color:#FFF; font-size:15px; float:left; margin-right:5px; margin-top:3px;}
+.main div.leftmenu form.userdata div.userdatalist div.pnum div.right{float:left; margin-top:3px;}
+.main div.leftmenu form.userdata div.userdatalist div.pnum div.right input{width:210px; background-color:#999; color:#FFF; text-align:right;}
+
+
+.main div.leftmenu form.userdata div.userdatalist div.gender{clear:both;}
+.main div.leftmenu form.userdata div.userdatalist div.gender div.left{width:125px; background-color:#F03; text-align:left; padding:5px; color:#FFF; font-size:15px; float:left; margin-right:5px; margin-top:3px;}
+.main div.leftmenu form.userdata div.userdatalist div.gender div.right{float:left; margin-top:3px;}
+.main div.leftmenu form.userdata div.userdatalist div.gender div.right input{width:210px; background-color:#666; color:#FFF; text-align:right;}
+
+
+.main div.leftmenu form.userdata div.userdatalist div.birth{clear:both;}
+.main div.leftmenu form.userdata div.userdatalist div.birth div.left{width:125px; background-color:#F03; text-align:left; padding:5px; color:#FFF; font-size:15px; float:left; margin-right:5px; margin-top:3px;}
+.main div.leftmenu form.userdata div.userdatalist div.birth div.right{float:left; margin-top:3px;}
+.main div.leftmenu form.userdata div.userdatalist div.birth div.right input{width:210px; background-color:#666; color:#FFF; text-align:right;}
+
+
+.main div.leftmenu form.userdata div.userdatalist div.num{clear:both;}
+.main div.leftmenu form.userdata div.userdatalist div.num div.left{width:125px; background-color:#F03; text-align:left; padding:5px; color:#FFF; font-size:15px; float:left; margin-right:5px; margin-top:3px;}
+.main div.leftmenu form.userdata div.userdatalist div.num div.right{float:left; margin-top:3px;}
+.main div.leftmenu form.userdata div.userdatalist div.num div.right input{width:210px; background-color:#666; color:#FFF; text-align:right;}
+
+
+.main div.leftmenu form.userdata div.userdatalist div.join{clear:both;}
+.main div.leftmenu form.userdata div.userdatalist div.join div.left{width:125px; background-color:#F03; text-align:left; padding:5px; color:#FFF; font-size:15px; float:left; margin-right:5px; margin-top:3px;}
+.main div.leftmenu form.userdata div.userdatalist div.join div.right{float:left; margin-top:3px;}
+.main div.leftmenu form.userdata div.userdatalist div.join div.right input{width:210px; background-color:#666; color:#FFF; text-align:right;}
+
+
+.main div.leftmenu form.userdata div.userdatalist div.state{clear:both;}
+.main div.leftmenu form.userdata div.userdatalist div.state div.left{width:125px; background-color:#F03; text-align:left; padding:5px; color:#FFF; font-size:15px; float:left; margin-right:5px; margin-top:3px;}
+.main div.leftmenu form.userdata div.userdatalist div.state div.right{float:left; margin-top:3px;}
+.main div.leftmenu form.userdata div.userdatalist div.state div.right input{width:210px; background-color:#666; color:#FFF; text-align:right;}
+
+
+.main div.leftmenu form.userdata div.userdatalist div.message{clear:both;}
+.main div.leftmenu form.userdata div.userdatalist div.message div.left{width:125px; background-color:#F03;text-align:left; padding:5px; color:#FFF; font-size:15px; float:left; margin-right:5px; margin-top:3px;}
+.main div.leftmenu form.userdata div.userdatalist div.message div.right{float:left; margin-top:3px;}
+.main div.leftmenu form.userdata div.userdatalist div.message div.right input{width:210px; background-color:#666; color:#FFF; text-align:right;}
+
+
+
+.main div.leftmenu form.userdata div.userdatalist div.search{clear:both;}
+.main div.leftmenu form.userdata div.userdatalist div.search div.left{width:125px; background-color:#F03; text-align:left; padding:5px; color:#FFF; font-size:15px; float:left; margin-right:5px; margin-top:3px;}
+.main div.leftmenu form.userdata div.userdatalist div.search div.right{float:left; margin-top:3px;}
+.main div.leftmenu form.userdata div.userdatalist div.search div.right input{width:210px; background-color:#666; color:#FFF; text-align:right;}
+
+.main div.leftmenu form.userdata div.userdatabtn {clear:both; padding-top:25px; padding-left:40px;}
+.main div.leftmenu form.userdata div.userdatabtn a{padding:10px; font-size:15px; color:#F03; border:2px solid #F03; border-radius:25px;}
+.main div.leftmenu form.userdata div.userdatabtn a:hover{font-weight:bold;}
+
+/*item*/
+.main div.leftmenu{width:350px; margin-top:30px;}
+.main div.leftmenu div.itemdata{height:30px; margin-top:340px;}
+.main div.leftmenu div.itemdata div.itemdataname{font-size:20px; color:#F03; font-weight:bold; margin-bottom:12px; text-align:left;}
+.main div.leftmenu div.itemdata div.itemdataname span{font-size:15px; color:#666; font-weight:normal; margin-left:100px;}
+.main div.leftmenu div.itemdata div.itemdataname span a:hover{font-weight:bold;}
+
+.main div.leftmenu div.itemdata div.itemdatalist{}
+.main div.leftmenu div.itemdata div.itemdatalist div.paper{}
+.main div.leftmenu div.itemdata div.itemdatalist div.paper div.left{width:125px; background-color:#F03; text-align:left; padding:5px; color:#FFF; font-size:15px; float:left; margin-right:5px;}
+.main div.leftmenu div.itemdata div.itemdatalist div.paper div.right{float:left;}
+.main div.leftmenu div.itemdata div.itemdatalist div.paper div.right input{width:210px; background-color:#666; color:#FFF; text-align:right;}
+
+
+.main div.leftmenu div.itemdata div.itemdatalist div.key{clear:both;}
+.main div.leftmenu div.itemdata div.itemdatalist div.key div.left{ width:125px; background-color:#F03; text-align:left; padding:5px; color:#FFF; font-size:15px; float:left; margin-right:5px; margin-top:3px;}
+.main div.leftmenu div.itemdata div.itemdatalist div.key div.right{float:left; margin-top:3px;}
+.main div.leftmenu div.itemdata div.itemdatalist div.key div.right input{width:210px; background-color:#666; color:#FFF; text-align:right;}
+
+
+.main div.leftmenu div.itemdata div.itemdatalist div.serch{clear:both;}
+.main div.leftmenu div.itemdata div.itemdatalist div.serch div.left{ width:125px; background-color:#F03; text-align:left; padding:5px; color:#FFF; font-size:15px; float:left; margin-right:5px; margin-top:3px;}
+.main div.leftmenu div.itemdata div.itemdatalist div.serch div.right{float:left; margin-top:3px;}
+.main div.leftmenu div.itemdata div.itemdatalist div.serch div.right input{width:210px; background-color:#666; color:#FFF; text-align:right;}
+
+/*center*/
+.centermenu{ margin-left:30px;margin-top:30px; height:550px; float:left;}
+.centermenu div.proname{font-size:20px; color:#F03; font-weight:bold; margin-bottom:12px; text-align:left;}
+.centermenu div.proname span{font-size:15px; color:#666; font-weight:normal;}
+
+.centermenu div.promainimg{}
+.centermenu div.promainimg div.img1{background-color:#999; width:250px; height:250px; float:left; margin-right:24px;}
+.centermenu div.promainimg div.img2{background-color:#999; width:250px; height:250px; float:left;}
+
+.centermenu div.submain{}
+.centermenu div.submain div.subimg1{background-color:#999; width:165px; height:165px; float:left; margin-right:14px; margin-top:24px;}
+.centermenu div.submain div.subimg2{background-color:#999; width:165px; height:165px; float:left; margin-right:14px;margin-top:24px;}
+.centermenu div.submain div.subimg3{background-color:#999; width:165px; height:165px; float:left; margin-top:24px;}
+
+.centermenu div.centerbtn{clear:both; padding-top:25px;}
+.centermenu div.centerbtn a{padding:10px; font-size:15px; color:#F03; border:2px solid #F03; border-radius:25px; padding-left:30px; padding-right:30px;}
+.centermenu div.centerbtn a:hover{font-weight:bold;}
+
+/*rightmenu*/
+.rightmenu{ margin-left:30px; width:261px; margin-top:30px; height:500px; float:left;}
+.rightmenu div.keyname{font-size:20px; color:#F03; font-weight:bold; margin-bottom:12px; text-align:left;}
+
+.rightmenu div.list{}
+.rightmenu div.list div.sublist{clear:both;}
+.rightmenu div.list div.sublist div.left{width:56px; background-color:#F03; text-align:left; padding:5px; color:#FFF; font-size:15px; float:left; margin-right:5px; margin-bottom:3px; text-align:center;}
+.rightmenu div.list div.sublist div.right{float:left; margin-bottom:3px;}
+.rightmenu div.list div.sublist div.right input{width:190px; background-color:#666; color:#FFF; text-align:right;}
+
+.rightmenu div.listbtn{clear:both; padding-top:25px; margin-bottom:40px;}
+
+.rightmenu div.listbtn div.leftbtn{float:left; margin-left:35px;}
+.rightmenu div.listbtn div.leftbtn a{padding:10px; font-size:15px; color:#F03; border:2px solid #F03; border-radius:25px; padding-left:30px; padding-right:30px; margin-right:15px;}
+.rightmenu div.listbtn div.leftbtn a:hover{font-weight:bold;}
+
+.rightmenu div.listbtn div.rightbtn{float:left;}
+.rightmenu div.listbtn div.rightbtn a{padding:10px; font-size:15px; color:#F03; border:2px solid #F03; border-radius:25px; padding-left:30px; padding-right:30px;}
+.rightmenu div.listbtn div.rightbtn a:hover{font-weight:bold;}
+
+.rightmenu div.point{clear:both;}
+.rightmenu div.point div.left{width:100px; background-color:#F03; text-align:left; padding:5px; color:#FFF; font-size:15px; float:left; margin-right:5px; margin-bottom::3px; text-align:center;}
+.rightmenu div.point div.right{float:left; margin-bottom::3px;}
+.rightmenu div.point div.right input{width:146px; background-color:#666; color:#FFF; text-align:right;}
+
+/*footer*/
+#footer {width:100%;}
+#footer div.footertitle{color:#fff; letter-spacing:1px; line-height:16px; font-size:8px; padding-top:7px; float:left; text-align:left; padding-left:250px; float:left;}
+#footer div.name{color:#fff; font-size:24px;top:-20px; padding-top:30px; float:left; margin-left:200px;}
+

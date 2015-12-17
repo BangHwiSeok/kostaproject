@@ -57,7 +57,7 @@ public class UserController {
 			@PathVariable("id") Integer id /* ,CurrentUser currentUser */) {
 		ModelAndView mav = new ModelAndView("members/myInfo");
 
-		mav.addObject("myInfo", userService.findByUserNum(id).get());
+		mav.addObject("myInfo", userService.getUserInfo(id));
 
 		/* logger.info(currentUser.getRole().toString()); */
 

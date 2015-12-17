@@ -1,0 +1,35 @@
+@charset "euc-kr";
+/* CSS Document */
+/*Çì´õ*/
+#header{position:relative; height:66px;}
+#header .logo{position:relative;  width:160px;top:35px; left:-320px;}
+#header .mypage{ width:80px; float:left; margin-right:20px;}
+#header .logout{width:80px; float:left;}
+.headerwidth{position:relative; top:-22px; width:1024px;}
+
+#header ul{color:#fff; width:450px; float:left; margin-top:10px; margin-left:300px;}
+#header ul li{float:left; margin-right:5px; font-size:15px;}
+#header ul li a{color:#FFF;}
+#header ul li a:hover{font-weight:bold;}
+
+.top{background-image:url(../images/main_bg_1.jpg); background-repeat:repeat-x; height:640px;}
+.top div.topimg{width:1024px; height:555px;}
+.top div.topimg div.mainimg{text-align:right;}
+.top div.topimg div.maintitle1{text-align:left; position:relative; top:-550px;}
+.top div.topimg div.maintitle2{text-align:left; position:relative; top:-530px;}
+
+.top div.topbtn{text-align:left; position:relative; top:-100px; left:-210px; width:600px;}
+.top div.topbtn div.btn1{float:left; margin-right:10px;}
+.top div.topbtn div.btn2{float:left;}
+.top div.topbtn div.subtitle{clear:both; position:absolute; top:110px;}
+
+.under{background-image:url(../images/main_bg_4.jpg); background-repeat:repeat-x;}
+
+
+/*footer*/
+#footer {margin-top:-60px; width:1024px;}
+#footer div.footertitle{color:#fff; letter-spacing:1px; line-height:16px; font-size:8px; padding-top:7px; float:left; text-align:left; padding-left:150px;}
+#footer div.name{color:#fff; font-size:24px;top:-20px; padding-top:30px;}
+
+
+

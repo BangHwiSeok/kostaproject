@@ -6,10 +6,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Search Matching</title>
 <link href="${pageContext.request.contextPath }/resources/css/typehead.css" rel="stylesheet" />
-
+<link href="${pageContext.request.contextPath}/resources/css/base.css" rel="stylesheet" type="text/css" />
 <link href="${pageContext.request.contextPath}/resources/css/searchmain.css" rel="stylesheet" type="text/css" />
-<link href="${pageContext.request.contextPath}/resources/css/headermain.css" rel="stylesheet" type="text/css" />
-<link href="${pageContext.request.contextPath}/resources/css/footermain.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript">
 function MM_preloadImages() { //v3.0
   var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
@@ -51,75 +49,60 @@ function MM_swapImage() { //v3.0
 </script>
 </head>
 <body >
-<div class="bgre"><img src="${pageContext.request.contextPath}/resources/images/bgre.jpg" alt="배경" style="background-repeat:repeat-x; width:100%; height:66px;"></div>
-	<div id="headerwrap">
-		<div id="header">
-			<div class="bg">
-				<img
-					src="${pageContext.request.contextPath}/resources/images/bg.jpg"
-					alt="배경">
-			</div>
-			<div class="logo">
+<center>
+	<div id="wrap">
+		<!--헤더-->
+    <div id="header" style="background-color:#ff524f;; background-repeat:repeat-x;">
+        <div class="headerwidth">
+        	<div class="logo">
 				<a href="${pageContext.request.contextPath }"><img
-					src="${pageContext.request.contextPath}/resources/images/logo.png"
+					src=" ${pageContext.request.contextPath}/resources/images/logo.png"
 					alt="로고"></a>
 			</div>
-			<div class="logout">
-				<a href="${pageContext.request.contextPath }/logout"><img
-					src="${pageContext.request.contextPath}/resources/images/logout.png"
-					alt="로그아웃"></a>
-			</div>
-			<div class="mypage">
-				<a
-					href="${pageContext.request.contextPath }/members/${currentUser.user.u_num}"><img
-					src="${pageContext.request.contextPath}/resources/images/mypage.png"
-					alt="마이페이지"></a>
-			</div>
-			<ul>
-				<li><a href="${pageContext.request.contextPath }/matches">매칭</a></li>
-				<li>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
-				<li><a href="#">히스토리</a></li>
-				<li>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
-				<li><a href="${pageContext.request.contextPath }/shop">아이템</a></li>
-				<li>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
-				<li><a href="${pageContext.request.contextPath }/evalues">키워드
-						평가</a></li>
-				<li>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
-				<li><a href="${pageContext.request.contextPath }">관리자 문의</a></li>
-			</ul>
-		</div>
+          <ul>
+            	<li><a href="#">매칭</a></li>
+                <li>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+                <li><a href="#">히스토리</a></li>
+                <li>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+                <li><a href="#">아이템</a></li>
+                 <li>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+                <li><a href="#">키워드 평가</a></li>
+                <li>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+                <li><a href="#">관리자 문의</a></li>
+            </ul>
+          <div class="mypage"><a href="#"><img src=" ${pageContext.request.contextPath}/resources/images/mypage.png" alt="마이페이지"></a></div>
+          <div class="logout"><a href="#"><img src=" ${pageContext.request.contextPath}/resources/images/logout.png" alt="로그아웃"></a></div>
+    	</div>
+    </div>
 
-	</div>
-	<input id='num' type='hidden' value=0 />
-	<center>
-	<div id="wrap" >
-		<div class="title">
-			<img src="${pageContext.request.contextPath}/resources/images/search_03.png" alt="헤더 글">
-		</div>
-         <div class="search" style="background-image:url(${pageContext.request.contextPath}/resources/images/search_00.png); 
+<!--main부문-->
+    <div id="container">
+		<div class="title"><img src=" ${pageContext.request.contextPath}/resources/images/search_03.png" alt="헤더 글"></div>
+        <div class="search" style="background-image:url( ${pageContext.request.contextPath}/resources/images/search_00.png); 
         	background-repeat:no-repeat; width:590px; height:148px; margin-top:20px;">
        	    <span class="searchkey"><input class="typeahead" type="text"></span>
         </div>
-        
-        <div class="pluse" style="background-image:url(${pageContext.request.contextPath}/resources/images/search.png); background-repeat:no-repeat; height:120px; width:691px;">
+        <div class="pluse" style="background-image:url( ${pageContext.request.contextPath}/resources/images/search.png); background-repeat:no-repeat; height:120; width:691px;">
         	<div class="subsearch"><input type="image"  src= "${pageContext.request.contextPath}/resources/images/search_05.png" onclick="document.forms[0].submit()" /></div>
-        	<form id='test'  method='POST'  class="text">
+        	<form id='test'  method='POST'  class="text" style="margin-bottom: 4px;">
             	<div id='addTaget' class="subtext"></div>
         	</form>
-        	<div class="subtitle"><img src="${pageContext.request.contextPath}/resources/images/search_02.png" alt="글"></div>
-        	</div>
+       		<div class="subtitle"><img src=" ${pageContext.request.contextPath}/resources/images/search_02.png" alt="글"></div>
+    	</div>
     </div>
-    </center>
-        	<div class="bgre"><img src="${pageContext.request.contextPath}/resources/images/bgre.jpg" alt="배경" style="background-repeat:repeat-x; width:100%; height:66px;"></div>
-<div id="footerwrap">
-    	<div id="footer">
-        	<h4>광고·제휴 문의    /   이용약관   /   개인정보취급방침   /   고객센터<br>
+    <!--main끝나는 부문-->
+    
+<!--footer-->
+    <div class="bgre" style="background-color:#666; position:relative; top:86px; 
+    background-repeat:repeat-x; width:100%; height:66px; z-index:-1"></div>
+    <div id="footer">
+        	<div class="footertitle">광고·제휴 문의    /   이용약관   /   개인정보취급방침   /   고객센터<br>
 				사업자등록번호100-00-00000    /    통신판매신고 제 0000 - 성남 판교 - 0000호<br>
-				경기도 성남시 판교 판교     /    고객센터 help@puzzle.com 1500-0000    /   (주)신석기 대표이사 신석기</h4>
-            <span class="h3">신석기</span>
-        </div>
-        
+				경기도 성남시 판교 판교     /    고객센터 help@puzzle.com 1500-0000    /   (주)신석기 대표이사 신석기</div>
+            <div class="name">신석기</div>
+       	    </div>
     </div>
+    <!--footer끝-->
         
 	<!-- <div>
 		<h3>키워드로 찾기</h3>
@@ -130,5 +113,7 @@ function MM_swapImage() { //v3.0
 	<input id='num' type='hidden' value=0 />
 	<form id='test'  method='POST'>    </form>
 	<button onclick="document.forms[0].submit()">전송</button> -->
+	</div>
+</center>
 </body>
 </html>

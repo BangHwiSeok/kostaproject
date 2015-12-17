@@ -141,6 +141,7 @@ public class UserService {
 		user.setU_birth(form.getU_birth());
 		user.setU_gender(form.getU_gender());
 		user.setU_role(Role.ROLE_READY);
+		user.setU_pnum(form.getU_pnum());
 		userDao.addUser(user);
 
 		boolean isSave = false;

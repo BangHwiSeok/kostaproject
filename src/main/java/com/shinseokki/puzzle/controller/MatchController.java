@@ -72,6 +72,7 @@ public class MatchController {
 		Map<Integer, Collection<Profile>> usersMap =recommendService.recommendUsers(currentUser.getUserNum(), currentUser.getGender());
 		
 		model.addAttribute("users", usersMap);
+		model.addAttribute("keywords",key);
 		
 		return "matches/searchResult";
 	}
