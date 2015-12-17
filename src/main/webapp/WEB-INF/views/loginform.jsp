@@ -59,7 +59,7 @@
 					</div>
 
 					<ul class="cf">
-						<li class="btn1"><a href="#"><img
+						<li class="btn1"><a href="id.jsp"><img
 								src="${pageContext.request.contextPath}/resources/images/login_div_01.png"
 								alt="아이디 찾기"></a></li>
 						<li class="btn2"><a href="#"><img

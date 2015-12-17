@@ -1,0 +1,49 @@
+@charset "euc-kr";
+/* CSS Document */
+
+#wrap{width:1024px;margin:0 auto;}
+
+#container{width:515px; height:300px; margin-top:30px;}
+
+.list{padding-bottom:35px; padding-left:85px; padding-top:20px; width:495px; background-color:#CCC; margin-top:20px;}
+.list ul li{font-size:20px;  float:left; margin-right:10px;}
+.list ul li a{color:#fff;}
+.list ul li a:hover{font-weight:bold;color:#Fff;}
+
+#container{clear:both;}
+
+#container div.title{font-size:30px; color:#333; text-align:center; margin-bottom:30px;}
+
+#container div.main{width:150px; height:150px; float:left; margin-right:15px;
+border-radius :0%; -webkit-border-radius:0%; overflow:hidden; float:left;}
+
+#container div.user{ margin-top:15px; width:350px; height:150px; font-size:14px; line-height:24px; color:#666; float:left; margin-bottom:10px;}
+
+
+#container div.sub{whidth:515px; height:125px; clear:both; margin-top:15px;}
+#container div.sub li.subimg{width:125px;height:125px; float:left; } 
+/* border-radius :0%; -webkit-border-radius:0%; overflow:hidden; float:left;}
+#container div.sub li.subimg2{width:125px;height:125px;; float:left; margin-right:5px; 
+border-radius :0%; -webkit-border-radius:0%; overflow:hidden; float:left;}
+#container div.sub li.subimg3{width:125px;height:125px; float:left; margin-right:5px;
+ border-radius :0%; -webkit-border-radius:0%; overflow:hidden; float:left;}
+#container div.sub li.subimg4{width:125px;height:125px; float:left; 
+border-radius :0%; -webkit-border-radius:0%; overflow:hidden; float:left;} */
+
+#container div.btn{text-align:center; margin-top:10px;}
+
+<!---->
+
+#container2{width:700px;margin-top:30px;}
+
+#container2 div.title2{font-size:30px; color:#333; margin-bottom:30px; width:700px; margin-top:120px;}
+#container2 div.user2{font-size:12px; width:700px;}
+
+#container2 div.subbtn{margin-top:10px; width:370px; height:25px; margin-left:270px;}
+#container2 div.subbtn div.subbtn1{float:left; margin-right:10px; width:80px; margin-left:5px;}
+#container2 div.subbtn div.subbtn2{float:left; margin-right:10px; width:80px;}
+#container2 div.subbtn div.subbtn3{float:left; margin-right:10px; width:80px;}
+#container2 div.subbtn div.subbtn4{float:left; width:80px;}
+
+
+

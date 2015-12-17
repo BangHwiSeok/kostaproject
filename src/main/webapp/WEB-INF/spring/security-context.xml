@@ -15,7 +15,7 @@
 	<security:http use-expressions="true">
 		<security:csrf disabled="true" />
 		
-		<security:intercept-url pattern="/findIdPwd"
+		<security:intercept-url pattern="/findidpwd"
 			access="permitAll()" />
 			
 		<security:intercept-url pattern="/login"
@@ -24,6 +24,8 @@
 		<security:intercept-url pattern="/signup"
 			access="permitAll()" />
 		
+		<security:intercept-url pattern="/"
+			access="permitAll()" />
 		<security:intercept-url pattern="/**"
 			access="hasAnyRole('ROLE_ADMIN', 'ROLE_USER')" />
 		<security:form-login login-page="/login" />

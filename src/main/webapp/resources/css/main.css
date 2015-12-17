@@ -1,7 +1,26 @@
-@charset "euc-kr";
+@charset "utf-8";
 /* CSS Document */
 
-#wrap{width:1024px; height:666px; margin:0 auto;}
+#wrap{width:1024px; height:534px; margin:0 auto;}
+.top{background-image:url(../images/main_bg_1.jpg); background-repeat:repeat-x; height:640px;}
+.top div.topimg{width:1024px; height:555px;}
+.top div.topimg div.mainimg{text-align:right;}
+.top div.topimg div.maintitle1{text-align:left; position:relative; top:-550px;}
+.top div.topimg div.maintitle2{text-align:left; position:relative; top:-530px;}
+#main div.title{position:relative; left:226.5px; top:30px; width:600px;}
+#main div.match1{float:left; position:relative; left:245px; top:50px;}
+#main div.match2{position:relative; left:560px; top:-230px; width:400px; height:280;}
+
+.top div.topbtn{text-align:left; position:relative; top:-100px; left:-210px; width:600px;}
+.top div.topbtn div.btn1{float:left; margin-right:10px;}
+.top div.topbtn div.btn2{float:left;}
+.top div.topbtn div.subtitle{clear:both; padding-top:20px;}
+
+#main span.ty1{position:relative; top:50px; left:210px;}
+#main span.ty2{position:relative; top:50px; left:210px;}
+
+.under{background-image:url(../images/main_bg_4.jpg); background-repeat:repeat-x;}
+
 
 #main{margin:0 auto; height:666px;}
 #main div.bg{margin:0 auto; height:666px;}
@@ -22,3 +41,19 @@
 
 .writ{text-align:center; color:#fff; font-size:16px; line-height:20px; position:relative; top:100px; left:-148px; width:520px;}
 .writ span{font-style:italic;}
+
+.title img{margin-top:20px;}
+
+.search{}
+.search span.searchkey input{margin-top:38px; margin-left:-45px; width:400px; background-color:transparent; font-size:50px; height:70px; border:none; text-align:center; color:#FFF;}
+
+.pluse{}
+.pluse div.subsearch img{margin-top:40px; margin-left:575px;}
+.pluse div.text{width:550px; margin-top:-40px;margin-left:-105px;}
+
+.pluse form.text div.subtext{margin-top:4px; float:left;}
+
+.pluse form.text div.subtext input{border:#FFF 2px solid; background-color:transparent; width:100px; border-radius:10px; text-align:center; color:#FFF; font-size:15px; margin-right:10px;}
+.subtitle{position:relative; top:50px; left:50px;}
+
+

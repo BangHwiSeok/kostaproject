@@ -1,0 +1,8 @@
+@charset "euc-kr";
+/* CSS Document */
+
+#footerwrap{width:1024px; height:666px; margin:0 auto; margin-top:-66px;}
+
+#footer{width:1024px; height:66px; background-color:#969696;}
+#footer h4{color:#fff; letter-spacing:1px; line-height:16px; font-size:8px; padding-top:7px; padding-left:20px;}
+#footer span.h3{color:#fff; font-size:24px; text-align:right; position:relative; top:-20px; right:-930px;}

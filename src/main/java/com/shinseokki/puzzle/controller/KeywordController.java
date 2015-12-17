@@ -3,6 +3,8 @@ package com.shinseokki.puzzle.controller;
 import java.util.List;
 import java.util.Locale;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,15 +34,24 @@ private static final Logger logger = LoggerFactory.getLogger(KeywordController.c
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
+
 	public ModelAndView home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		ModelAndView mav = new ModelAndView("keywords/findKeyword");
 		
+		model.addAttribute("serverTime");
 		
 		
 		
 		return mav;
 	}
+	
+         
+	/*@RequestMapping(value="/list", method=RequestMethod.GET)
+	public ModelAndView getKeywords(@RequestParam(value="pageNo", required=false, defaultValue="1") Integer pageNo, HttpServletResponse resp) throws Exception {
+		ModelAndView mav = new ModelAndView("keywords/findKeyword");
+		return mav;
+	}*/
 	
 	@RequestMapping(method=RequestMethod.POST)
 	public String addKeyword(String K_NAME, String K_GROUP, Model model){
@@ -59,18 +70,19 @@ private static final Logger logger = LoggerFactory.getLogger(KeywordController.c
          
 	@RequestMapping(value="list", method=RequestMethod.GET)
 	public ModelAndView getKeywords(@RequestParam(value="pageNo", required=false, defaultValue="1") Integer pageNo) throws Exception {
+
 		logger.info("getKeywordPaging!");
-		int start = (pageNo-1) * ROWSIZE + 1; //현재페이지가 pageNo, 기본 defaultValue로 1잡아놔서 1로 시작함
+		int start = (pageNo-1) * ROWSIZE + 1; 
 		int end = start + ROWSIZE-1;
 		
-		int total = keywordDao.getKeywordCount(); //총 개수
-		int totalpage = (int) Math.ceil(total/(double)ROWSIZE); //total page        ceil: 올림
+		int total = keywordDao.getKeywordCount(); 
+		int totalpage = (int) Math.ceil(total/(double)ROWSIZE);       
 		
 		List<Keyword> list = keywordDao.getKeywords(start,end);
 		
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("keywords", list); //RequestsetAttribute 이거랑 쓰는 방법이 똑같다!!
-		mav.setViewName("keywordList"); //EL언어 keywords  $keywords.(list의 value를 불러내 쓸 수 있다)
+		mav.addObject("keywords", list); 
+		mav.setViewName("keywordList"); 
 		
 		
 		return mav;
@@ -81,7 +93,7 @@ private static final Logger logger = LoggerFactory.getLogger(KeywordController.c
 	
 	@RequestMapping(value="{id}/update", method=RequestMethod.GET)
 	public String upadteform(@PathVariable("id") Integer id, String k_name, Model model) {
-		//model은 객체를 담아주는 역할
+
 		
 		Keyword keyword = new Keyword();
 		keyword = keywordDao.find(k_name);
@@ -90,8 +102,13 @@ private static final Logger logger = LoggerFactory.getLogger(KeywordController.c
 		
 		model.addAttribute("keyword", keyword);
 		
-		return "updateform"; // updateform.jsp
+		return "ok"; 
 	}
+
+
+	
+	
+	
 
 	@RequestMapping("/updateform")
 	public String update(String k_name, String K_GROUP, Model model) {
@@ -115,7 +132,17 @@ private static final Logger logger = LoggerFactory.getLogger(KeywordController.c
 		keywordDao.deleteKeyword(keyword.getK_NAME());
 		
 		
-		return "OK"; // deleteform.jsp
+
+		return "ok";
+	}
+	
+	@RequestMapping(value="/{words}/find", method=RequestMethod.GET)
+	public List<Keyword> findKeyword(@PathVariable String words){
+		List<Keyword> list = keywordDao.findLikeWord('%'+words+'%');
+		
+		return list;
+
+		
 	}
 	
 	@RequestMapping(value="/find/{word}", method=RequestMethod.GET)
@@ -128,7 +155,8 @@ private static final Logger logger = LoggerFactory.getLogger(KeywordController.c
 		//keywordDao.deleteKeyword(K_NAME);
 		logger.info("findKeywords : {}",keywords.toString());
 		
-		return keywords; //
+		return keywords; 
+
 	}
 	
 	

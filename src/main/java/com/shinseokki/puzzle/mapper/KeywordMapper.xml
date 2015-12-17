@@ -47,6 +47,10 @@
 		SELECT * FROM KEYWORD WHERE K_NAME LIKE  '%'||#{_parameter}||'%'
 	</select>
 
+	<!-- 키워드 검색 -->
+	<select id="findKeyword" resultType="com.shinseokki.puzzle.dto.Keyword">
+		SELECT * FROM Keyword WHERE K_NAME LIKE #{words}
+	</select>
 </mapper>
 	
 	

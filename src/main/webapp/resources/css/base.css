@@ -1,27 +1,27 @@
-@charset "utf-8";
+@charset "euc-kr";
 /* CSS Document */
 
 @import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
-/*íƒœê·¸ì˜ ê¸°ì´ˆê³µì‚¬ë¥¼ ìœ„í•œ cssë¬¸ì„œ*/
+/*ÅÂ±×ÀÇ ±âÃÊ°ø»ç¸¦ À§ÇÑ css¹®¼­*/
 
 body, div, p, ul, ol, li, dl, dt, dd, h1, h2, h3, h4, h5, h6,
 fieldset{padding:0px; margin:0px;}
 
 body{font-family: 'Malgun Gothic' 'Nanum Gothic', sans-serif; font-size:12px; line-height:1em; color:#181818}
-/*line-heightì†ì„± : ì¤„ê°„ê²©.
-emë‹¨ìœ„=>ìƒëŒ€ê°’. 1.4emì€ ê¸°ë³¸ê°’ì˜ 1.4ë°° í¬ê¸°ë¡œ ì‚¬ìš©í•˜ê² ë‹¤ëŠ” ëœ».*/
+/*line-height¼Ó¼º : ÁÙ°£°İ.
+em´ÜÀ§=>»ó´ë°ª. 1.4emÀº ±âº»°ªÀÇ 1.4¹è Å©±â·Î »ç¿ëÇÏ°Ú´Ù´Â ¶æ.*/
 
-/*aíƒœê·¸ì˜ ê²½ìš° ìƒíƒœì— ë”°ë¼ ë‹¤ë¥¸ ìŠ¤íƒ€ì¼ì„ ì§€ì •í• ìˆ˜ ìˆìŒ.
-a:link        => aíƒœê·¸ì˜ ê¸°ë³¸ ìƒíƒœ
-a:hover       => aíƒœê·¸ì— ë§ˆìš°ìŠ¤ ì˜¬ë ¸ì„ë•Œì˜ ìƒíƒœ
-a:active      => aíƒœê·¸ë¥¼ ë§ˆìš°ìŠ¤ë¡œ ëˆ„ë¥´ê³ ìˆëŠ” ë™ì•ˆì˜ ìƒíƒœ
-a:visited     => aíƒœê·¸ì˜ ê²½ë¡œë¥¼ ì‚¬ìš©í•´ë³¸ì ì´ ìˆì„ë•Œì˜ ìƒíƒœ */
+/*aÅÂ±×ÀÇ °æ¿ì »óÅÂ¿¡ µû¶ó ´Ù¸¥ ½ºÅ¸ÀÏÀ» ÁöÁ¤ÇÒ¼ö ÀÖÀ½.
+a:link        => aÅÂ±×ÀÇ ±âº» »óÅÂ
+a:hover       => aÅÂ±×¿¡ ¸¶¿ì½º ¿Ã·ÈÀ»¶§ÀÇ »óÅÂ
+a:active      => aÅÂ±×¸¦ ¸¶¿ì½º·Î ´©¸£°íÀÖ´Â µ¿¾ÈÀÇ »óÅÂ
+a:visited     => aÅÂ±×ÀÇ °æ·Î¸¦ »ç¿ëÇØº»ÀûÀÌ ÀÖÀ»¶§ÀÇ »óÅÂ */
 
 a{color:#181818; text-decoration:none;}
-/*text-decorationì†ì„±: í…ìŠ¤íŠ¸ì— ì¤„ì„ ê·¸ì–´ì£¼ëŠ” ì†ì„±
- text-decoration:overline      => í…ìŠ¤íŠ¸ íƒ‘ì—
- text-decoration:underline     => í…ìŠ¤íŠ¸ ë°”í…€ì—
- text-decoration:line-through  => í…ìŠ¤íŠ¸ ê°€ìš´ë°
+/*text-decoration¼Ó¼º: ÅØ½ºÆ®¿¡ ÁÙÀ» ±×¾îÁÖ´Â ¼Ó¼º
+ text-decoration:overline      => ÅØ½ºÆ® Å¾¿¡
+ text-decoration:underline     => ÅØ½ºÆ® ¹ÙÅÒ¿¡
+ text-decoration:line-through  => ÅØ½ºÆ® °¡¿îµ¥
 */
 
 img{border:0px; vertical-align:top;}
@@ -31,7 +31,24 @@ legend{display:none;}
 
 
 ul, ol{list-style:none;}
-/*ul, il{} => ulíƒœê·¸ì™€ olíƒœê·¸ì— ë™ì¼í•œ ì†ì„±ì„ ì‚¬ìš©í•˜ê² ë‹¤ëŠ” ëœ».*/
+/*ul, il{} => ulÅÂ±×¿Í olÅÂ±×¿¡ µ¿ÀÏÇÑ ¼Ó¼ºÀ» »ç¿ëÇÏ°Ú´Ù´Â ¶æ.*/
 
-.cf{}/*floatì†¡ì„±ì„ ê°€ì§„ íƒœê·¸ë¥¼ ê°ì‹¸ëŠ” ì—„ë§ˆíƒœê·¸ì—ê²Œ ë¬´ì¡°ê±´ cfí´ë˜ìŠ¤ë¥¼ ì¶”ê°€í•´ë†“ìŒ.*/
+.cf{}/*float¼Û¼ºÀ» °¡Áø ÅÂ±×¸¦ °¨½Î´Â ¾ö¸¶ÅÂ±×¿¡°Ô ¹«Á¶°Ç cfÅ¬·¡½º¸¦ Ãß°¡ÇØ³õÀ½.*/
 .cf:after{clear:both; content:""; display:block;}
+
+/*Çì´õ*/
+#header{position:relative; height:66px;}
+#header .logo{position:relative;  width:160px;top:35px; left:-320px;}
+#header .mypage{ width:80px; float:left; margin-right:20px;}
+#header .logout{width:80px; float:left;}
+.headerwidth{position:relative; top:-22px; width:1024px;}
+
+#header ul{color:#fff; width:450px; float:left; margin-top:10px; margin-left:300px;}
+#header ul li{float:left; margin-right:5px; font-size:15px;}
+#header ul li a{color:#FFF;}
+#header ul li a:hover{font-weight:bold;}
+
+/*footer*/
+#footer {margin-top:20px; width:1024px;}
+#footer div.footertitle{color:#fff; letter-spacing:1px; line-height:16px; font-size:8px; padding-top:7px; float:left; text-align:left; padding-left:150px;}
+#footer div.name{color:#fff; font-size:24px;top:-20px; padding-top:30px;}

@@ -7,6 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link href="${pageContext.request.contextPath}/resources/css/base.css" rel="stylesheet" type="text/css" />
 <link href="${pageContext.request.contextPath}/resources/css/main.css" rel="stylesheet" type="text/css" />
+<link href="${pageContext.request.contextPath}/resources/css/headermain.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript">
 function MM_preloadImages() { //v3.0
   var d=document; if(d.images){ if(!d.MM_p) d.MM_p=new Array();
@@ -33,7 +34,31 @@ function MM_swapImage() { //v3.0
 </script>
 </head>
 <body style="background-image:url(${pageContext.request.contextPath}/resources/images/matching_bg.jpg); background-repeat:repeat-x;  height:534px;" onLoad="MM_preloadImages('${pageContext.request.contextPath}/resources/images/matching_01.png','${pageContext.request.contextPath}/resources/images/matching_03.png')">
+	
 	<div id="wrap">
+	<!--헤더-->
+    <div id="header" style="background-color:#ff524f;; background-repeat:repeat-x;">
+        <div class="headerwidth">
+        	<div class="logo">
+				<a href="${pageContext.request.contextPath }"><img
+					src=" ${pageContext.request.contextPath}/resources/images/logo.png"
+					alt="로고"></a>
+			</div>
+          <ul>
+            	<li><a href="${pageContext.request.contextPath}/matches">매칭</a></li>
+                <li>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+                <li><a href="${pageContext.request.contextPath}/histories">히스토리</a></li>
+                <li>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+                <li><a href="${pageContext.request.contextPath}/shop">아이템</a></li>
+                 <li>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+                <li><a href="${pageContext.request.contextPath}/evaluates">키워드 평가</a></li>
+                <li>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
+                <li><a href="#">관리자 문의</a></li>
+            </ul>
+          <div class="mypage"><a href="${pageContext.request.contextPath}/memebers/<sec:authentication property="principal.userNum" />"><img src=" ${pageContext.request.contextPath}/resources/images/mypage.png" alt="마이페이지"></a></div>
+          <div class="logout"><a href="${pageContext.request.contextPath}/logout"><img src=" ${pageContext.request.contextPath}/resources/images/logout.png" alt="로그아웃"></a></div>
+    	</div>
+    </div>
     	<div id="main">
         	<div class="title"><img src="${pageContext.request.contextPath}/resources/images/matching_04.png" alt="타이틀"></div>
         	<div class="match1"><a href="${pageContext.request.contextPath}/${first}"><img src="${pageContext.request.contextPath}/resources/images/matching_00.png" alt="맞춤" id="Image1" onMouseOver="MM_swapImage('Image1','','${pageContext.request.contextPath}/resources/images/matching_01.png',1)" onMouseOut="MM_swapImgRestore()"></a></div>
