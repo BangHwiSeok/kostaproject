@@ -1,8 +1,12 @@
 package com.shinseokki.puzzle.controller;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -17,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.shinseokki.puzzle.dto.CurrentUser;
@@ -70,12 +76,61 @@ public class UserController {
 
 	// Image Update를 위해 따로 Form을 만들어야 함
 
-	@RequestMapping(value="/members/{id}/update", method = RequestMethod.POST)
-	public String unapproveUser(@PathVariable Integer id,CurrentUser currentUser, Model model, HttpServletRequest req) {
-		logger.info("User unapproval Method : {}", id);
+	@RequestMapping(value="/members/files/upload", method = RequestMethod.POST)
+	public String unapproveUser(HttpServletRequest request,CurrentUser currentUser, Model model) {
 		// 사진 Update 일 경우 RealPath에 있는 file을 바꾼다.
-		String path = req.getSession().getServletContext().getRealPath("/resources");
+		MultipartHttpServletRequest req = (MultipartHttpServletRequest) request;
+		String path = req.getSession().getServletContext().getRealPath("/resources")+"/"+currentUser.getUserNum();
+		Iterator<String> iter = req.getFileNames();
+		List<Boolean> savedList = new ArrayList<Boolean>();
+		for(int i = 0; i < 5; i++){
+			savedList.add(Boolean.parseBoolean(req.getParameter("changedIndex["+i+"]")) );
+		}
+		/*UPDATE PROFILE SET
+		P_PHOTONUM=#{p_photonum} 
+	WHERE U_NUM=#{u_num} AND P_PHOTONUM =#{p_photonum}*/
+		
+		/*while(iter.hasNext()) {
 
+			String uploadFileName = iter.next();
+
+			MultipartFile mFile = req.getFile(uploadFileName);
+
+			String originalFileName = mFile.getOriginalFilename();
+
+			String saveFileName = originalFileName;
+
+				
+
+			if(saveFileName != null && !saveFileName.equals("")) {
+
+				if(new File(path + saveFileName).exists()) {
+
+					saveFileName = saveFileName + "_" + System.currentTimeMillis();
+
+				}
+
+				try {
+
+					mFile.transferTo(new File(path + saveFileName));
+
+
+				} catch (IllegalStateException e) {
+
+					e.printStackTrace();
+
+
+				} catch (IOException e) {
+
+					e.printStackTrace();
+
+				}
+
+			} // if end
+
+		} // while end
+
+		*/
 		return "OK";
 	}
 

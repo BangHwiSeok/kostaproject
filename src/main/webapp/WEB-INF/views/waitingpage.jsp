@@ -6,7 +6,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
-<img src="${pageContext.request.contextPath}/resources/images/waitingpage.png"/>
+<body style="text-align: center; background-color: #ff524f;">
+	<input type="image" src='${pageContext.request.contextPath}/resources/images/waitingpage.png'  style="margin-top: 50px; " onclick="location.href='${pageContext.request.contextPath }'"/>
+	
 </body>
 </html>

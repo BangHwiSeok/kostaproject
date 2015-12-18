@@ -20,6 +20,7 @@
 			access="permitAll()" />
 		<security:intercept-url pattern="/"
 			access="permitAll()" />
+			<security:intercept-url pattern="/waitingpage" access="hasRole('ROLE_WAITING')"/>
 		<security:intercept-url pattern="/mykeywords" access="hasRole('ROLE_FUL_WAITING')"/>
 		<security:intercept-url pattern="/**"
 			access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
@@ -27,6 +28,7 @@
 		<security:form-login login-page="/login" authentication-success-handler-ref="authenticationSuccessHandler"/>
 		<security:logout logout-url="/logout"
 			logout-success-url="/" />
+			<security:access-denied-handler error-page="/accessdenied"/>
 	</security:http>
 
 	<!-- <bean class="com.shinseokki.puzzle.service.UserService"> <property 

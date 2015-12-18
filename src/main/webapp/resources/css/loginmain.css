@@ -6,7 +6,7 @@
 #wrap div.logo{ padding-top:30px; margin-left:-700px;}
 #wrap div.logo a img{width:80px;}
 #wrap div.logo2{ margin-top:-240px;}
-#wrap div.reg{margin-right:445px; margin-top:65px;}
+#wrap div.reg{margin-right:445px; margin-top:65px; position: relative; z-index: 1}
 #wrap div.login{}
 
 .container{position:relative; top:20px; width:250px;}

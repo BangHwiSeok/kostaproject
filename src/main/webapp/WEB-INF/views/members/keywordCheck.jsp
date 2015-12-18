@@ -75,7 +75,7 @@ function submitKeyword(){
                 <div class="subtext2">개인의 키워드는 총 15개를 가지고 있게 되며, 그러기 위해 <span>20개의 키워드 중 5개</span>를 추려내야 합니다<br>지금&nbsp;<span>나와 가장 맞지 않는다고 생각되는 키워드 5개</span>를 제외하여 본인의 키워드를 완성해주세요</div>
                 <div class="subtext3">(지금 선택하게 된 키워드가 본인의 이미지를 대표하게 되며, 임의로 교체할 수 없습니다)</div>
             </div>
-            <div class="key" style="background-image:url( ${pageContext.request.contextPath}/resources/images/selectzone_03.png); background-repeat:no-repeat; width:560; height:208px; margin-top:30px;margin-left: 390px">
+            <div class="key" style="background-image:url( ${pageContext.request.contextPath}/resources/images/selectzone_03.png); background-repeat:no-repeat; width:560; height:208px; margin-top:30px;margin-left: 466px">
               	<div id="list" class="list">
               	<c:forEach var="keyword" items="${myKeywords }">
               		<input class="mykeyword" type="button" onclick='moveDelete(this)' value="${keyword.keyword }">

@@ -27,7 +27,7 @@
 
 #container div.title div.subtext3{color:#FFF; font-size:15px; margin-top:10px; background-color:#C00; width:650px; height:20px; padding-top:5px;}
 
-#container div.key div.list{position:relative; top:30px; left:-198px; width: 590px}
+#container div.key div.list{position:relative; top:30px; left:-234px; width: 590px}
 #container div.key div.list input{width:100px; height:30px; background-color:transparent; border-radius:25px; text-align:center; color:#FFF; font-size:15px; margin-right:2px; margin-bottom:5px; border:3px solid #FFF;}
 
 #container form.delete{ width:555px; border:3px solid #FFF; border-radius:25px; margin-top:5px; height:50px; padding-left:10px;}

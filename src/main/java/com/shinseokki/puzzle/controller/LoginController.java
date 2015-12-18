@@ -83,7 +83,12 @@ public class LoginController {
 		return "redirect:/";
 	}
 	
-	
+	@RequestMapping(value="/accessdenied")
+	public ModelAndView accessDenied(){
+		logger.info("/accessdenied Get");
+		ModelAndView mav = new ModelAndView("accessdenied");
+		return mav;
+	}
 	
 	
 }

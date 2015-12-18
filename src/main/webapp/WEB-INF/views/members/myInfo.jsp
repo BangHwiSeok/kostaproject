@@ -11,7 +11,48 @@
 <link	href="${pageContext.request.contextPath }/resources/bootstrap/css/jasny-bootstrap.min.css" rel="stylesheet">
 <script src="${pageContext.request.contextPath }/resources/jquery-1.11.3.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath }/resources/bootstrap/js/jasny-bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.js"></script>
 <script>
+function upLoadPhoto(){
+	var changedPhotoes = $("input[type='hidden']");
+	$('.centermenu').find(changedPhotoes).remove();
+	var params = $('.centermenu').serialize();
+	var files = $("input[type='file']");
+	var changedIndex = [];
+	
+	$(files).each(function(i,f){
+		var inputHtml = "<input type='hidden' name='changedIndex["
+		if($(f).val() != ''  && i < 2){
+			inputHtml+=i+"]' value="+true+" />";
+			$('.centermenu').append( inputHtml);
+		}else{
+			inputHtml+=i+"]' value='"+false+"' />";
+			$('.centermenu').append( inputHtml);
+		}
+	});
+	$(".centermenu").ajaxSubmit({
+		method:'post',
+		success : function(data) {
+			alert(data);
+		},
+		error : function(error) {
+			alert("요청 처리 중 오류가 발생하였습니다.");
+		}
+	});
+	/* $.ajax({
+		url:"${pageContext.request.contextPath }/members/files/upload",
+		data: params,
+		method:'post',
+		success:function(data){
+			alert('Success');
+		}
+	}); */
+	
+}
+function fileTrigger(target){
+	
+}
+
 $('.fileinput').fileinput();
 function updateInfo(){
 	var param = $('.userdata').serialize();
@@ -124,18 +165,18 @@ function updateInfo(){
                             <div class="right"><input type="text"></div>
                         </div>
                         <div class="serch">
-                            <div class="left">검색추가아이템</div>
+                            <div class="left">검색추가아이템 </div>
                             <div class="right"><input type="text"></div>
                         </div>
                     </div>
                 </div>
             </div><!--itemdata-->
-        <div class="centermenu">
+        <form class="centermenu" action="${pageContext.request.contextPath }/members/files/upload" enctype="multipart/form-data">
         	<div class="proname">프로필 사진<span>[메인사진 2장은 필수로 등록되어있어야 합니다.(5MB 제한)]</span></div>
-            <div class="promainimg">
+            <div  class="promainimg">
             	<div class="img1 fileinput fileinput-new" data-provides="fileinput"  style="width:230px; height:250px;">
 	            		<div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width:230px; height:250px;">
-	            			<img src="${pageContext.request.contextPath }/resources/${myinfo.profiles[0].u_num}/${myinfo.profiles[0].u_num}/${myinfo.profiles[0].p_photonum}${myinfo.profiles[0].p_extendtype}" />
+	            			<img src="${pageContext.request.contextPath }/resources/${myInfo.profiles[0].u_num}/${myInfo.profiles[0].u_num}${myInfo.profiles[0].p_photonum}${myInfo.profiles[0].p_extendtype}" onerror="javascript:this.src='${pageContext.request.contextPath }/resources/images/noimage.png'">
 	            		</div>
 	            			<span class="btn btn-default btn-file"><span
 									class="fileinput-new">Select image</span><span
@@ -146,7 +187,7 @@ function updateInfo(){
 	            	</div>
                 <div class="img2 fileinput fileinput-new" data-provides="fileinput"   style="width:230px; height:250px;">
 	            		<div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width:230px; height:250px;">
-	            			<img src=" ${pageContext.request.contextPath}/resources/images/logout.png" />
+	            			<img src="${pageContext.request.contextPath }/resources/${myInfo.profiles[1].u_num}/${myInfo.profiles[1].u_num}${myInfo.profiles[1].p_photonum}${myInfo.profiles[1].p_extendtype}" onerror="javascript:this.src='${pageContext.request.contextPath }/resources/images/noimage.png'"/>
 	            		</div>
 	            			<span class="btn btn-default btn-file"><span
 									class="fileinput-new">Select image</span><span
@@ -158,7 +199,9 @@ function updateInfo(){
             </div>
             <div class="submain">
             	<div class="subimg1 fileinput fileinput-new" data-provides="fileinput" style="width:165px; height:165px;">
-	            		<div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width:165px; height:165px;"></div>
+	            		<div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width:165px; height:165px;">
+	            			<img src="${pageContext.request.contextPath }/resources/${myInfo.profiles[2].u_num}/${myInfo.profiles[2].u_num}${myInfo.profiles[2].p_photonum}${myInfo.profiles[2].p_extendtype}" onerror="javascript:this.src='${pageContext.request.contextPath }/resources/images/noimage.png'"/>
+	            		</div>
 	            			<span class="btn btn-default btn-file"><span
 									class="fileinput-new">Select image</span><span
 									class="fileinput-exists">Change</span><input type="file"
@@ -167,7 +210,9 @@ function updateInfo(){
 									data-dismiss="fileinput">Remove</a>
 	            	</div>
                 <div class="subimg2 fileinput fileinput-new" data-provides="fileinput" style="width:165px; height:165px;">
-	            		<div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width:165px; height:165px;"></div>
+	            		<div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width:165px; height:165px;">
+	            			<img src="${pageContext.request.contextPath }/resources/${myInfo.profiles[3].u_num}/${myInfo.profiles[3].u_num}${myInfo.profiles[3].p_photonum}${myInfo.profiles[3].p_extendtype}" onerror="javascript:this.src='${pageContext.request.contextPath }/resources/images/noimage.png'"/>
+	            		</div>
 	            			<span class="btn btn-default btn-file"><span
 									class="fileinput-new">Select image</span><span
 									class="fileinput-exists">Change</span><input type="file"
@@ -176,7 +221,9 @@ function updateInfo(){
 									data-dismiss="fileinput">Remove</a>
 	            	</div>
                 <div class="subimg3 fileinput fileinput-new" data-provides="fileinput" style="width:165px; height:165px;">
-	            		<div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width:165px; height:165px;"></div>
+	            		<div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width:165px; height:165px;">
+	            			<img src="${pageContext.request.contextPath }/resources/${myInfo.profiles[4].u_num}/${myInfo.profiles[4].u_num}${myInfo.profiles[4].p_photonum}${myInfo.profiles[4].p_extendtype}" onerror="javascript:this.src='${pageContext.request.contextPath }/resources/images/noimage.png'"/>
+	            		</div>
 	            			<span class="btn btn-default btn-file"><span
 									class="fileinput-new">Select image</span><span
 									class="fileinput-exists">Change</span><input type="file"
@@ -185,8 +232,8 @@ function updateInfo(){
 									data-dismiss="fileinput">Remove</a>
 	            	</div>
             </div>
-            <div class="centerbtn"><a href="#">사진 수정</a></div>
-        </div><!--centermenu-->
+            <div class="centerbtn"><a href="javascript:upLoadPhoto()">사진 수정</a></div>
+        </form><!--centermenu-->
         <div class="rightmenu">
         	<div class="keyname">키워드 정보</div>
             <div class="list">
