@@ -283,4 +283,14 @@ public class UserService {
 		}
 		return false;
 	}*/
+	
+	// 남성회원 유저 가져오기
+		public int getMalesCount() {
+			return userDao.getMalesCount();
+	}
+		
+	// 여성회원 유저 가져오기
+		public int getFemalesCount() {
+			return userDao.getFemalesCount();
+	}
 }

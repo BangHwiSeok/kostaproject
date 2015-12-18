@@ -55,6 +55,21 @@
 		});
 	}
 	
+	// 차트 테스트 보기
+	function getTestChart(){
+		$.ajax({
+			//url : $('#pageNo').val()+"/getNoCheckReports",
+			url : "${pageContext.request.contextPath}/reports/getTestChart",
+			success : function(data) {
+				//alert(data);
+				$('.chart').html(data);
+			},
+			error:function(data){
+				alert("fail");
+			}
+		});
+	}
+	
 	// 페이징처리 (실패)
 	function goPage(pageNo){
 		console.log("pageNo:" + pageNo);
@@ -87,6 +102,8 @@ a {
 </style>
 </head>
 <body>
+	<input type="button" onclick="getTestChart()" value="차트보기"/>
+	<div class="chart"></div>
 	<div>
 	<input type="hidden" id="pageNo" value="${pageNo }"/>
 		<h3>신고내역 리스트</h3>

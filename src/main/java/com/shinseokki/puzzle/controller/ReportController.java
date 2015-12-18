@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.shinseokki.puzzle.HomeController;
+import com.shinseokki.puzzle.dao.UserDao;
 import com.shinseokki.puzzle.dto.ReportForm;
 import com.shinseokki.puzzle.service.ReportService;
+import com.shinseokki.puzzle.service.UserService;
 
 @RestController
 @RequestMapping("/reports")
@@ -26,10 +29,14 @@ public class ReportController {
 	private static final Logger logger 
 		= LoggerFactory.getLogger(HomeController.class);
 	private ReportService reportService;
-
+	//private UserDao userDao;
+	private UserService userService;
+	
 	@Autowired
-	public ReportController(ReportService reportService) {
+	public ReportController(ReportService reportService, UserService userService ) { //SqlSession sqlsession) {
 		this.reportService = reportService;
+		this.userService = userService;
+		//userdao = sqlsession.getMapper(UserDao.class);
 	}
 
 	// report 를 기본으로 호출했을 시 기본으로 거치게 되는 메소드
@@ -111,6 +118,17 @@ public class ReportController {
 		mav.addObject("pageNo", reportService.getNoCheckTotalPage());
 		return mav;
 	}
+	
+	// 차트 테스트
+		@RequestMapping("/getTestChart")
+		public ModelAndView getTestChart() {
+			ModelAndView mav = new ModelAndView("reports/charttest");
+			mav.addObject("allCount", reportService.getReportCount());
+			mav.addObject("noCheckCount", reportService.getNoCheckCount());
+			mav.addObject("malesCount", userService.getMalesCount());
+			mav.addObject("femalesCount", userService.getFemalesCount());
+			return mav;
+		}
 	
 	// 신고내역 디테일 뷰 보기
 	@RequestMapping(value = "/{rp_num}/getReport", method = RequestMethod.GET)

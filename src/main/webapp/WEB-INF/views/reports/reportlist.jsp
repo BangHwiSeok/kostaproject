@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+
 <script type="text/javascript">
 	
 	// 신고내역 상세보기
@@ -29,115 +29,6 @@
 		};
 	}
 */	
- 
-// 차트 연습 (반 파이 차트)
-$(function () {
-    $('#container').highcharts({
-        chart: {
-            plotBackgroundColor: null,
-            plotBorderWidth: 0,
-            plotShadow: false
-        },
-        title: {
-            text: '나의<br><b>키워드</b>',
-            align: 'center',
-            verticalAlign: 'middle',
-            y: 80
-        },
-        /* tooltip: {
-            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-        }, */
-        plotOptions: {
-            pie: {
-                dataLabels: {
-                    enabled: true,
-                    distance: 30,
-                    style: {
-                        fontWeight: 'bold',
-                        color: 'black',
-                        //textShadow: '0px 1px 2px black'
-                    }
-                },
-                startAngle: -90,
-                endAngle: 90,
-                center: ['50%', '85%']
-            }
-        },
-        series: [{
-            type: 'pie',
-            name: '나의키워드',
-            innerSize: '50%',
-            data: [
-                ['Firefox',   10],
-                ['IE',       1],
-                ['Chrome', 1],
-                ['Safari',    1],
-                ['Opera',     1],
-                {
-                    name: 'Unknown',
-                    y: 1,
-                    dataLabels: {
-                        enabled: false
-                    }
-                }
-            ]
-        }]
-    });
-});
-
-	$(function () {
-        // Build the chart
-        $('#container2').highcharts({
-            chart: {
-                plotBackgroundColor: null,
-                plotBorderWidth: null,
-                plotShadow: false,
-                type: 'pie'
-            },
-            title: {
-                text: '퍼즐 회원 남녀비율'
-            },
-            tooltip: {
-                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-            },
-            plotOptions: {
-                pie: {
-                    allowPointSelect: true,
-                    cursor: 'pointer',
-                    dataLabels: {
-                    		distance: -60,
-                        enabled: true,
-                        style: {
-                        	fontSize: 18,
-                          fontWeight: 'bold',
-                          color: 'white',
-                          textShadow: false
-                      }
-                    },
-                    //showInLegend: true
-                }
-            },
-            series: [{
-                name: '남/녀',
-                colorByPoint: true,
-                data: [{
-                    name: '남',
-                    y: 245,
-                    color: 'skyblue',
-                    sliced: true,
-                    selected: true
-                }, 
-                {   name: '녀',
-                    y: 50,
-                    color: 'pink'
-                    //sliced: true
-                    //selected: true
-				}]
-            }]
-        });
-	});
-
-
 </script>
 <style>
 	#report_table{
@@ -145,8 +36,6 @@ $(function () {
 	}
 </style>
 <body>
-	<div id="container" style="min-width: 400px; max-width:600px; height: 400px; margin: 0;"></div>
-	<div id="container2" style="min-width: 400px; max-width:600px; height: 400px; margin: 0;"></div>
 	<table id="report_table">
 		<tr>
 			<td>신고번호</td>

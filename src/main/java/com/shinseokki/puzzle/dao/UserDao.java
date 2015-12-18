@@ -20,5 +20,7 @@ public interface UserDao {
 	public User findIdByPhone(String u_pnum); //핸드폰번호로 아이디 찾기
 	public User findPwdByIdPhone(String u_id, String u_pnum); //비밀번호찾기
 	public int changeRole(User user);
+	public int getMalesCount();
+	public int getFemalesCount();
 	
 }
