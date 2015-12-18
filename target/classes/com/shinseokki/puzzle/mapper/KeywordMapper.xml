@@ -9,7 +9,7 @@
 	<insert id="addKeyword" parameterType="com.shinseokki.puzzle.dto.Keyword">
 		INSERT INTO Keyword(K_NUM,
 		K_NAME, K_GROUP, K_COUNT) values(k_num_seq.NEXTVAl, #{k_name},
-		#{k_group}, #{k_count})
+		#{k_group}, 0)
 	</insert>
 
 	<!-- 키워드 가져오기(한개) -->

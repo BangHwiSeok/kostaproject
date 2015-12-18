@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.shinseokki.puzzle.dto.CurrentUser;
 import com.shinseokki.puzzle.dto.Message;
 import com.shinseokki.puzzle.service.MessageService;
+import com.shinseokki.puzzle.service.ProfileService;
 
 /**
  * Handles requests for the application home page.
@@ -29,10 +30,11 @@ public class MessageController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(MessageController.class);
 	private MessageService messageService;
-	
+	private ProfileService profileService;
 	@Autowired
-	public MessageController(MessageService messageService) {
+	public MessageController(MessageService messageService, ProfileService profileService) {
 		this.messageService = messageService;
+		this.profileService = profileService;
 	
 	}
 	// 받는 곳
@@ -43,12 +45,13 @@ public class MessageController {
 		ModelAndView mav = new ModelAndView("messages/message");
 		
 		mav.addObject("messages",messageService.find(id, user.getUserNum()));
-		
+		System.out.println(messageService.find(id, user.getUserNum()));
 		// 상대방이 보낸 쪽지는 모두 읽음 표시 한다. 현재 접속한 사람이 receiver로 한다.
 		messageService.updateMessage(user.getUserNum(), id);
 		
-		mav.addObject("sender",user.getUserNum());
-		mav.addObject("receiver",id);
+		mav.addObject("my",user.getUserNum());
+		mav.addObject("profiles",profileService.find(id));
+		mav.addObject("you",id);
 		
 		return mav;
 	}

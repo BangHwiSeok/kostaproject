@@ -12,10 +12,17 @@
 	
 	<select id="find" resultType="com.shinseokki.puzzle.dto.History">
 		SELECT *
-		FROM HISTORY
-		WHERE U_NUM = #{u_num} 
-			AND (  SYSDATE - H_REGDATE &lt; 7  )
-					ORDER BY H_REGDATE ASC
+		FROM
+			(SELECT rownum as R, HISTORY.*
+				FROM HISTORY
+				WHERE U_NUM = #{param1} 
+					AND (  SYSDATE - H_REGDATE &lt; 7  )
+							ORDER BY H_REGDATE DESC
+			)
+		WHERE R between #{param2} and #{param3}
+	</select>
+	<select id="countAmout" resultType="int">
+		SELECT COUNT(*) FROM HISTORY WHERE U_NUM = #{u_num}
 	</select>
 	
 </mapper>

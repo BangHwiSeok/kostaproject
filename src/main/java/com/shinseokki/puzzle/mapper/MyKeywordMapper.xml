@@ -34,9 +34,9 @@
 	<delete id="deleteMyKeyword">
 		DELETE FROM MyKeyword
 		WHERE
-		U_NUM = #{ u_num}
+		U_NUM = #{ param1}
 		AND
-		KEYWORD = #{keyword}
+		KEYWORD = #{param2}
 	</delete>
 
 	<!-- 키워드 정렬(여러개) -->

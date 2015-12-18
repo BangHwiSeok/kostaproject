@@ -7,7 +7,7 @@ import com.shinseokki.puzzle.dto.Keyword;
 public interface KeywordDao {
 
 	
-		public int addkeyword(Keyword keyword);
+		public int addKeyword(Keyword keyword);
 		public Keyword find(String k_name); 
 		public int updateKeyword(Keyword keyword);
 		public int deleteKeyword(String K_NAME);

@@ -52,14 +52,14 @@ private static final Logger logger = LoggerFactory.getLogger(KeywordController.c
 	}*/
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public String addKeyword(String K_NAME, String K_GROUP, Model model){
+	public String addKeyword(@RequestParam("K_NAME") String K_NAME, @RequestParam("K_GROUP") String K_GROUP, Model model){
 		
 		logger.info("Register Keyword : {}, Keyword Group : {}",K_NAME, K_GROUP);
 		Keyword keyword = new Keyword();
-		keyword.setK_NAME(K_NAME);
-		keyword.setK_GROUP(K_GROUP);
+		keyword.setK_name(K_NAME);
+		keyword.setK_group(K_GROUP);
 		
-		keywordDao.addkeyword(keyword);
+		keywordDao.addKeyword(keyword);
 		model.addAttribute("keyword",keyword);
 		
 		return "myinfo";
@@ -112,7 +112,7 @@ private static final Logger logger = LoggerFactory.getLogger(KeywordController.c
 	public String update(String k_name, String K_GROUP, Model model) {
 		
 		Keyword keyword = keywordDao.find(k_name);
-		keyword.setK_GROUP(K_GROUP);
+		keyword.setK_group(K_GROUP);
 		
 		keywordDao.updateKeyword(keyword);
 		
@@ -127,7 +127,7 @@ private static final Logger logger = LoggerFactory.getLogger(KeywordController.c
 		
 		Keyword keyword = keywordDao.find(k_name);
 		
-		keywordDao.deleteKeyword(keyword.getK_NAME());
+		keywordDao.deleteKeyword(keyword.getK_name());
 		
 		
 

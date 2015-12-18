@@ -2,6 +2,7 @@ package com.shinseokki.puzzle.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -142,6 +143,7 @@ public class UserService {
 		user.setU_gender(form.getU_gender());
 		user.setU_pnum(form.getU_pnum());
 		user.setU_role(Role.ROLE_READY);
+		user.setU_pnum(form.getU_pnum());
 		userDao.addUser(user);
 
 		boolean isSave = false;
@@ -220,69 +222,18 @@ public class UserService {
 		
 		return info;
 	}
-
-	// controller단에서 u_pnum을 받아온다
-
-	/*public String findIdByPhone(String u_pnum) {
-
-		if (u_pnum != null && !u_pnum.equals("")) {
-
-			User user = userDao.findIdByPhone(u_pnum);
-
-			if (user != null) {
-
-				logger.info("[findId] - U_id:[" + user.getU_id() + "] / 아이디 찾기");
-
-				return user.getU_id();
-			}
-
-		}
-		return "";
-
-	}
-
-	public String findPwdByIdPhone(String u_id, String u_pnum) {
-
-		if (u_id != null && !u_id.equals("") && u_pnum != null && !u_pnum.equals("")) {
-
-			User user = userDao.findPwdByIdPhone(u_id, u_pnum);
-
-			if (user != null) {
-
-				logger.info("[findId] - U_pwd:[" + user.getU_pwd() + "] / 비밀번호 찾기");
-
-				changePwd(user.getU_num(), "1234");
-				try {
-					sendMail(user.getU_id(), "1234");
-				} catch (Exception e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
-				return "OK";
-			}
-		}
+	
+	@Transactional
+	public int updateRoleMyKeyword(User user, String[] keyword){
+		Arrays.asList(keyword).forEach((s) -> {
+			myKeywordDao.deleteMyKeyword(user.getU_num(), s);
+		});
+		user.setU_role(user.getU_role().nextRole());
 		
-
-		return "NO";
-
+		userDao.changeRole(user);
+		
+		return 0;
 	}
-
-	public boolean sendMail(String id, String pwd) throws Exception {
-		try {
-			MimeMessage msg = mailSender.createMimeMessage();
-			msg.setFrom("someone@paran.com"); // 송신자를 설정해도 소용없지만 없으면 오류가 발생한다
-			msg.setSubject("제목입니다");
-			msg.setText("비밀번호는 " + pwd + " 입니다");
-			msg.setRecipient(RecipientType.TO, new InternetAddress(id));
-
-			mailSender.send(msg);
-			return true;
-		} catch (Exception ex) {
-			ex.printStackTrace();
-		}
-		return false;
-	}*/
 	
 	// 남성회원 유저 가져오기
 		public int getMalesCount() {

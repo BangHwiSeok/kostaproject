@@ -1,0 +1,52 @@
+@charset "euc-kr";
+/* CSS Document */
+
+/*Çì´õ*/
+#header{position:relative; height:66px;}
+#header .logo{position:relative;  width:160px;top:35px; left:-320px;}
+#header .mypage{ width:80px; float:left; margin-right:20px;}
+#header .logout{width:80px; float:left;}
+.headerwidth{position:relative; top:-22px; width:1024px;}
+
+#header ul{color:#fff; width:450px; float:left; margin-top:10px; margin-left:300px;}
+#header ul li{float:left; margin-right:5px; font-size:15px;}
+#header ul li a{color:#FFF;}
+#header ul li a:hover{font-weight:bold;}
+
+#wrap{width:100%; height:634px; margin:0 auto;}
+
+#container{width:100%; height:666px; clear:both; position:relative; top:-3px;}
+#container div.title{}
+#container div.title div.headtext{padding-top:40px; color:#FFF; font-size:30px; font-weight:bold;}
+
+#container div.title div.subtext{margin-top:25px; background-color:#fff; font-size:40px; width:780px; height:40px; padding-top:18px;}
+#container div.title div.subtext span{font-weight:bold; color:#F03; font-size:41px;}
+
+#container div.title div.subtext2{color:#FFF; font-size:15px; margin-top:20px; line-height:17px;}
+#container div.title div.subtext2 span{font-weight:800;}
+
+#container div.title div.subtext3{color:#FFF; font-size:15px; margin-top:10px; background-color:#C00; width:650px; height:20px; padding-top:5px;}
+
+#container div.key div.list{position:relative; top:30px; left:-234px; width: 590px}
+#container div.key div.list input{width:100px; height:30px; background-color:transparent; border-radius:25px; text-align:center; color:#FFF; font-size:15px; margin-right:2px; margin-bottom:5px; border:3px solid #FFF;}
+
+#container form.delete{ width:555px; border:3px solid #FFF; border-radius:25px; margin-top:5px; height:50px; padding-left:10px;}
+#container form.delete input{width:95px; height:30px; background-color:transparent; border-radius:25px; text-align:center; color:#FFF; font-size:15px; margin-right:10px; margin-bottom:15px; border:3px solid #FFF; margin-top:5px;}
+
+#container div.okbtn{font-size:20px; border:8px solid #FFF; width:130px; padding:10px; border-radius:25px; color:#FFF; background-color:transparent; margin-top:15px;}
+#container div.okbtn a{color:#FFF;}
+#container div.okbtn a:hover{font-weight:bold;}
+
+#container div.lasttest{font-size:15px; margin-top:10px; color:#FFF; line-height:16px;}
+#container div.lasttest span{font-weight:bold; text-decoration:underline;}
+
+
+
+/*footer*/
+#footer {width:100%;}
+#footer div.footertitle{color:#fff; letter-spacing:1px; line-height:16px; font-size:8px; margin-top:-61px; text-align:left; padding-left:250px; float:left;}
+#footer div.name{color:#fff; font-size:24px; margin-top:-35px; margin-left:900px;float:left;}
+
+
+
+

@@ -20,11 +20,15 @@
 			access="permitAll()" />
 		<security:intercept-url pattern="/"
 			access="permitAll()" />
+			<security:intercept-url pattern="/waitingpage" access="hasRole('ROLE_WAITING')"/>
+		<security:intercept-url pattern="/mykeywords" access="hasRole('ROLE_FUL_WAITING')"/>
 		<security:intercept-url pattern="/**"
 			access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
-		<security:form-login login-page="/login" />
+			<security:intercept-url pattern="/console**" access="hasRole('ROLE_ROLE')"/>
+		<security:form-login login-page="/login" authentication-success-handler-ref="authenticationSuccessHandler"/>
 		<security:logout logout-url="/logout"
-			logout-success-url="/login" />
+			logout-success-url="/" />
+			<security:access-denied-handler error-page="/accessdenied"/>
 	</security:http>
 
 	<!-- <bean class="com.shinseokki.puzzle.service.UserService"> <property 
@@ -47,6 +51,6 @@
 	<!-- Spring Security에서 사용하는 유저를 확인하는 Service (내부에 DAO를 사용하여 로그인 여부를 판단함 -->
 	<!-- <bean id="customService" class="com.shin.security.service.tomServiceCus" 
 		/> -->
-
+	<bean id="authenticationSuccessHandler" class="com.shinseokki.puzzle.handler.RoleBaseAuthenticationSuccessHandler" />
 
 </beans>

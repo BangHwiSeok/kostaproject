@@ -1,0 +1,74 @@
+@charset "euc-kr";
+/* CSS Document */
+/*Çì´õ*/
+#header{position:relative; height:66px;}
+#header .logo{position:relative;  width:160px;top:35px; left:-320px;}
+#header .mypage{ width:80px; float:left; margin-right:20px;}
+#header .logout{width:80px; float:left;}
+.headerwidth{position:relative; top:-22px; width:1024px;}
+
+#header ul{color:#fff; width:465px; float:left;  margin-left:280px; margin-top: 5px;}
+#header ul li{float:left; margin-right:5px; font-size:15px;list-style: none;}
+#header ul li a{color:#FFF;}
+#header ul li a:hover{font-weight:bold;}
+
+/*footer*/
+#footer {margin-top:20px; width:1024px;}
+#footer div.footertitle{color:#fff; letter-spacing:1px; line-height:16px; font-size:8px; padding-top:7px; float:left; text-align:left; padding-left:150px;}
+#footer div.name{color:#fff; font-size:24px;top:-20px; padding-top:30px;}
+
+
+.userimg1 li{float:left; margin-left: -39px;}
+.userimg1 li a{width:10px; text-align:center; line-height:20px; display:block; background:#F36; color:#fff; border:1px solid;}
+.userimg1 ul.cf{position:relative;  z-index:1;}
+.userimg1 p{position:relative; top:-12px;}
+
+.userimg2 li{float:left; margin-right:10px;}
+.userimg2 li a{width:10px; text-align:center; line-height:20px; display:block; background:#F36; color:#fff; border:1px solid;}
+.userimg2 ul.cf{position:relative; top:10px; left:10px; z-index:1;}
+.userimg2 p{position:relative; top:-12px;}
+
+#wrap{width:100%; height:600px; margin:0 auto;}
+
+#container{widows:100%; height:460px; margin-top:50px;}
+
+#container div.title{width:100%;}
+
+#container div.title div.mainleft{background-color:#e6e6e6; height:218px; width:100%;}
+#container div.title div.center{ width:1280px;}
+
+#container div.subtitle{width:1280px;}
+
+#container div.bg{position:relative;}
+
+#container div.main{width:1055px;}
+
+#container div.main div.image{position:relative; top:-15px; left:50px; padding:15px;}
+#container div.main div.image div.list1{float:left; width:300px; height:300px; margin-right:1px; background-color:#900;}
+#container div.main div.image div.list1 div img1 div.inimg1 a{width:300px; height:300px;}
+
+/*list2*/
+
+#container div.main div.image div.list2{float:left; width:300px; height:300px; margin-right:1px; background-color:#900; }
+#container div.main div.image div.list2 div img1 div.inimg2 a{width:300px; height:300px;}
+
+/*list3*/
+#container div.info{background-color:#FFF; float:left; width:300px; margin-left: 2px;}
+#container div.info div.history{height:100px; margin-bottom:1px; text-align:left; padding-left:15px; color:#FFF; background-color:#F03; font-size:30px; font-weight:bold; line-height:30px;}
+#container div.info div.history a{ color:#FFF; position:relative; top:15px;}
+#container div.info div.history span{font-weight:normal; font-size:15px;}
+
+
+#container div.info div.count{background-color:#FFF;width:300px; height:99px; margin-bottom:1px;}
+#container div.info div.count div.left{background-color:#F03; float:left; width:130px; margin-right:1px; height:99px;}
+#container div.info div.count div.left a{ position:relative; top:15px;  font-size:15px; line-height:30px; color:#FFF;text-align:center;}
+#container div.info div.count div.left a:hover{ font-weight:bold;}
+#container div.info div.count div.left span{font-size:25px;}
+
+#container div.info div.count div.right{background-color:#F03; float:left; width:169px; height:99px;}
+#container div.info div.count div.right a{ position:relative; top:35px;  font-size:30px; line-height:30px; color:#FFF;text-align:center; font-weight:bold;}
+
+#container div.info div.search{background-color:#F03; width:300px; height:99px; text-align:left;}
+#container div.info div.search a{position:relative; top:8px;  font-size:15px; line-height:25px; color:#FFF; padding-left:30px; padding-right:5px;}
+#container div.info div.search a:hover{font-weight:bold;}
+#container div.info div.search span{font-size:25px; text-decoration:underline; padding-left:30px;}

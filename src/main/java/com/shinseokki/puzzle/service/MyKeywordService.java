@@ -25,7 +25,7 @@ public class MyKeywordService {
 	private EvaluationDao evaluationDao;
 	private KeywordService keywordService;
 	
-	private final int MAXMYKEYWORD = 2;
+	private final int MAXMYKEYWORD = 20;
 	
 	
 	@Autowired

@@ -6,5 +6,6 @@ import com.shinseokki.puzzle.dto.History;
 
 public interface HistoryDao {
 	public int save(History history);
-	public Collection<History> find(int u_num);
+	public Collection<History> find(int u_num,int startNo, int endNo);
+	public int countAmout(int u_num);
 }
