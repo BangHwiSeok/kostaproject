@@ -20,8 +20,10 @@
 			access="permitAll()" />
 		<security:intercept-url pattern="/"
 			access="permitAll()" />
+		<security:intercept-url pattern="/mykeywords" access="hasRole('ROLE_FUL_WAITING')"/>
 		<security:intercept-url pattern="/**"
 			access="hasAnyRole('ROLE_ADMIN','ROLE_USER')" />
+			<security:intercept-url pattern="/console**" access="hasRole('ROLE_ROLE')"/>
 		<security:form-login login-page="/login" authentication-success-handler-ref="authenticationSuccessHandler"/>
 		<security:logout logout-url="/logout"
 			logout-success-url="/" />

@@ -1,6 +1,7 @@
 package com.shinseokki.puzzle.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Locale;
 import java.util.Map;
@@ -20,21 +21,22 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.shinseokki.puzzle.dto.CurrentUser;
 import com.shinseokki.puzzle.dto.UserInfo;
+import com.shinseokki.puzzle.service.MyKeywordService;
 import com.shinseokki.puzzle.service.ProfileService;
 import com.shinseokki.puzzle.service.UserService;
 
 @RestController
-@RequestMapping("/members")
 public class UserController {
 	private final static Logger logger = LoggerFactory.getLogger(UserController.class);
 	private UserService userService;
 	private ProfileService profileService;
+	private MyKeywordService myKeywordService;
 
 	@Autowired
-	public UserController(UserService userService, ProfileService profileService) {
+	public UserController(UserService userService, ProfileService profileService,MyKeywordService myKeywordService) {
 		this.userService = userService;
 		this.profileService = profileService;
-
+		this.myKeywordService = myKeywordService;
 	}
 
 	/*
@@ -42,22 +44,24 @@ public class UserController {
 	 * 
 	 * @return String - 결과를 보여 주는 view
 	 */
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value="/console",method = RequestMethod.GET)
 	public ModelAndView home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 
 		ModelAndView mav = new ModelAndView("members/adminUserView");
+		/*mav.addObject("users", userService.getUsers(1));
+		mav.addObject("userPageNo", 1);
+		mav.addObject("userTotalPageNum", userService.getTotalPage());*/
 
 		return mav;
 	}
 
 	// MyPage 보기 현재 자기의 정보를 볼 수 있다.
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public ModelAndView showMyPage(
-			@PathVariable("id") Integer id /* ,CurrentUser currentUser */) {
+	@RequestMapping(value={"/members/{id}", "/members"}, method = RequestMethod.GET)
+	public ModelAndView showMyPage(CurrentUser currentUser ) {
 		ModelAndView mav = new ModelAndView("members/myInfo");
 
-		mav.addObject("myInfo", userService.getUserInfo(id));
+		mav.addObject("myInfo", userService.getUserInfo(currentUser.getUserNum()));
 
 		/* logger.info(currentUser.getRole().toString()); */
 
@@ -66,8 +70,8 @@ public class UserController {
 
 	// Image Update를 위해 따로 Form을 만들어야 함
 
-	@RequestMapping(value = "/{id}/update", method = RequestMethod.POST)
-	public String unapproveUser(@PathVariable Integer id, Model model, HttpServletRequest req) {
+	@RequestMapping(value="/members/{id}/update", method = RequestMethod.POST)
+	public String unapproveUser(@PathVariable Integer id,CurrentUser currentUser, Model model, HttpServletRequest req) {
 		logger.info("User unapproval Method : {}", id);
 		// 사진 Update 일 경우 RealPath에 있는 file을 바꾼다.
 		String path = req.getSession().getServletContext().getRealPath("/resources");
@@ -75,22 +79,29 @@ public class UserController {
 		return "OK";
 	}
 
-	@RequestMapping(value = "/{id}/pwd", method = RequestMethod.POST)
-	public String changePWD(@PathVariable Integer id, String pwd) {
+	@RequestMapping(value="/members/{id}/pwd", method = RequestMethod.POST)
+	public String changePWD(@PathVariable Integer id, CurrentUser currentUser ,String pwd) {
 		logger.info("User unapproval Method :  ID - {}, PWD - {} ", id, pwd);
-
-		// UserService 내에서 비밀번호를 암호화 해준다.
-		userService.changePwd(id, pwd);
-
-		return "OK";
+		
+		if(id == currentUser.getUserNum() || currentUser.getUserNum()==0){
+			// UserService 내에서 비밀번호를 암호화 해준다.
+			userService.changePwd(id, pwd);
+			return "OK";
+		}else{
+			return "NO";
+		}
 	}
 
-	@RequestMapping(value = "/{id}/approval", method = RequestMethod.GET)
-	public String approveUser(@PathVariable Integer id, Model model) {
+	@RequestMapping(value="/console/{id}/approval", method = RequestMethod.GET)
+	public String approveUser(@PathVariable Integer id, CurrentUser currentUser,Model model) {
 		logger.info("User Approval Method : {}", id);
-		userService.approvalUser(id);
-
-		return "OK";
+		
+		if(currentUser.getUserNum() == 0){
+			userService.approvalUser(id);
+			return "OK";
+		}else{
+			return "NO";
+		}
 	}
 
 	/*
@@ -100,7 +111,7 @@ public class UserController {
 	 * 
 	 * @description User의 모든 정보를 지운다.
 	 */
-	@RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
+	@RequestMapping(value="/members/{id}/delete", method = RequestMethod.GET)
 	public String deleteUser(@PathVariable Integer id, HttpServletRequest req) {
 		logger.info("User Approval Method : {}", id);
 
@@ -116,7 +127,7 @@ public class UserController {
 	 * @description 
 	 * 	{id}를 가진 상대의 keyword 정보와 사진정보를 반환한다.
 	 */
-	@RequestMapping(value = "/{id}/info", method = RequestMethod.GET)
+	@RequestMapping(value="/members/{id}/info", method = RequestMethod.GET)
 	public ModelAndView getMatchingUser(@PathVariable Integer id, CurrentUser currentUser, Model model) {
 		logger.info("User Keyword Info: {}", id);
 		ModelAndView mav = new ModelAndView("members/userKeywordInfo");
@@ -136,7 +147,7 @@ public class UserController {
 	 * 
 	 * @return ModelAndView - Paging 결과를 보여 주는 view
 	 */
-	@RequestMapping(value = { "/list" }, method = RequestMethod.GET)
+	@RequestMapping(value="/console/list" , method = RequestMethod.GET)
 	public ModelAndView showUsers(@RequestParam(value = "pageNo", required = false, defaultValue = "1") Integer pageNo,
 			Model model) {
 		logger.info("User List Methd  Page Number : {}", pageNo);
@@ -158,7 +169,7 @@ public class UserController {
 	 * 
 	 * @return ModelAndView - Paging 결과를 보여 주는 view
 	 */
-	@RequestMapping(value = "/list/approval", method = RequestMethod.GET)
+	@RequestMapping(value="/console/members/list/approval", method = RequestMethod.GET)
 	public ModelAndView showUsers(@RequestParam(value = "pageNo", required = false, defaultValue = "1") Integer pageNo,
 			@PathVariable Map<String, String> pathVariable, Model model) {
 		logger.info("User List Methd  Page Number : {}", pageNo);
@@ -187,26 +198,46 @@ public class UserController {
 
 		return mav;
 	}
-
+	
 	/*
-	 * @RequestMapping("/findid")
-	 * 
-	 * @ResponseBody public String findIdByPhone(String u_pnum){ logger.info(
-	 * "User phonenumber :{} ", u_pnum);
-	 * 
-	 * String id = userService.findIdByPhone(u_pnum);
-	 * 
-	 * if(id.equals("")){ id= "해당 휴대폰 번호를 찾을 수 없습니다."; }
-	 * 
-	 * return id; }
-	 * 
-	 * @RequestMapping("/findpwd") public String findPwdByIdPhone(String u_id,
-	 * String u_pnum){ logger.info("User ID:{}  User Phone:{}", u_id, u_pnum);
-	 * 
-	 * String findpwd = userService.findPwdByIdPhone(u_id, u_pnum);
-	 * if(findpwd==""){ findpwd= "해당 비밀번호를 찾을 수 없습니다."; }
-	 * 
-	 * return findpwd; }
 	 */
+	@RequestMapping(value = { "/mykeywords" }, method = RequestMethod.GET)
+	public ModelAndView selectMyKeywors(CurrentUser currentUser) {
+		logger.info("/mykeywords  user : {}", currentUser.getId());
+		ModelAndView mav = new ModelAndView("members/keywordCheck");
+
+		mav.addObject("myKeywords", myKeywordService.findMyKeywords(currentUser.getUserNum()));
+		// keyword 삭제
+		
+		// ROLE_USER 로 
+		return mav;
+	}
+	
+	/*
+	 */
+	@RequestMapping(value = { "/mykeywords" }, method = RequestMethod.POST)
+	public ModelAndView deleteMyKeywors(@RequestParam("delete") String[] delete, CurrentUser currentUser) {
+		logger.info("/mykeywords  user : {}", currentUser.getId());
+		logger.info("/mykeywords  POST : {}", delete);
+		ModelAndView mav = new ModelAndView("redirect:/logout");
+		Arrays.asList(delete).forEach((s)->{
+			System.out.println(s);
+		});
+		
+		userService.updateRoleMyKeyword(currentUser.getUser(), delete);
+		
+		mav.addObject("myKeywords", myKeywordService.findMyKeywords(currentUser.getUserNum()));
+
+		return mav;
+	}
+
+	@RequestMapping(value = "/waitingpage" , method = RequestMethod.GET)
+	public ModelAndView waitingPage( CurrentUser currentUser) {
+		logger.info("/waitingpage  user : {}", currentUser.getId());
+		ModelAndView mav = new ModelAndView("waitingpage");
+		
+
+		return mav;
+	}
 
 }

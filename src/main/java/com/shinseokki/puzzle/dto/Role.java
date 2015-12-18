@@ -7,7 +7,7 @@ package com.shinseokki.puzzle.dto;
  * ROLE_ADMIN : 사이트 관리자 
  */
 public enum Role {
-	ROLE_READY,ROLE_WAITING,ROLE_USER,ROLE_ADMIN;
+	ROLE_READY,ROLE_WAITING,ROLE_FUL_WAITING,ROLE_USER,ROLE_ADMIN;
 	
 	// next level을 알려 줌
 	public Role nextRole(){

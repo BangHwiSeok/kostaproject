@@ -51,12 +51,14 @@ public class RoleBaseAuthenticationSuccessHandler implements AuthenticationSucce
 		Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
 		for (GrantedAuthority grantedAuthority : authorities) {
 			System.out.println(req.getRequestURI());
-			if (grantedAuthority.getAuthority().equals("ROLE_WAITING")) {
-				targetUrl = "/";
+			if (grantedAuthority.getAuthority().equals("ROLE_FUL_WAITING")) {
+				targetUrl = "/mykeywords";
 			} else if (grantedAuthority.getAuthority().equals("ROLE_USER")) {
 				targetUrl = "/matches";
 			} else if (grantedAuthority.getAuthority().equals("ROLE_ADMIN")) {
 				targetUrl = "/console";
+			} else if(grantedAuthority.getAuthority().equals("ROLE_WAITING")){
+				targetUrl = "/waitingpage";
 			}
 
 		}

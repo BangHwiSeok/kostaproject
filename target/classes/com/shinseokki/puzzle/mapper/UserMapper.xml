@@ -5,8 +5,8 @@
 <mapper namespace="com.shinseokki.puzzle.dao.UserDao">
 	<insert id="addUser" parameterType="com.shinseokki.puzzle.dto.User">
 		INSERT INTO USERS(U_ID,
-		U_PWD, U_BIRTH, U_GENDER,  U_NUM, U_ROLE)
-		VALUES(#{u_id},#{u_pwd},#{u_birth},#{u_gender},	user_seq.nextval,#{u_role} )
+		U_PWD, U_BIRTH, U_GENDER,  U_NUM, U_ROLE, U_PNUM)
+		VALUES(#{u_id},#{u_pwd},#{u_birth},#{u_gender},	user_seq.nextval,#{u_role}, #{u_pnum )
 	</insert>
 	
 	<!-- <select id="findUserInfoByNum" resultType="com.shinseokki.puzzle.dto.UserInfo">

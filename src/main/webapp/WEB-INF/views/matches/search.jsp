@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>	
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -46,6 +47,20 @@ function MM_swapImage() { //v3.0
 						MM_preloadImages('${pageContext.request.contextPath}/resources/images/menuover_03.png','${pageContext.request.contextPath}/resources/images/menuover_05.png','${pageContext.request.contextPath}/resources/images/itemover_05.png','${pageContext.request.contextPath}/resources/images/menuover_07.png','${pageContext.request.contextPath}/resources/images/menuover_09.png')
 						search('.typeahead','${pageContext.request.contextPath }/keywords/find/', '#num','#addTaget');
 					}); 
+	
+	function checkKeywords(){
+		var keys = $("input[name='key[]']").length;
+		if(keys < 6 && keys > 0){
+			document.forms[0].submit();
+		}
+		if(keys < 1){
+			alert('keyword를 더 입력해주세요');
+		}
+		if(keys > 5){
+			alert('Refresh 해주세요');
+		}
+		return false;
+	}
 </script>
 </head>
 <body >
@@ -60,18 +75,18 @@ function MM_swapImage() { //v3.0
 					alt="로고"></a>
 			</div>
           <ul>
-            	<li><a href="#">매칭</a></li>
+            	<li><a href="${pageContext.request.contextPath }/matches">매칭</a></li>
                 <li>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
-                <li><a href="#">히스토리</a></li>
+                <li><a href="${pageContext.request.contextPath }/histories">히스토리</a></li>
                 <li>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
-                <li><a href="#">아이템</a></li>
+                <li><a href="${pageContext.request.contextPath }/shop">아이템</a></li>
                  <li>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
-                <li><a href="#">키워드 평가</a></li>
+                <li><a href="${pageContext.request.contextPath }/evalues">키워드 평가</a></li>
                 <li>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
                 <li><a href="#">관리자 문의</a></li>
             </ul>
-          <div class="mypage"><a href="#"><img src=" ${pageContext.request.contextPath}/resources/images/mypage.png" alt="마이페이지"></a></div>
-          <div class="logout"><a href="#"><img src=" ${pageContext.request.contextPath}/resources/images/logout.png" alt="로그아웃"></a></div>
+          <div class="mypage"><a href="${pageContext.request.contextPath}/members/<sec:authentication property='principal.userNum' />"><img src=" ${pageContext.request.contextPath}/resources/images/mypage.png" alt="마이페이지"></a></div>
+          <div class="logout"><a href="${pageContext.request.contextPath }/logout"><img src=" ${pageContext.request.contextPath}/resources/images/logout.png" alt="로그아웃"></a></div>
     	</div>
     </div>
 
@@ -83,7 +98,7 @@ function MM_swapImage() { //v3.0
        	    <span class="searchkey"><input class="typeahead" type="text"></span>
         </div>
         <div class="pluse" style="background-image:url( ${pageContext.request.contextPath}/resources/images/search.png); background-repeat:no-repeat; height:120; width:691px;">
-        	<div class="subsearch"><input type="image"  src= "${pageContext.request.contextPath}/resources/images/search_05.png" onclick="document.forms[0].submit()" /></div>
+        	<div class="subsearch"><input type="image"   src= "${pageContext.request.contextPath}/resources/images/search_05.png" onclick="return checkKeywords();" /></div>
         	<form id='test'  method='POST'  class="text" style="margin-bottom: 4px;">
             	<div id='addTaget' class="subtext"></div>
         	</form>
@@ -113,7 +128,6 @@ function MM_swapImage() { //v3.0
 	<input id='num' type='hidden' value=0 />
 	<form id='test'  method='POST'>    </form>
 	<button onclick="document.forms[0].submit()">전송</button> -->
-	</div>
 </center>
 </body>
 </html>

@@ -81,7 +81,6 @@ $(function(){//실행틀 시작
 	
 	$('.leftBtn').click(function(e){
 		var pageNo = parseInt($('#pageNo').val());
-		var total = parseInt($('#totalPage').val());
 		if(pageNo > 1){
 			$('#pageNo').val(pageNo-1);
 			nextHistory(pageNo-1);
@@ -122,7 +121,7 @@ $(function(){//실행틀 시작
                 <li>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
                 <li><a href="${pageContext.request.contextPath}/shop">아이템</a></li>
                  <li>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
-                <li><a href="${pageContext.request.contextPath}/evaluates">키워드 평가</a></li>
+                <li><a href="${pageContext.request.contextPath}/evalues">키워드 평가</a></li>
                 <li>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
                 <li><a href="#">관리자 문의</a></li>
             </ul>
@@ -179,7 +178,7 @@ $(function(){//실행틀 시작
 	                   </c:forEach>
 	                   <input type="hidden" id="totalPage" value="${totalPage }"/>
                     </div>
-                   <input type="hidden" id="pageNo" value=1 />
+                   <input type="hidden" id="pageNo" value='${pageNo }' />
                  <div class="rightbtn"><input type="image" class="rightBtn" src=" ${pageContext.request.contextPath}/resources/images/history_04.jpg" alt="right" id="Image2" onMouseOver="MM_swapImage('Image2','',' ${pageContext.request.contextPath}/resources/images/history_05.jpg',1)" onMouseOut="MM_swapImgRestore()"></div>
                 </div>  <!--image-->
             </div><!--main-->

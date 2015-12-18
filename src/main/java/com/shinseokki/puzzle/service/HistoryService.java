@@ -38,7 +38,7 @@ public class HistoryService {
 		Collection<HistoryInfo> historyCollection = new ArrayList<HistoryInfo>(); 
 		
 		int startNo = (pageNo -1) * MAX_PAGE  + 1;
-		int endNo = startNo + MAX_PAGE;
+		int endNo = (pageNo -1) * MAX_PAGE + MAX_PAGE ;
 		
 		historyDao.find(u_num,startNo,endNo).stream().forEach((h)->{
 			HistoryInfo info = new HistoryInfo();

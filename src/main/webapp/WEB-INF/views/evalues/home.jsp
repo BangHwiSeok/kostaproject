@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -37,7 +38,7 @@
 		//console.log(num);
 		var suggestion = $(selected[num]).text();
 		console.log(suggestion);
-		$('.carbar').append("<input type='text'  name='"+target+"' value='"+suggestion+"' />")
+		$('.carbar').append("<input type='text'  name='"+target+"' value='"+suggestion+"' readonly='readonly' />")
 		
 		$('#num').val(num+1);
 	}
@@ -45,6 +46,7 @@
 </script>
 </head>
 <body>
+<center>
 <div id="wrap">
 <!--헤더-->
     <div id="header" style="background-color:#ff524f;; background-repeat:repeat-x;">
@@ -61,7 +63,7 @@
                 <li>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
                 <li><a href="${pageContext.request.contextPath}/shop">아이템</a></li>
                  <li>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
-                <li><a href="${pageContext.request.contextPath}/evaluates">키워드 평가</a></li>
+                <li><a href="${pageContext.request.contextPath}/evalues">키워드 평가</a></li>
                 <li>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
                 <li><a href="#">관리자 문의</a></li>
             </ul>
@@ -69,7 +71,7 @@
           <div class="logout"><a href="${pageContext.request.contextPath}/logout"><img src=" ${pageContext.request.contextPath}/resources/images/logout.png" alt="로그아웃"></a></div>
     	</div>
     </div>
-<center>
+
 
 	<c:if test="${!non_eval}">
 		<%-- <p>${eval.u_num }</p> --%>
@@ -93,11 +95,11 @@
                 <input type="text"class="auto" name="keyword1" placeholder="검색" style="height:30px; width:250px;" />
                 &nbsp;<input type="image" src="${pageContext.request.contextPath}/resources/images/searchbar.png" alt="Submit" width="58" height="31" onclick="return addKeyword('keyword1')"/></div>
                 <div class="ser2"><input type="text" class="auto" name="keyword2" placeholder="카테고리" style="height:30px; width:250px;" />
-                &nbsp;<input type="image" id="addKeyword" src="${pageContext.request.contextPath}/resources/images/searchbar.png" alt="Submit" width="58" height="31" onclick="return addKeyword('keyword2')"/></div>
+                &nbsp;<input type="image" id="addKeyword" src="${pageContext.request.contextPath}/resources/images/searchbar.png" alt="Submit" width="58" height="31" style="vertical-align: bottom;" onclick="return addKeyword('keyword2')"/></div>
                 
                 <form id="eval"  class="carbar"></form>
                 <input type="hidden" id="num" value=0 />
-                <button id="createKeyword">Add Keyword</button>
+                <input type="image" id="createKeyword" value="Add Keyword" />
              </div>
        </div>
 		
@@ -134,7 +136,7 @@
             <div class="name">신석기</div>
        	    </div>
     <!--footer끝-->
- </center>
  </div>
+ </center>
 </body>
 </html>

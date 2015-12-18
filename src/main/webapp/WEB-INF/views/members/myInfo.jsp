@@ -1,15 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
-<!DOCTYPE>
+<!DOCTYPE >
 <html>
 <head>
 <title>유저 마이페이지</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <link href=" ${pageContext.request.contextPath}/resources/css/base.css" rel="stylesheet" type="text/css" />
 <link href=" ${pageContext.request.contextPath}/resources/css/usermain.css" rel="stylesheet" type="text/css" />
+<link	href="${pageContext.request.contextPath }/resources/bootstrap/css/jasny-bootstrap.min.css" rel="stylesheet">
 <script src="${pageContext.request.contextPath }/resources/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath }/resources/bootstrap/js/jasny-bootstrap.min.js"></script>
 <script>
+$('.fileinput').fileinput();
 function updateInfo(){
 	var param = $('.userdata').serialize();
 	/* 
@@ -130,23 +133,69 @@ function updateInfo(){
         <div class="centermenu">
         	<div class="proname">프로필 사진<span>[메인사진 2장은 필수로 등록되어있어야 합니다.(5MB 제한)]</span></div>
             <div class="promainimg">
-            	<div class="img1" style="width:250px; height:250px;"></div>
-                <div class="img2" style="width:250px; height:250px;"></div>
+            	<div class="img1 fileinput fileinput-new" data-provides="fileinput"  style="width:230px; height:250px;">
+	            		<div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width:230px; height:250px;">
+	            			<img src="${pageContext.request.contextPath }/resources/${myinfo.profiles[0].u_num}/${myinfo.profiles[0].u_num}/${myinfo.profiles[0].p_photonum}${myinfo.profiles[0].p_extendtype}" />
+	            		</div>
+	            			<span class="btn btn-default btn-file"><span
+									class="fileinput-new">Select image</span><span
+									class="fileinput-exists">Change</span><input type="file"
+									name="photoes[0]"></span> <a href="#"
+									class="btn btn-default fileinput-exists"
+									data-dismiss="fileinput">Remove</a>
+	            	</div>
+                <div class="img2 fileinput fileinput-new" data-provides="fileinput"   style="width:230px; height:250px;">
+	            		<div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width:230px; height:250px;">
+	            			<img src=" ${pageContext.request.contextPath}/resources/images/logout.png" />
+	            		</div>
+	            			<span class="btn btn-default btn-file"><span
+									class="fileinput-new">Select image</span><span
+									class="fileinput-exists">Change</span><input type="file"
+									name="photoes[1]"></span> <a href="#"
+									class="btn btn-default fileinput-exists"
+									data-dismiss="fileinput">Remove</a>
+				</div>
             </div>
             <div class="submain">
-            	<div class="subimg1" style="width:165px; height:165px;"></div>
-                <div class="subimg2" style="width:165px; height:165px;"></div>
-                <div class="subimg3" style="width:165px; height:165px;"></div>
+            	<div class="subimg1 fileinput fileinput-new" data-provides="fileinput" style="width:165px; height:165px;">
+	            		<div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width:165px; height:165px;"></div>
+	            			<span class="btn btn-default btn-file"><span
+									class="fileinput-new">Select image</span><span
+									class="fileinput-exists">Change</span><input type="file"
+									name="photoes[2]"></span> <a href="#"
+									class="btn btn-default fileinput-exists"
+									data-dismiss="fileinput">Remove</a>
+	            	</div>
+                <div class="subimg2 fileinput fileinput-new" data-provides="fileinput" style="width:165px; height:165px;">
+	            		<div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width:165px; height:165px;"></div>
+	            			<span class="btn btn-default btn-file"><span
+									class="fileinput-new">Select image</span><span
+									class="fileinput-exists">Change</span><input type="file"
+									name="photoes[3]"></span> <a href="#"
+									class="btn btn-default fileinput-exists"
+									data-dismiss="fileinput">Remove</a>
+	            	</div>
+                <div class="subimg3 fileinput fileinput-new" data-provides="fileinput" style="width:165px; height:165px;">
+	            		<div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width:165px; height:165px;"></div>
+	            			<span class="btn btn-default btn-file"><span
+									class="fileinput-new">Select image</span><span
+									class="fileinput-exists">Change</span><input type="file"
+									name="photoes[4]"></span> <a href="#"
+									class="btn btn-default fileinput-exists"
+									data-dismiss="fileinput">Remove</a>
+	            	</div>
             </div>
             <div class="centerbtn"><a href="#">사진 수정</a></div>
         </div><!--centermenu-->
         <div class="rightmenu">
         	<div class="keyname">키워드 정보</div>
             <div class="list">
+            <c:forEach var="keyword" items="${myInfo.myKeywords }">
             	<div class="sublist">
-                	<div class="left">1</div>
-                    <div class="right"><input type="text"></div>
+                	<div class="left"><span>&nbsp;</span></div>
+                    <div class="right"><input type="text" value="${keyword.keyword }" readonly="readonly" style="text-align: center"></div>
                 </div>
+                </c:forEach>
             </div>
             <div class="listbtn">
             	<div class="leftbtn"><a href="#">교체</a></div>
@@ -158,18 +207,15 @@ function updateInfo(){
             </div>
         </div><!--rightmenu-->
   	</div><!--main끝-->
-    </div>
-    <!--footer-->
     
-    <div id="footer">
+    <!-- <div id="footer">
         <div class="bgre" style="background-color:#666; position:relative; top:200px;
         background-repeat:repeat-x; width:100%; height:66px; z-index:-1"></div>
         	<div class="footertitle">광고·제휴 문의    /   이용약관   /   개인정보취급방침   /   고객센터<br>
 				사업자등록번호100-00-00000    /    통신판매신고 제 0000 - 성남 판교 - 0000호<br>
 				경기도 성남시 판교 판교     /    고객센터 help@puzzle.com 1500-0000    /   (주)신석기 대표이사 신석기</div>
             <div class="name">신석기</div>
-       	    </div>
-    </div>
+    </div> -->
     <!--footer끝-->
 </div><!--wrap끝-->
 

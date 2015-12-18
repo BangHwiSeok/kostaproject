@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>	    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -32,6 +33,10 @@
                 <li>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
                 <li><a href="#">관리자 문의</a></li>
             </ul>
+            <sec:authorize access="hasAnyRole('ROLE_USER','ROLE_ADMIN','ROLE_FUL_WAITING','ROLE_WAITING') and isAuthenticated()">
+	            <div class="mypage"><a href="${pageContext.request.contextPath}/members/<sec:authentication property='principal.userNum' />"><img src=" ${pageContext.request.contextPath}/resources/images/mypage.png" alt="마이페이지"></a></div>
+	          	<div class="logout"><a href="${pageContext.request.contextPath }/logout"><img src=" ${pageContext.request.contextPath}/resources/images/logout.png" alt="로그아웃"></a></div>
+          	</sec:authorize>
     	</div>
     </div>
     

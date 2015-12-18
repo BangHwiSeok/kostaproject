@@ -8,19 +8,15 @@
 <script src="https://code.jquery.com/jquery-1.11.3.js"></script>
 <script>
 $(document).ready(function(){
-	$('#find').keyup(function(){
+	$('#find').click(function(){
 		console.log("keyup event");
+		var params = $('form').serialize();
 		$.ajax({
-			url:"keywords/find/"+$('#find').val(), 
-			dataType : "json",
+			url:"keywords",
+			method:"post",
+			data:params,
 			success:function(data) {
-				//var result = JSON.parse(data);
-				console.log(data);
-				$.each(data[0], function(key, value){
-				    //alert('key:' + key + ' / ' + 'value:' + value);
-				});
-		        /* $('div#results').html(result);
-		        $('#results').show(); */
+				alert('입력');
 			}
 	    });
 	});
@@ -31,9 +27,12 @@ $(document).ready(function(){
 </head>
 <body>
 	<div>
-		<input type="text" id="find" /><br>
 		<div id="result"></div>
-
+		<form method="post">
+			<label>GROUP : </label><input type="text" name='K_GROUP'  value="미분류"/><br/>
+			<label>K_NAME : </label><input type="text" name='K_NAME' />
+		</form>
+<button id="find" >input</button><br>
 	</div>
 </body>
 </html>

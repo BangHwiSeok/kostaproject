@@ -52,7 +52,7 @@ function MM_swapImage() { //v3.0
                 <li>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
                 <li><a href="${pageContext.request.contextPath}/shop">아이템</a></li>
                  <li>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
-                <li><a href="${pageContext.request.contextPath}/evaluates">키워드 평가</a></li>
+                <li><a href="${pageContext.request.contextPath}/evalues">키워드 평가</a></li>
                 <li>&nbsp;&nbsp;|&nbsp;&nbsp;</li>
                 <li><a href="#">관리자 문의</a></li>
             </ul>

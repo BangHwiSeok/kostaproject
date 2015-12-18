@@ -53,7 +53,7 @@ function autocomplete(bindingtarget, form, usernum, contextpath, targetURL, targ
 											console.log(data);
 											return $.map(data, function(value) {
 												return {
-													value : value.k_NAME
+													value : value.k_name
 												};
 											});
 										}

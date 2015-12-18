@@ -20,7 +20,7 @@ function search(target,targetURL, inputNum,appendTarget) {
 											// console.log(data);
 											return $.map(data, function(value) {
 												return {
-													value : value.k_NAME
+													value : value.k_name
 												};
 											});
 										}
@@ -46,7 +46,7 @@ function search(target,targetURL, inputNum,appendTarget) {
 							/* $('#test').html('<p>'+suggestion.value+'</p>'); */
 							console.log($(inputNum).val());
 							var num = parseInt($(inputNum).val());
-									$(appendTarget).append("<input type='text'  name='key[]' value='"+suggestion.value+"' />");
+									$(appendTarget).append("<input type='text'  name='key[]' value='"+suggestion.value+"' readonly='readonly' />");
 									$('#num').val(num+1);
 								});
 					}

@@ -36,9 +36,12 @@ public class HistoryController {
 		/*mav.addObject("total", messageDao.countMessagInfo(42, 21));*/
 		/*Collection<HistoryInfo> info = historyService.find(user.getUserNum());
 		System.out.println(info);*/
+		
 		int totalPage = calculateTotalPage(historyService.countAmout(user.getUserNum()),historyService.MAX_PAGE);
 		pageNo = pageNo > totalPage ? totalPage : pageNo;
+		System.out.println(historyService.find(user.getUserNum(),pageNo) );
 		mav.addObject("histories",historyService.find(user.getUserNum(),pageNo) );
+		mav.addObject("pageNo",pageNo);
 		// total page
 		mav.addObject("totalPage",totalPage);
 		

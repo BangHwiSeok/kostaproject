@@ -80,7 +80,7 @@ public class LoginController {
 		
 		userService.addUser(userCreateForm,req.getSession().getServletContext().getRealPath("/resources"));
 		
-		return "redirect:/signup";
+		return "redirect:/";
 	}
 	
 	

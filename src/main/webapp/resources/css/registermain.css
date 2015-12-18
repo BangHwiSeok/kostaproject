@@ -1,0 +1,91 @@
+@charset "euc-kr";
+/* CSS Document */
+
+#wrap{width:100%; height:666px; margin:0 auto;}
+
+/*Çì´õ*/
+#header{position:relative; height:66px;}
+#header .logo{position:relative;  width:160px;top:35px; left:-320px;}
+#header .mypage{ width:80px; float:left; margin-right:20px;}
+#header .logout{width:80px; float:left;}
+.headerwidth{position:relative; top:-22px; width:1024px;}
+
+#header ul{color:#fff; width:450px; float:left; margin-top:10px; margin-left:300px;}
+#header ul li{float:left; margin-right:5px; font-size:15px;}
+#header ul li a{color:#FFF;}
+#header ul li a:hover{font-weight:bold;}
+
+
+.main{ width:1280px;}
+/*center*/
+.centermenu{margin-top:30px; height:400px; float:left; margin-left:215px;}
+.centermenu div.proname{font-size:15px; color:#F03; font-weight:bold; margin-bottom:12px; text-align:left;}
+.centermenu div.proname span{font-size:12px; color:#666; font-weight:normal;}
+
+.centermenu div.promainimg{}
+.centermenu div.promainimg div.img1{width:200px; height:200px; float:left; margin-right:2px;}
+.centermenu div.promainimg div.img2{width:200px; height:200px; float:left;}
+
+.centermenu div.submain{}
+.centermenu div.submain div.subimg1{background-color:#999; width:132px; height:132px; float:left; margin-right:3px; margin-top:10px;}
+.centermenu div.submain div.subimg2{background-color:#999; width:132px; height:132px; float:left; margin-right:3px;margin-top:10px;}
+.centermenu div.submain div.subimg3{background-color:#999; width:132px; height:132px; float:left; margin-top:10px;}
+
+
+/*rightmenu*/
+.rightmenu{ margin-left:30px; width:420px; margin-top:31px; height:400px; float:left;}
+.rightmenu div.keyname{font-size:15px; color:#F03; font-weight:bold; margin-bottom:12px; text-align:left;}
+
+.rightmenu div.list{}
+.rightmenu div.list div.sublist1{clear:both;}
+.rightmenu div.list div.sublist1 div.left{width:107px; height:30px; background-color:#F03; text-align:left; padding:5px; color:#FFF; font-size:15px; float:left; margin-right:3px; margin-bottom:4px; text-align:left; padding-top:7px;}
+.rightmenu div.list div.sublist1 div.right{float:left; margin-bottom:4px;}
+.rightmenu div.list div.sublist1 div.right input{width:298px; height:30px; background-color:#666; color:#FFF; text-align:right;}
+
+.rightmenu div.list div.sublist2{clear:both;}
+.rightmenu div.list div.sublist2 div.left{width:107px; height:16px; background-color:#F03; text-align:left; padding:5px; color:#FFF; font-size:15px; float:left; margin-right:3px; margin-bottom:4px; text-align:left; padding-top:7px;}
+.rightmenu div.list div.sublist2 div.right{float:left; margin-bottom:4px;}
+.rightmenu div.list div.sublist2 div.right input{width:298px; height:30px; background-color:#666; color:#FFF; text-align:right;}
+
+.rightmenu div.list div.sublist3{clear:both;}
+.rightmenu div.list div.sublist3 div.left{width:107px; height:16px; background-color:#F03; text-align:left; padding:5px; color:#FFF; font-size:15px; float:left; margin-right:3px; margin-bottom:4px; text-align:left; padding-top:7px;}
+.rightmenu div.list div.sublist3 div.right{float:left; margin-bottom:4px;}
+.rightmenu div.list div.sublist3 div.right input{width:298px; height:30px; background-color:#666; color:#FFF; text-align:right;}
+
+.rightmenu div.list div.sublist4{clear:both;}
+.rightmenu div.list div.sublist4 div.left{width:107px; height:16px; background-color:#F03; text-align:left; padding:5px; color:#FFF; font-size:15px; float:left; margin-right:3px; margin-bottom:4px; text-align:left; padding-top:7px;}
+.rightmenu div.list div.sublist4 div.right{float:left; margin-bottom:4px;}
+.rightmenu div.list div.sublist4 div.right input{width:298px; height:30px; background-color:#666; color:#FFF; text-align:right;}
+
+.rightmenu div.list div.sublist5{clear:both;}
+.rightmenu div.list div.sublist5 div.left{width:107px; height:16px; background-color:#F03; text-align:left; padding:5px; color:#FFF; font-size:15px; float:left; margin-right:3px; margin-bottom:4px; text-align:left; padding-top:7px;}
+.rightmenu div.list div.sublist5 div.right{float:left; margin-bottom:4px;}
+.rightmenu div.list div.sublist5 div.right input{width:298px; height:30px; background-color:#666; color:#FFF; text-align:right;}
+
+.rightmenu div.list div.sublist6{clear:both;}
+.rightmenu div.list div.sublist6 div.left{width:107px; height:16px; background-color:#F03; text-align:left; padding:5px; color:#FFF; font-size:15px; float:left; margin-right:3px; margin-bottom:4px; text-align:left; padding-top:7px;}
+.rightmenu div.list div.sublist6 div.right{float:left; margin-bottom:4px;}
+.rightmenu div.list div.sublist6 div.right input{width:298px; height:30px; background-color:#666; color:#FFF; text-align:right;}
+
+.rightmenu div.text{margin-top:50px;}
+.rightmenu div.text div.title{font-size:15px; font-weight:bold; color:#F03; text-align:left; }
+.rightmenu div.text div.subtitle{border:1px solid #999; padding:5px; text-align:left; line-height:15px; margin-top:10px;}
+
+.rightmenu div.text div.agree{margin-top:10px; text-align:left;}
+.rightmenu div.text div.agree span{color:#F03;}
+
+.rightmenu div.text div.subagree{margin-top:5px; text-align:left;}
+.rightmenu div.text div.subagree span{color:#F03;}
+
+.okbtn{position:relative; top:65px; border:5px solid #F03; border-radius:25px; width:150px; height:15px; padding:15px; clear:both;}
+.okbtn a{ position: relative;
+    font-size: 25px;
+    color: #F03;
+    top: -17px; text-decoration: blink;}
+.okbtn a:hover{font-weight:bold; color: #F03; list-style: none; text-decoration: blink; }
+
+/*footer*/
+#footer {width:100%;}
+#footer div.footertitle{color:#fff; letter-spacing:1px; line-height:16px; font-size:8px; text-align:left; position:relative; left:250px; float:left; top:45px; margin-right:250px;}
+#footer div.name{color:#fff; font-size:24px; position:relative; top:65px;}
+

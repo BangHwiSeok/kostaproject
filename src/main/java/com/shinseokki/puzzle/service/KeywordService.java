@@ -19,7 +19,7 @@ public class KeywordService {
 	}
 	
 	public int addKeyword(Keyword keyword){
-		return keywordDao.addkeyword(keyword);
+		return keywordDao.addKeyword(keyword);
 	}
 	public Keyword find(String k_name){
 		return keywordDao.find(k_name);
