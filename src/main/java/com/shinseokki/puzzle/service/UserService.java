@@ -140,6 +140,7 @@ public class UserService {
 		user.setU_pwd(new BCryptPasswordEncoder().encode(form.getU_pwd()));
 		user.setU_birth(form.getU_birth());
 		user.setU_gender(form.getU_gender());
+		user.setU_pnum(form.getU_pnum());
 		user.setU_role(Role.ROLE_READY);
 		userDao.addUser(user);
 

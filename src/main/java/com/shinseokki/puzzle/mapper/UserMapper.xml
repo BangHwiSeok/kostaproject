@@ -5,10 +5,21 @@
 <mapper namespace="com.shinseokki.puzzle.dao.UserDao">
 	<insert id="addUser" parameterType="com.shinseokki.puzzle.dto.User">
 		INSERT INTO USERS(U_ID,
-		U_PWD, U_BIRTH, U_GENDER,  U_NUM, U_ROLE)
-		VALUES(#{u_id},#{u_pwd},#{u_birth},#{u_gender},	user_seq.nextval,#{u_role} )
+		U_PWD,U_PNUM, U_BIRTH, U_GENDER,U_REGDATE, U_NUM, U_ROLE)
+		VALUES(#{u_id},#{u_pwd},#{u_pnum},#{u_birth},#{u_gender},sysdate, user_seq.nextval,#{u_role} )
 	</insert>
-	
+	<!-- 남성회원 카운트 -->
+	<select id="getMalesCount" resultType="Integer">
+		SELECT COUNT(*) as males 
+		FROM USERS 
+		WHERE U_GENDER= '남'
+	</select>
+	<!-- 여성회원 카운트 -->
+	<select id="getFemalesCount" resultType="Integer">
+		SELECT COUNT(*) as females 
+		FROM USERS 
+		WHERE U_GENDER= '여'
+	</select>
 	<!-- <select id="findUserInfoByNum" resultType="com.shinseokki.puzzle.dto.UserInfo">
 		SELECT * 
 		FROM USERS U INNER JOIN PROFILE P ON U.U_NUM = P.U_NUM

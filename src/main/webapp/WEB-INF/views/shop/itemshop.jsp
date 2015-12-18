@@ -10,7 +10,7 @@
 <script>
 	function getItems() {
 		$.ajax({
-			url : "shop/getItems",
+			url : "${pageContext.request.ContextPath}/shop/getItems",
 			success : function(data) {
 				//alert(data);
 				$('.approvalItem').html(data);
